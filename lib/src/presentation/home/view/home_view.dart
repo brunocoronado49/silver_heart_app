@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../../data/structure/items.dart' as Items;
+//import '../../../data/structure/items.dart' as Items;
 import '../widget/custom_app_bar.dart';
 import '../widget/text_header.dart';
 import '../widget/ProductCarrousel.dart';
@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
-          children: [
+          children: const [
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue
@@ -42,19 +42,19 @@ class HomeView extends StatelessWidget {
             ),
             ListTile(
               title: Text("Inicio"),
-              onTap: () {
+              //onTap: () {
                // function for go to the feed
-                Navigator.pop(context);
-              },
+               // Navigator.pop(context);
+             // },
             ),
             ListTile(
-              title: const Text('Item 2'),
-              onTap: () {
+              title: Text('Item 2'),
+              //onTap: () {
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
-              },
+               // Navigator.pop(context);
+              //},
             ),
           ],
         ),
@@ -73,7 +73,7 @@ class HomeView extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyText1,
           ),
         ),
-        ProductCarrousel(products: Items.productsForYou),
+        //ProductCarrousel(products: Items.productsForYou),
       ],
     );
   }
@@ -103,9 +103,9 @@ class HomeView extends StatelessWidget {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: ProductList(products: Items.recentsProducts),
+        //Padding(
+          //padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          //child: ProductList(products: Items.recentsProducts),
         ),
       ],
     );
