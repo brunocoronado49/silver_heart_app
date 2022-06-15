@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Logo extends StatelessWidget {
+class SignLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/login.png");
+    return Image.asset("assets/sign.png");
   }
 }

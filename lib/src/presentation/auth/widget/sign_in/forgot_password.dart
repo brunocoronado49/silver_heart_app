@@ -4,13 +4,13 @@ class ForgotPAssword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 5, bottom: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: InkWell(
         child: const Text(
           "¿Olvidaste tu contraseña?",
-          textAlign: TextAlign.right,
+          textAlign: TextAlign.left,
           style: TextStyle(
-            fontSize: 12,
+            fontSize: 11,
             fontWeight: FontWeight.w600,
             decoration: TextDecoration.underline,
           ),

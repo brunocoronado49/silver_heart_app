@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//import '../../../data/structure/items.dart' as Items;
 import '../widget/custom_app_bar.dart';
 import '../widget/text_header.dart';
-import '../widget/ProductCarrousel.dart';
-import '../widget/product_list.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key, required this.user}) : super(key: key);
@@ -16,11 +13,9 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          children: [
-            const CustomAppBar(),
-            const TextHeader(),
-            _forYou(context),
-            _recent(context),
+          children: const [
+            CustomAppBar(),
+            TextHeader(),
           ],
         ),
       ),
@@ -42,19 +37,9 @@ class HomeView extends StatelessWidget {
             ),
             ListTile(
               title: Text("Inicio"),
-              //onTap: () {
-               // function for go to the feed
-               // Navigator.pop(context);
-             // },
             ),
             ListTile(
               title: Text('Item 2'),
-              //onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-               // Navigator.pop(context);
-              //},
             ),
           ],
         ),
@@ -102,10 +87,6 @@ class HomeView extends StatelessWidget {
               ),
             ],
           ),
-        ),
-        //Padding(
-          //padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          //child: ProductList(products: Items.recentsProducts),
         ),
       ],
     );
