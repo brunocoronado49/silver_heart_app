@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../widget/sign_in/forgot_password.dart';
-import '../widget/sign_in/sign_in_text.dart';
-import '../widget/sign_in/sign_up_button.dart';
-import '../widget/copyright.dart';
-import '../widget/logo.dart';
+import '../../login/widgets/forgot_password.dart';
+import '../../login/widgets/sign_in_text.dart';
+import '../../login/widgets/sign_up_button.dart';
+import '../../widgets/copyright.dart';
+import '../../widgets/logo.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
