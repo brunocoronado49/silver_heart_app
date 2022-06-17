@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
+  CustomAppBar({Key? key}) : super(key: key);
+
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -15,20 +18,22 @@ class CustomAppBar extends StatelessWidget {
         children: [
           IconButton(
               iconSize: 40.0,
-              onPressed: () {},
-              icon: Icon(Icons.menu_outlined)
+              onPressed: () async {
+                  await auth.signOut();
+                },
+              icon: const Icon(Icons.menu_outlined)
           ),
           Row(
             children: [
               IconButton(
                   iconSize: 40.0,
                   onPressed: () {},
-                  icon: Icon(Icons.search)
+                  icon: const Icon(Icons.search)
               ),
               IconButton(
                   iconSize: 40.0,
                   onPressed: () {},
-                  icon: Icon(Icons.settings)
+                  icon: const Icon(Icons.settings)
               ),
             ],
           ),

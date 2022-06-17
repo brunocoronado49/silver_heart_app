@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          children: const [
+          children: [
             CustomAppBar(),
             TextHeader(),
           ],

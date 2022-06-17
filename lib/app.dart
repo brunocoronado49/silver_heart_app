@@ -1,54 +1,63 @@
 import 'package:flutter/material.dart';
-import 'src/presentation/home/view/home_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:silver_heart/src/presentation/home/view/home_page.dart';
+import 'package:silver_heart/src/presentation/login/view/login_page.dart';
+import 'src/repository/repository.dart';
+import 'src/auth/auth.dart';
+import 'src/presentation/slpash/splash_screen.dart';
+import 'src/core/styles/styles.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.authRepository}) : super(key: key);
+
+  final AuthRepository authRepository;
+
+  @override
+  Widget build(BuildContext context) {
+    return RepositoryProvider(
+      create: (_) => AuthBloc(authRepository: authRepository),
+      child: const AppView(),
+    );
+  }
+}
+
+class AppView extends StatefulWidget {
+  const AppView({Key? key}) : super(key: key);
+
+  @override
+  State<AppView> createState() => _AppViewState();
+}
+
+class _AppViewState extends State<AppView> {
+  final _navigationKey = GlobalKey<NavigatorState>();
+
+  NavigatorState? get _navigator => _navigationKey.currentState;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Silver Heart',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.purple,
-        highlightColor: Colors.red,
-        textTheme: const TextTheme(
-          headline1: TextStyle(
-            fontSize: 36.0,
-            fontWeight: FontWeight.bold,
-            color: Color(0XFF030047),
-          ),
-          headline2: TextStyle(
-            fontSize: 36.0,
-            fontWeight: FontWeight.bold,
-            color: Color(0xFF5F5FFF),
-          ),
-          headline3: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
-          headline4: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.w500,
-            color: Color(0XFF030047),
-          ),
-          bodyText1: TextStyle(
-            fontSize: 20.0,
-            color: Color(0XFFB7B7D2),
-          ),
-          bodyText2: TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF5F5FFF),
-          ),
-          subtitle1: TextStyle(
-            fontSize: 14.0,
-            fontWeight: FontWeight.w600,
-            color: Color(0XFFB7B7D2),
-          ),
-        ),
-      ),
+      theme: styles.appTheme,
+      navigatorKey: _navigationKey,
+      builder: (context, child) {
+        return BlocListener<AuthBloc, AuthState>(
+            listener: (context, state) {
+              switch(state.status) {
+                case AuthStateStatus.authenticated:
+                  _navigator?.pushAndRemoveUntil<void>(
+                      HomePage.route(), (route) => false
+                  ); break;
+                case AuthStateStatus.unaunthenticated:
+                  _navigator?.pushAndRemoveUntil<void>(
+                      LoginPage.route(), (route) => false
+                  );
+                  break;
+                default: break;
+              }
+            },
+          child: child,
+        );
+      },
+      onGenerateRoute: (_) => SplashScreen.route(),
     );
   }
 }
