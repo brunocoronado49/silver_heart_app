@@ -54,6 +54,7 @@ dependencies:
   meta: ^1.7.0
   google_sign_in: ^5.3.3
   pedantic: ^1.11.1
+  path: ^1.8.1
 
 dev_dependencies:
   flutter_test:
