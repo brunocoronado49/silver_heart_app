@@ -55,6 +55,8 @@ dependencies:
   google_sign_in: ^5.3.3
   pedantic: ^1.11.1
   path: ^1.8.1
+  flutter_hooks: ^0.18.5
+  page_indicator: ^0.4.1
 
 dev_dependencies:
   flutter_test:

@@ -5,11 +5,9 @@ class MyUser extends Equatable {
   final String name;
   final String lastName;
   final int age;
-  final String location;
-
   final String? image;
 
-  MyUser(this.id, this.name, this.lastName, this.age, this.location,{this.image});
+  MyUser(this.id, this.name, this.lastName, this.age, {this.image});
 
   @override
   List<Object?> get props => [id];
@@ -20,7 +18,6 @@ class MyUser extends Equatable {
       'name': name,
       'lastName': lastName,
       'age': age,
-      'location': location,
       'image': newImage ?? image,
     };
   }
@@ -30,6 +27,5 @@ class MyUser extends Equatable {
         name = data['name'] as String,
         lastName = data['lastName'] as String,
         age = data['age'] as int,
-        location = data['location'] as String,
         image = data['image'] as String?;
 }

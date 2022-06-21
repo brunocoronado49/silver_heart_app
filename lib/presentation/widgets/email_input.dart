@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class EmailInput extends StatelessWidget {
-  const EmailInput(this._emailCtrl, this._emailNode);
+  // ignore: use_key_in_widget_constructors
+  const EmailInput(this._emailCtrl);
 
   final TextEditingController _emailCtrl;
-  final FocusNode _emailNode;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,6 @@ class EmailInput extends StatelessWidget {
         autocorrect: false,
         keyboardType: TextInputType.emailAddress,
         controller: _emailCtrl,
-        focusNode: _emailNode,
         minLines: 1,
         maxLines: 2,
         style: const TextStyle(

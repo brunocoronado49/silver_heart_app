@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ConfirmPasswordInput extends StatelessWidget {
-  const ConfirmPasswordInput(this._confirmPasswordCtrl,
-      this._confirmPasswordNode, this._password, this._showPassword);
+  const ConfirmPasswordInput(this._confirmPasswordCtrl, this.validator, this._showPassword);
 
   final TextEditingController _confirmPasswordCtrl;
-  final FocusNode _confirmPasswordNode;
-  final String _password;
+  final Function validator;
   final bool _showPassword;
 
   @override
@@ -18,7 +16,6 @@ class ConfirmPasswordInput extends StatelessWidget {
         obscureText: _showPassword,
         keyboardType: TextInputType.visiblePassword,
         controller: _confirmPasswordCtrl,
-        focusNode: _confirmPasswordNode,
         style: const TextStyle(
           fontWeight: FontWeight.w600,
         ),
@@ -47,12 +44,7 @@ class ConfirmPasswordInput extends StatelessWidget {
             ),
           ),
         ),
-        validator: (value) {
-          if (value.toString().isEmpty || value != _password) {
-            return "Las contraseñas no coinciden.";
-          }
-          return null;
-        },
+        validator: validator(),
       ),
     );
   }

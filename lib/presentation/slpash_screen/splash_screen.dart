@@ -8,10 +8,18 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset(
-            "assets/cat-sleep.png",
-            key: const Key("splash_image"),
-            width: 150
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/cat-sleep.png",
+              key: const Key("splash_image"),
+              width: 150
+            ),
+            const CircularProgressIndicator(),
+            const SizedBox(height: 24),
+            const Text('Cargando...', style: TextStyle(fontSize: 24))
+          ],
         ),
       ),
     );
