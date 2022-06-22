@@ -5,6 +5,6 @@ class SignUpImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/sign.png");
+    return Image.asset("assets/gift.png");
   }
 }

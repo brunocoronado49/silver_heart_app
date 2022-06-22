@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ConfirmPasswordInput extends StatelessWidget {
-  const ConfirmPasswordInput(this._confirmPasswordCtrl, this.validator, this._showPassword);
+  const ConfirmPasswordInput(
+      this._confirmPasswordCtrl, this._showPassword, this._password);
 
   final TextEditingController _confirmPasswordCtrl;
-  final Function validator;
   final bool _showPassword;
+  final String _password;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,13 @@ class ConfirmPasswordInput extends StatelessWidget {
             ),
           ),
         ),
-        validator: validator(),
+        validator: (value) {
+          if (value.toString().isEmpty || value.toString() != _password) {
+            return "Las contraseñas no coinciden.";
+          }
+
+          return null;
+        },
       ),
     );
   }

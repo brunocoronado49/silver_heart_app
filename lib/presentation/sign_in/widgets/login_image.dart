@@ -5,6 +5,6 @@ class LoginImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/login.png");
+    return Image.asset("assets/shop-bag.png");
   }
 }

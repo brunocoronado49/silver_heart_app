@@ -5,13 +5,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 class AuthRepository extends AuthRepositoryBase {
   final _auth = FirebaseAuth.instance;
 
-  AuthUser? _userFromFirebase(User? user) {
-    user == null ? null : AuthUser(user.uid);
-    return null; // Maybe remove if the stream no works
-  }
+  AuthUser? _userFromFirebase(User? user) => user == null ? null : AuthUser(user.uid);
 
   @override
-  Stream<AuthUser?> get onAuthStateChange => _auth.authStateChanges().asyncMap(_userFromFirebase);
+  Stream<AuthUser?> get onAuthStateChanged => _auth.authStateChanges().asyncMap(_userFromFirebase);
 
   @override
   Future<AuthUser?> createUserWithEmailAndPassword(String email, String password) async {

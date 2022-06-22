@@ -14,56 +14,58 @@ class SignInPage extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.all(24),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.white,
+            Colors.white38,
+            Colors.grey,
+          ]
+        ),
+      ),
       child: Column(
         children: [
-          Image.asset(
-            "assets/papper.png",
-            width: 200,
-            height: 200,
-          ),
-          Expanded(
-            child: Container(
-              alignment: Alignment.center,
-              child: const Text(
-                "Inicia sesión o crea una cuenta nueva",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
-              ),
+          Container(
+            padding: const EdgeInsets.only(top: 150),
+            alignment: Alignment.topCenter,
+            child: const Text(
+              "Inicia sesión o crea una cuenta nueva",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
           ),
           if (isSigninIn) const CircularProgressIndicator(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
+            padding: const EdgeInsets.all(30),
             child: Column(
               children: [
-                const SizedBox(height: 8),
+                Image.asset("assets/shop-bag.png"),
+                const SizedBox(height: 10),
                 SignInButton(
-                  text: "Inicia con Google",
-                  imagePath: "assets/google-icon.png",
-                  color: Colors.white,
-                  textColor: Colors.grey,
-                  onTap: () => authCubit.signInWithGoogle(),
+                  text: "Crea una cuenta",
+                  imagePath: "assets/edit.png",
+                  onTap: () {
+                    authCubit.reset();
+                    Navigator.pushNamed(context, Routes.signUp);
+                  },
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 10),
                 SignInButton(
-                  text: "Inicia con correo y contraseña",
-                  imagePath: "assets/login.png",
-                  color: Colors.red,
-                  textColor: Colors.white,
+                  text: "Inicia sesión",
+                  imagePath: "assets/user.png",
                   onTap: () {
                     authCubit.reset();
                     Navigator.pushNamed(context, Routes.signIn);
                   },
                 ),
-                const SizedBox(height: 8),
-                OutlinedButton(
-                  child: const Text("Crea una cuenta nueva"),
-                  onPressed: () {
-                    authCubit.reset();
-                    Navigator.pushNamed(context, Routes.signUp);
-                  },
-                ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 10),
+                SignInButton(
+                  text: "Inicia con Google",
+                  imagePath: "assets/google-login-icon.png",
+                  onTap: () => authCubit.signInWithGoogle(),
+                )
               ],
             ),
           ),

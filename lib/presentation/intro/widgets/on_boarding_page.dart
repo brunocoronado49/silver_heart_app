@@ -8,11 +8,6 @@ import 'package:silver_heart/presentation/intro/widgets/sign_in_page.dart';
 
 class OnBoardingPage extends HookWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
-
-  // Se recomienda usar otro texto para produccion
-  final String exampleText =
-      "Lorem ipsum dolor sit amet, consecrated advising elit.";
-
   @override
   Widget build(BuildContext context) {
     final isSigninIn = context.watch<AuthCubit>().state is AuthStateSigninIn;
@@ -23,24 +18,27 @@ class OnBoardingPage extends HookWidget {
         align: IndicatorAlign.bottom,
         length: 4,
         indicatorSpace: 12,
-        indicatorColor: Colors.grey,
-        indicatorSelectorColor: Colors.black38,
+        indicatorColor: Colors.transparent,
+        indicatorSelectorColor: Colors.white38,
         child: PageView(
           controller: usePageController(),
-          children: [
+          children: const [
             DescriptionPage(
-              text: exampleText,
-              imagePath: 'assets/cat-sleep.png',
+              text: "Bienvenid@ a Silver Heart el lugar perfecto para tus compras de plateria",
+              imagePath: 'assets/shop-app.png',
+              title: "Silver Heart",
             ),
             DescriptionPage(
-              text: exampleText,
+              text: "Mantente al pendiente de grandes ofertas que te pueden beneficiar",
               imagePath: 'assets/graphics.png',
+              title: "Compra en línea",
             ),
             DescriptionPage(
-              text: exampleText,
-              imagePath: 'assets/settings.png',
+              text: "Revisa de cada publicación sobre articulos nuevos de los vendedores",
+              imagePath: 'assets/post.png',
+              title: "Infórmate",
             ),
-            const SignInPage(),
+            SignInPage(),
           ],
         ),
       ),

@@ -9,7 +9,7 @@ class PasswordInput extends StatelessWidget {
 
   final TextEditingController _passwordCtrl;
   final bool _showPassword;
-  final Function _togglePassword;
+  final VoidCallback _togglePassword;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class PasswordInput extends StatelessWidget {
           labelText: 'Contraseña',
           prefixIcon: const Icon(Icons.lock_rounded),
           suffixIcon: IconButton(
-            onPressed: _togglePassword(),
+            onPressed: _togglePassword,
             icon: _showPassword
                 ? const Icon(Icons.visibility_off_rounded)
                 : const Icon(Icons.visibility_rounded),
