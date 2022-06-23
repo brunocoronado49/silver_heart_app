@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:silver_heart/core/helpers/snackbar_helper.dart';
 import 'package:silver_heart/presentation/sign_in/widgets/login_image.dart';
 import 'package:silver_heart/presentation/widgets/email_input.dart';
 import 'package:silver_heart/presentation/widgets/password_input.dart';
@@ -70,8 +71,17 @@ class _SignInScreenState extends State<SignInScreen> {
           },
         ),
       ),
-      body: BlocBuilder<AuthCubit, AuthState>(
-        builder: (_, state) {
+      body: BlocConsumer<AuthCubit, AuthState>(
+        listener: (context, state) {
+          if (state is AuthStateError) {
+            SnackBarHelper.failSnackBar(state.error).show(context);
+          }
+
+          if (state is AuthStateSingedIn) {
+            SnackBarHelper.successSnackBar("Bienvenido.").show(context);
+          }
+        },
+        builder: (context, state) {
           return Form(
             key: _formKey,
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -83,12 +93,6 @@ class _SignInScreenState extends State<SignInScreen> {
                   children: [
                     if (state is AuthStateSigninIn)
                       const Center(child: CircularProgressIndicator()),
-                    if (state is AuthStateError)
-                      Text(
-                        state.error,
-                        style: const TextStyle(
-                            color: Colors.redAccent, fontSize: 24),
-                      ),
                     const SizedBox(height: 8),
                     const LoginImage(),
                     EmailInput(_emailCtrl),

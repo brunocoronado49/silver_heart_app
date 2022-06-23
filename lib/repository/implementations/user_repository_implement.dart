@@ -1,7 +1,7 @@
 import 'dart:io';
 import '../user_repository.dart';
 import '../../provider/firebase_provider.dart';
-import '../../models/User.dart';
+import '../../models/my_user.dart';
 
 class MyUserRepositoryImplement extends MyUserRepositoryBase {
   final provider = FirebaseProvider();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silver_heart/bloc/auth_bloc/auth_bloc.dart';
 import 'package:silver_heart/bloc/user_bloc/user_bloc.dart';
+import 'package:silver_heart/presentation/profile/screens/profile_screen.dart';
 import 'package:silver_heart/presentation/widgets/custom_screen.dart';
 import 'package:silver_heart/repository/implementations/user_repository_implement.dart';
 
@@ -52,10 +53,10 @@ class _HomeScreenState extends State<HomeScreen> {
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: const [
-                CustomScreen(color: Colors.yellow),
-                CustomScreen(color: Colors.red),
+                CustomScreen(color: Colors.purple),
+                CustomScreen(color: Colors.orange),
                 CustomScreen(color: Colors.blue),
-                CustomScreen(color: Colors.green),
+                ProfileScreen(),
               ],
             );
           }

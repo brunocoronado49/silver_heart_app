@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
-import '../models/User.dart';
+import '../models/my_user.dart';
 
 class FirebaseProvider {
   User? get currentUser {

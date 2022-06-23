@@ -1,5 +1,5 @@
 import 'dart:io';
-import '../models/User.dart';
+import '../models/my_user.dart';
 
 abstract class MyUserRepositoryBase {
   Future<MyUser?> getUser();

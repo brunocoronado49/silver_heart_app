@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:silver_heart/bloc/auth_bloc/auth_bloc.dart';
 import 'package:silver_heart/bloc/user_bloc/user_bloc.dart';
-import 'package:silver_heart/models/User.dart';
+import 'package:silver_heart/models/my_user.dart';
 
 class MyUserSection extends StatefulWidget {
   const MyUserSection(
@@ -30,8 +30,6 @@ class _MyUserSectionState extends State<MyUserSection> {
   @override
   void initState() {
     _nameCtrl.text = widget.user?.name ?? '';
-    _lastnameCtrl.text = widget.user?.lastName ?? '';
-    _ageCtrl.text = widget.user?.age.toString() ?? '';
     super.initState();
   }
 
@@ -110,15 +108,15 @@ class _MyUserSectionState extends State<MyUserSection> {
             Stack(alignment: Alignment.center, children: [
               ElevatedButton(
                 onPressed: widget.isSaving ? null : () {
-                  context.read<UserBloc>()
-                    .saveMyUser((context.read<AuthCubit>()
-                    .state as AuthStateSingedIn)
-                      .user
-                      .uid,
-                      _nameCtrl.text,
-                      _lastnameCtrl.text,
-                      int.tryParse(_ageCtrl.text) ?? 0,
-                    );
+                  // context.read<UserBloc>()
+                  //   .saveMyUser((context.read<AuthCubit>()
+                  //   .state as AuthStateSingedIn)
+                  //     .user
+                  //     .uid,
+                  //     _nameCtrl.text,
+                  //     _lastnameCtrl.text,
+                  //     int.tryParse(_ageCtrl.text) ?? 0,
+                  //   );
                   },
                 child: const Text('Save'),
               ),
