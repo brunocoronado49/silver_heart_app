@@ -14,7 +14,7 @@ class ConfirmPasswordInput extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
         autocorrect: false,
-        obscureText: _showPassword,
+        obscureText: !_showPassword,
         keyboardType: TextInputType.visiblePassword,
         controller: _confirmPasswordCtrl,
         style: const TextStyle(
@@ -26,30 +26,14 @@ class ConfirmPasswordInput extends StatelessWidget {
           labelStyle: TextStyle(
             fontWeight: FontWeight.w600,
           ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey,
-              width: 0.5,
-            ),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.redAccent,
-              width: 0.5,
-            ),
-          ),
-          disabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.redAccent,
-              width: 0.5,
-            ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
         ),
         validator: (value) {
           if (value.toString().isEmpty || value.toString() != _password) {
             return "Las contraseñas no coinciden.";
           }
-
           return null;
         },
       ),

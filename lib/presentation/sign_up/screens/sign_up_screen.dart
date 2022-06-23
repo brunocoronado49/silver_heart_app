@@ -33,14 +33,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
   }
 
-  // @override
-  // void dispose() {
-  //   _emailCtrl.dispose();
-  //   _passwordCtrl.dispose();
-  //   _confirmPasswordCtrl.dispose();
-  //   _authCubit.close();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    _emailCtrl.dispose();
+    _passwordCtrl.dispose();
+    _confirmPasswordCtrl.dispose();
+    _authCubit.close();
+    super.dispose();
+  }
 
 // Funcion de validación de correo
   String? emailValidator(String? value) {
@@ -67,20 +67,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           "Crea una cuenta",
-          style: TextStyle(color: Colors.black38),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 28,
+            fontWeight: FontWeight.bold
+          ),
         ),
         backgroundColor: Colors.white,
         elevation: 0,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back_ios_new),
+              color: Colors.black,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            );
+          },
+        ),
       ),
       body: BlocBuilder<AuthCubit, AuthState>(
         builder: (_, state) {
           return Form(
             key: _formKey,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -99,18 +115,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   PasswordInput(_passwordCtrl, _showPassword, _togglePassword),
                   const SizedBox(height: 8),
                   ConfirmPasswordInput(
-                      _confirmPasswordCtrl, _showPassword, _password),
-                  ElevatedButton(
-                    child: const Text("Crear cuenta"),
-                    onPressed: () {
-                      if (_formKey.currentState?.validate() == true) {
-                        context
-                            .read<AuthCubit>()
-                            .createUserWithEmailAndPassword(
-                                _emailCtrl.text.trim(),
-                                _passwordCtrl.text.trim());
-                      }
-                    },
+                    _confirmPasswordCtrl,
+                    _showPassword,
+                    _password
+                  ),
+                  Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Colors.amber,
+                        ),
+                        child: const Text(
+                          "Crea tu cuenta",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white
+                          ),
+                        ),
+                      onPressed: () {
+                        if (_formKey.currentState?.validate() == true) {
+                          context
+                          .read<AuthCubit>()
+                          .createUserWithEmailAndPassword(
+                            _emailCtrl.text.trim(),
+                            _passwordCtrl.text.trim()
+                          );
+                        }
+                      },
+                    ),
                   ),
                 ],
               ),

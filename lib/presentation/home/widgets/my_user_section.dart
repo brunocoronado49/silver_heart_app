@@ -66,7 +66,7 @@ class _MyUserSectionState extends State<MyUserSection> {
             GestureDetector(
               onTap: () async {
                 final pickedImage =
-                    await picker.getImage(source: ImageSource.gallery);
+                    await picker.pickImage(source: ImageSource.gallery);
                 if (pickedImage != null) {
                   // ignore: use_build_context_synchronously
                   context.read<UserBloc>().setImage(File(pickedImage.path));
@@ -74,7 +74,7 @@ class _MyUserSectionState extends State<MyUserSection> {
               },
               child: Center(
                 child: ClipOval(
-                  child: Container(
+                  child: SizedBox(
                     width: 150,
                     height: 150,
                     child: image,

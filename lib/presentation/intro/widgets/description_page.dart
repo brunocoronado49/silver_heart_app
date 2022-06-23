@@ -23,7 +23,7 @@ class DescriptionPage extends StatelessWidget {
             colors: [
               Colors.white,
               Colors.white38,
-              Colors.grey,
+              Colors.yellow,
             ]),
       ),
       child: Column(

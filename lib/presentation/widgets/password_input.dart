@@ -34,23 +34,8 @@ class PasswordInput extends StatelessWidget {
           labelStyle: const TextStyle(
             fontWeight: FontWeight.w500,
           ),
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey,
-              width: 0.5,
-            ),
-          ),
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.redAccent,
-              width: 0.5,
-            ),
-          ),
-          disabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.redAccent,
-              width: 0.5,
-            ),
+          border: const OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20))
           ),
         ),
         validator: (value) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class EmailInput extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
@@ -25,23 +26,8 @@ class EmailInput extends StatelessWidget {
           labelStyle: TextStyle(
             fontWeight: FontWeight.w500,
           ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.grey,
-              width: 0.5,
-            ),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.redAccent,
-              width: 0.5,
-            ),
-          ),
-          disabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Colors.redAccent,
-              width: 0.5,
-            ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20))
           ),
         ),
         validator: (value) {

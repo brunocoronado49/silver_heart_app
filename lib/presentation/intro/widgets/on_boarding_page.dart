@@ -18,8 +18,8 @@ class OnBoardingPage extends HookWidget {
         align: IndicatorAlign.bottom,
         length: 4,
         indicatorSpace: 12,
-        indicatorColor: Colors.transparent,
-        indicatorSelectorColor: Colors.white38,
+        indicatorColor: Colors.white54,
+        indicatorSelectorColor: Colors.white,
         child: PageView(
           controller: usePageController(),
           children: const [

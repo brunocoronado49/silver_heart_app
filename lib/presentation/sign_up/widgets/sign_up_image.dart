@@ -5,6 +5,13 @@ class SignUpImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/gift.png");
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Image.asset(
+        "assets/work.png",
+        width: 300,
+        height: 250,
+      )
+    );
   }
 }

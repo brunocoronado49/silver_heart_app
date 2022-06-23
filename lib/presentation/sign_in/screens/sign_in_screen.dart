@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silver_heart/presentation/sign_in/widgets/login_image.dart';
-import 'package:silver_heart/presentation/sign_in/widgets/sign_up_button.dart';
 import 'package:silver_heart/presentation/widgets/email_input.dart';
 import 'package:silver_heart/presentation/widgets/password_input.dart';
 import 'package:silver_heart/repository/implementations/auth_repository_implement.dart';
@@ -47,12 +46,29 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           "Inicia sesión",
-          style: TextStyle(color: Colors.black38),
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 28,
+            fontWeight: FontWeight.bold
+          ),
         ),
+        backgroundColor: Colors.white,
         elevation: 0,
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back_ios_new),
+              color: Colors.black,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            );
+          },
+        ),
       ),
       body: BlocBuilder<AuthCubit, AuthState>(
         builder: (_, state) {
@@ -61,8 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: SingleChildScrollView(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -83,7 +98,16 @@ class _SignInScreenState extends State<SignInScreen> {
                     const SizedBox(height: 8),
                     Center(
                       child: ElevatedButton(
-                        child: const Text("Inicia sesión"),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.amber,
+                        ),
+                        child: const Text(
+                          "Inicia sesión",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white
+                          ),
+                        ),
                         onPressed: () {
                           if (_formKey.currentState?.validate() == true) {
                             context
@@ -96,8 +120,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    const SignUpButton(),
                   ],
                 ),
               ),
