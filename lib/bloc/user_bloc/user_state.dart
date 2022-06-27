@@ -7,6 +7,8 @@ abstract class UserState extends Equatable {
 
 class UserStateLoading extends UserState {}
 
+class UserStateSaved extends UserState {}
+
 class UserStateReady extends UserState {
   UserStateReady(this.user, this.pickedImage, {this.isSaving = false});
 

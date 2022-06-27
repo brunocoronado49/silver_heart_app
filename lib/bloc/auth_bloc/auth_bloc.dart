@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silver_heart/repository/auth_repository.dart';
 
@@ -14,7 +13,6 @@ class AuthCubit extends Cubit<AuthState> {
   late StreamSubscription _authSubscription;
   
   void init() {
-    //await Future.delayed(const Duration(seconds: 3));
     _authSubscription = _authRepository.onAuthStateChanged.listen(_authStateChanged);
   }
 

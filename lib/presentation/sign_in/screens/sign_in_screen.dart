@@ -101,17 +101,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         _passwordCtrl, _showPassword, _togglePassword),
                     const SizedBox(height: 8),
                     Center(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.amber,
-                        ),
-                        child: const Text(
-                          "Inicia sesión",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white
-                          ),
-                        ),
+                      child: FloatingActionButton.extended(
                         onPressed: () {
                           if (_formKey.currentState?.validate() == true) {
                             context
@@ -122,6 +112,10 @@ class _SignInScreenState extends State<SignInScreen> {
                             );
                           }
                         },
+                        label: const Text("Inicia sesión"),
+                        icon: const Icon(Icons.login_outlined),
+                        backgroundColor: Colors.amber,
+                        elevation: 0,
                       ),
                     ),
                   ],

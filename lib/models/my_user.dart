@@ -25,7 +25,7 @@ class MyUser extends Equatable {
   List<Object?> get props => [id];
 
   Map<String, Object?> toFirebaseMap({String? newImage}) {
-    return <String, Object?>{
+    return <String, Object?> {
       'id': id,
       'name': name,
       'description': description,
@@ -38,12 +38,12 @@ class MyUser extends Equatable {
   }
 
   MyUser.fromFirebaseMap(Map<String, Object?> data)
-      : id = data['id'] as String,
-        name = data['name'] as String,
-        description = data['description'] as String,
-        address = data['address'] as String,
-        phone = data['phone'] as String,
-        email = data['email'] as String,
-        web = data['web'] as String,
-        image = data['image'] as String?;
+    : id = data['id'] as String,
+      name = data['name'] as String,
+      description = data['description'] as String,
+      address = data['address'] as String,
+      phone = data['phone'] as String,
+      email = data['email'] as String,
+      web = data['web'] as String,
+      image = data['image'] as String?;
 }

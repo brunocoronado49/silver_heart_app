@@ -3,9 +3,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
+
 import '../models/my_user.dart';
 
 class FirebaseProvider {
+
+  // Check if current user exists
   User? get currentUser {
     final user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception("Not authenticated!");
@@ -16,12 +19,14 @@ class FirebaseProvider {
 
   FirebaseStorage get storage => FirebaseStorage.instance;
 
+  // Take the info of current user from the doc
   Future<MyUser?> getUser() async {
     final snapshot = await firestore.doc('user/${currentUser?.uid}').get();
     if (snapshot.exists) return MyUser.fromFirebaseMap(snapshot.data()!);
     return null;
   }
 
+  // Save a new user in the doc
   Future<void> saveUser(MyUser user, File? image) async {
     final ref = firestore.doc('user/${currentUser?.uid}');
     if (image != null) {

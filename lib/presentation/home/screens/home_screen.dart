@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:silver_heart/bloc/auth_bloc/auth_bloc.dart';
 import 'package:silver_heart/bloc/user_bloc/user_bloc.dart';
+import 'package:silver_heart/presentation/feed/screens/feed_screen.dart';
+import 'package:silver_heart/presentation/post/screens/create_post_screen.dart';
 import 'package:silver_heart/presentation/profile/screens/profile_screen.dart';
-import 'package:silver_heart/presentation/widgets/custom_screen.dart';
+import 'package:silver_heart/presentation/profile/screens/settings_profile.dart';
+import 'package:silver_heart/presentation/search/screens/search_screen.dart';
 import 'package:silver_heart/repository/implementations/user_repository_implement.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           "Silver App",
           style: TextStyle(
             color: Colors.black,
-            fontSize: 28,
+            fontSize: 24,
             fontWeight: FontWeight.bold
           ),
         ),
@@ -53,10 +57,11 @@ class _HomeScreenState extends State<HomeScreen> {
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
               children: const [
-                CustomScreen(color: Colors.purple),
-                CustomScreen(color: Colors.orange),
-                CustomScreen(color: Colors.blue),
+                FeedScreen(),
+                Searchcreen(),
+                CreatePostScreen(),
                 ProfileScreen(),
+                SettingsProfile(),
               ],
             );
           }
@@ -80,10 +85,10 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
-            label: "Home"
+            label: "Feed",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.person_search_outlined),
             label: "Search"
           ),
           BottomNavigationBarItem(
@@ -93,6 +98,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: "Profile"
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
+            label: "Settings"
           ),
         ],
       ),

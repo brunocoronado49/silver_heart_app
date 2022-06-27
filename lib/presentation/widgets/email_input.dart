@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
 class EmailInput extends StatelessWidget {
   // ignore: use_key_in_widget_constructors

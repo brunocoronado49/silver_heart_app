@@ -119,18 +119,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     _showPassword,
                     _password
                   ),
+                  const SizedBox(height: 10),
                   Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.amber,
-                        ),
-                        child: const Text(
-                          "Crea tu cuenta",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white
-                          ),
-                        ),
+                    child: FloatingActionButton.extended(
                       onPressed: () {
                         if (_formKey.currentState?.validate() == true) {
                           context
@@ -141,6 +132,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           );
                         }
                       },
+                      label: const Text("Crea una cuenta"),
+                      icon: const Icon(Icons.account_box),
+                      backgroundColor: Colors.amber,
+                      elevation: 0,
                     ),
                   ),
                 ],
