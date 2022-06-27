@@ -8,7 +8,6 @@ import 'package:silver_heart/models/posts/post.dart';
 
 class PostProvider {
   FirebaseFirestore get firestore => FirebaseFirestore.instance;
-
   FirebaseStorage get storage => FirebaseStorage.instance;
 
   User? get currentUser {
@@ -18,18 +17,18 @@ class PostProvider {
   }
 
   Future<Post?> getPost() async {
-    final snapshot = await firestore.doc("post/${currentUser?.uid}").get();
+    final snapshot = await firestore.doc("post").get();
 
     if (snapshot.exists) return Post.fromFirebaseMap(snapshot.data()!);
     return null;
   }
 
   Future<void> savePost(Post post, File? image) async {
-    final ref = firestore.doc("post/${currentUser?.uid}");
+    DocumentReference docRef = firestore.collection("post").doc();
+    final ref = firestore.doc("post/${docRef.id}");
 
     if (image != null) {
-      final imagePath =
-        '${currentUser?.uid}/post/${path.basename(image.path)}';
+      final imagePath = 'post/${path.basename(image.path)}';
       final storageRef = storage.ref(imagePath);
       await storageRef.putFile(image);
       final url = await storageRef.getDownloadURL();
