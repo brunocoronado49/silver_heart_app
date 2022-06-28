@@ -21,7 +21,7 @@ class SignInPage extends StatelessWidget {
           colors: [
             Colors.white,
             Colors.white38,
-            Colors.yellow,
+            Colors.grey,
           ]
         ),
       ),
@@ -41,8 +41,7 @@ class SignInPage extends StatelessWidget {
             padding: const EdgeInsets.all(30),
             child: Column(
               children: [
-                Image.asset("assets/shop-bag.png"),
-                const SizedBox(height: 10),
+                const SizedBox(height: 50),
                 SignInButton(
                   text: "Crea una cuenta",
                   imagePath: "assets/edit.png",

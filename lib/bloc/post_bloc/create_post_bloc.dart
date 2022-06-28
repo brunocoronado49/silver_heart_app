@@ -23,12 +23,11 @@ class CreatePostBloc extends Cubit<CreatePostState> {
   Future<void> getPost() async {
     emit(CreatePostLoadingState());
     _post = (await _postRepositoryBase.getPost()) ??
-    const Post('', '', '', '', '', '', '');
+    const Post('', '', '', '', '', '');
     emit(CreatePostSavedState(_post!, _pickedImage));
   }
 
   Future<void> savePost(
-    String id,
     String price,
     String type,
     String name,
@@ -36,7 +35,7 @@ class CreatePostBloc extends Cubit<CreatePostState> {
     String seller,
     String uid
   ) async {
-    _post = Post(id, price, type, name, description, seller, uid, picture: _post?.picture);
+    _post = Post(price, type, name, description, seller, uid, picture: _post?.picture);
     emit(CreatePostSavedState(_post!, _pickedImage, isSaving: true));
     await Future.delayed(const Duration(seconds: 3));
     await _postRepositoryBase.savePost(_post!, _pickedImage);

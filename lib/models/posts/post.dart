@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 
 class Post extends Equatable {
   const Post(
-    this.id,
     this.price,
     this.type,
     this.name,
@@ -12,7 +11,6 @@ class Post extends Equatable {
     {this.picture}
   );
 
-  final String id;
   final String price;
   final String type;
   final String name;
@@ -22,11 +20,10 @@ class Post extends Equatable {
   final String? picture;
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [];
 
   Map<String, Object?> toFirebaseMap({String? newImage}) {
     return <String, Object?> {
-      'id': id,
       'price': price,
       'type': type,
       'name': name,
@@ -38,8 +35,7 @@ class Post extends Equatable {
   }
 
   Post.fromFirebaseMap(Map<String, Object?> data)
-    : id = data['id'] as String,
-      price = data['price'] as String,
+    : price = data['price'] as String,
       type = data['type'] as String,
       name = data['name'] as String,
       description = data['description'] as String,

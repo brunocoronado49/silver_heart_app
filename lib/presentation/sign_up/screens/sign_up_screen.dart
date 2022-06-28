@@ -134,7 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       },
                       label: const Text("Crea una cuenta"),
                       icon: const Icon(Icons.account_box),
-                      backgroundColor: Colors.amber,
+                      backgroundColor: Colors.black87,
                       elevation: 0,
                     ),
                   ),

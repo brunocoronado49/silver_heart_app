@@ -114,7 +114,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                         label: const Text("Inicia sesión"),
                         icon: const Icon(Icons.login_outlined),
-                        backgroundColor: Colors.amber,
+                        backgroundColor: Colors.black87,
                         elevation: 0,
                       ),
                     ),

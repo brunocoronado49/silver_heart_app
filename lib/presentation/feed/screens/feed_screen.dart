@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:silver_heart/presentation/feed/widgets/list_tile_posts.dart';
 import 'package:silver_heart/presentation/widgets/circular_progress.dart';
 import 'package:silver_heart/presentation/widgets/error_text.dart';
 
@@ -14,8 +15,8 @@ class FeedScreen extends StatefulWidget {
 
 class _FeedScreenState extends State<FeedScreen> {
   final Stream<QuerySnapshot> _postStream =
-    FirebaseFirestore.instance.collection("post").snapshots();
-  
+      FirebaseFirestore.instance.collection("post").snapshots();
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -24,26 +25,24 @@ class _FeedScreenState extends State<FeedScreen> {
         if (snapshot.hasError) {
           return const ErrorText(error: "Error al tomar posts");
         }
-        
+
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgress();
         }
 
         return ListView(
+          padding: const EdgeInsets.all(10),
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data =
-              document.data()! as Map<String, dynamic>;
-            
+                document.data()! as Map<String, dynamic>;
+
             return Card(
-              margin: const EdgeInsets.all(15),
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Text(data["name"].toString()),
-                    subtitle: Text(data["seller"].toString()),
-                    onTap: () {},
-                  ),
-                ],
+              elevation: 5,
+              child: ListTilePost(
+                title: data["name"].toString(),
+                seller: data["seller"].toString(),
+                price: data["price"].toString(),
+                onTap: () {},
               ),
             );
           }).toList(),

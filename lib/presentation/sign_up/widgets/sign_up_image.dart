@@ -8,7 +8,7 @@ class SignUpImage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Image.asset(
-        "assets/work.png",
+        "assets/ring.png",
         width: 300,
         height: 250,
       )

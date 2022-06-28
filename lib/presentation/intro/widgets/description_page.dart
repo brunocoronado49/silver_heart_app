@@ -23,7 +23,7 @@ class DescriptionPage extends StatelessWidget {
             colors: [
               Colors.white,
               Colors.white38,
-              Colors.yellow,
+              Colors.grey,
             ]),
       ),
       child: Column(
@@ -44,7 +44,7 @@ class DescriptionPage extends StatelessWidget {
               style: const TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black54),
+                  color: Colors.black),
             ),
           ),
           const SizedBox(height: 20),
@@ -56,7 +56,7 @@ class DescriptionPage extends StatelessWidget {
               style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
-                  color: Colors.black45),
+                  color: Colors.black),
             ),
           ),
         ],

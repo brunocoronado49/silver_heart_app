@@ -75,8 +75,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         onPressed: widget.isSaving ? null : () {
                           context.read<CreatePostBloc>()
                             .savePost(
-                              (context.read<AuthCubit>().state as AuthStateSingedIn)
-                                .user.uid + 117.toString(),
                               _priceCtrl.text.trim(),
                               _typeCtrl.text.trim(),
                               _nameCtrl.text.trim(),
@@ -89,7 +87,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         },
                         label: const Text("Guardar post"),
                         icon: const Icon(Icons.save_outlined),
-                        backgroundColor: Colors.amber,
+                        backgroundColor: Colors.black87,
                         elevation: 0,
                       ),
                       if (widget.isSaving) const CircularProgressIndicator(),

@@ -8,7 +8,7 @@ class LoginImage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Image.asset(
-        "assets/shop-app.png",
+        "assets/pulcera.png",
         width: 300,
         height: 250,
       )
