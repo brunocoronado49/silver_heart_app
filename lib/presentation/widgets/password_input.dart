@@ -19,9 +19,6 @@ class PasswordInput extends StatelessWidget {
         autocorrect: false,
         obscureText: !_showPassword,
         controller: _passwordCtrl,
-        style: const TextStyle(
-          fontWeight: FontWeight.w600,
-        ),
         decoration: InputDecoration(
           labelText: 'Contraseña',
           prefixIcon: const Icon(Icons.lock_rounded),
@@ -30,9 +27,6 @@ class PasswordInput extends StatelessWidget {
             icon: _showPassword
                 ? const Icon(Icons.visibility_off_rounded)
                 : const Icon(Icons.visibility_rounded),
-          ),
-          labelStyle: const TextStyle(
-            fontWeight: FontWeight.w500,
           ),
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(20))

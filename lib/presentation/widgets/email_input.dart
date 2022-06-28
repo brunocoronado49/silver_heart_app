@@ -16,15 +16,9 @@ class EmailInput extends StatelessWidget {
         controller: _emailCtrl,
         minLines: 1,
         maxLines: 2,
-        style: const TextStyle(
-          fontWeight: FontWeight.w600
-        ),
         decoration: const InputDecoration(
           labelText: 'Correo',
           prefixIcon: Icon(Icons.alternate_email_rounded),
-          labelStyle: TextStyle(
-            fontWeight: FontWeight.w500,
-          ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(20))
           ),

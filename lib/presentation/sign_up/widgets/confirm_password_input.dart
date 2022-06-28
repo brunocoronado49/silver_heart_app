@@ -17,15 +17,9 @@ class ConfirmPasswordInput extends StatelessWidget {
         obscureText: !_showPassword,
         keyboardType: TextInputType.visiblePassword,
         controller: _confirmPasswordCtrl,
-        style: const TextStyle(
-          fontWeight: FontWeight.w600,
-        ),
         decoration: const InputDecoration(
           prefixIcon: Icon(Icons.lock),
           labelText: "Confirma tu contraseña",
-          labelStyle: TextStyle(
-            fontWeight: FontWeight.w600,
-          ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),

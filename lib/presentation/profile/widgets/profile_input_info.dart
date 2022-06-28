@@ -21,15 +21,9 @@ class ProfileInputInfo extends StatelessWidget {
         controller: _profileInputCtrl,
         minLines: 1,
         maxLines: 8,
-        style: const TextStyle(
-          fontWeight: FontWeight.w600,
-        ),
         decoration: InputDecoration(
           labelText: _inputLabel,
           prefixIcon: _iconInput,
-          labelStyle: const TextStyle(
-            fontWeight: FontWeight.w500,
-          ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
           ),
