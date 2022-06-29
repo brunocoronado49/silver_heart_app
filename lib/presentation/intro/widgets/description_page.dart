@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:silver_heart/theme/app_theme.dart';
 
 class DescriptionPage extends StatelessWidget {
   const DescriptionPage(
@@ -18,13 +19,14 @@ class DescriptionPage extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.white,
-              Colors.white38,
-              Colors.grey,
-            ]),
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            AppTheme.primaryColor,
+            AppTheme.secondaryColor,
+            AppTheme.thirdColor,
+          ]
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

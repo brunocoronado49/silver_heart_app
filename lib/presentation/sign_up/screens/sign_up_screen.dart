@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/presentation/sign_up/widgets/confirm_password_input.dart';
 import 'package:silver_heart/presentation/sign_up/widgets/sign_up_image.dart';
-import 'package:silver_heart/presentation/widgets/email_input.dart';
-import 'package:silver_heart/presentation/widgets/password_input.dart';
-import 'package:silver_heart/repository/implementations/auth_repository_implement.dart';
-import '../../../bloc/auth_bloc/auth_bloc.dart';
+import 'package:silver_heart/presentation/widgets/widgets.dart';
+import 'package:silver_heart/repository/repository.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -73,12 +73,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           "Crea una cuenta",
           style: TextStyle(
             color: Colors.black,
-            fontSize: 28,
-            fontWeight: FontWeight.bold
           ),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(

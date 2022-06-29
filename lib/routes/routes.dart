@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:silver_heart/presentation/home/screens/home_screen.dart';
-import 'package:silver_heart/presentation/intro/screens/intro_screen.dart';
-import 'package:silver_heart/presentation/sign_in/screens/sign_in_screen.dart';
-import 'package:silver_heart/presentation/sign_up/screens/sign_up_screen.dart';
-import 'package:silver_heart/presentation/slpash_screen/splash_screen.dart';
+
+import 'package:silver_heart/presentation/screens.dart';
 
 class Routes {
   static const splash = "/";
@@ -13,8 +10,6 @@ class Routes {
   static const home = "/home";
 
   static Route routes(RouteSettings routeSettings) {
-    print('Route name: ${routeSettings.name}');
-
     switch (routeSettings.name) {
       case splash:
         return _buildRoute(SplashScreen.create);
@@ -27,7 +22,7 @@ class Routes {
       case intro:
         return _buildRoute(IntroScreen.create);
       default:
-        throw Exception('Route does not exists');
+        throw Exception('La ruta no existe!');
     }
   }
 

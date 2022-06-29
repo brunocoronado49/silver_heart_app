@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:silver_heart/presentation/widgets/circular_progress.dart';
-import 'package:silver_heart/presentation/widgets/error_text.dart';
+import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class Searchcreen extends StatefulWidget {
   const Searchcreen({Key? key}) : super(key: key);

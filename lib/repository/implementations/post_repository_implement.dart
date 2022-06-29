@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import '../post_repository.dart';
+import 'package:silver_heart/models/models.dart';
 import '../../provider/post_provider.dart';
-import '../../models/posts/post.dart';
+import '../post_repository.dart';
 
 class PostRepositoryImplements extends PostRepositoryBase {
   final provider = PostProvider();

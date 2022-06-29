@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:silver_heart/bloc/auth_bloc/auth_bloc.dart';
+
+import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/routes/routes.dart';
+import 'package:silver_heart/theme/app_theme.dart';
 
 final _navigatorKey = GlobalKey<NavigatorState>();
 
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: _navigatorKey,
       title: "Silver heart",
       onGenerateRoute: Routes.routes,
+      theme: AppTheme.lightTheme,
     );
   }
 }

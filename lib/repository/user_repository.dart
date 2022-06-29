@@ -1,6 +1,7 @@
 import 'dart:io';
 
-import '../models/my_user.dart';
+import 'package:silver_heart/models/models.dart';
+
 
 abstract class MyUserRepositoryBase {
   Future<MyUser?> getUser();

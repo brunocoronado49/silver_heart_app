@@ -1,10 +1,11 @@
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:path/path.dart' as path;
 
-import '../models/my_user.dart';
+import 'package:silver_heart/models/models.dart';
 
 class FirebaseProvider {
 

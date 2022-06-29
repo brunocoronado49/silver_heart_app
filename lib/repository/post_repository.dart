@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import '../models/posts/post.dart';
+import 'package:silver_heart/models/models.dart';
 
 abstract class PostRepositoryBase {
   Future<Post?> getPost();

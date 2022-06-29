@@ -1,0 +1,10 @@
+export 'package:silver_heart/presentation/sign_in/screens/sign_in_screen.dart';
+export 'package:silver_heart/presentation/sign_up/screens/sign_up_screen.dart';
+export 'package:silver_heart/presentation/slpash_screen/splash_screen.dart';
+export 'package:silver_heart/presentation/search/screens/search_screen.dart';
+export 'package:silver_heart/presentation/post/screens/create_post_screen.dart';
+export 'package:silver_heart/presentation/profile/screens/profile_screen.dart';
+export 'package:silver_heart/presentation/profile/screens/settings_profile.dart';
+export 'package:silver_heart/presentation/intro/screens/intro_screen.dart';
+export 'package:silver_heart/presentation/feed/screens/feed_screen.dart';
+export 'package:silver_heart/presentation/home/screens/home_screen.dart';

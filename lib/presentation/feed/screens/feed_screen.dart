@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:silver_heart/presentation/feed/widgets/list_tile_posts.dart';
-import 'package:silver_heart/presentation/widgets/circular_progress.dart';
-import 'package:silver_heart/presentation/widgets/error_text.dart';
+import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);

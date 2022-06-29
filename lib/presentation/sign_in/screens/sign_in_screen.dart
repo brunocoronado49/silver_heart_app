@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/core/helpers/snackbar_helper.dart';
 import 'package:silver_heart/presentation/sign_in/widgets/login_image.dart';
-import 'package:silver_heart/presentation/widgets/email_input.dart';
-import 'package:silver_heart/presentation/widgets/password_input.dart';
-import 'package:silver_heart/repository/implementations/auth_repository_implement.dart';
-import '../../../bloc/auth_bloc/auth_bloc.dart';
+import 'package:silver_heart/presentation/widgets/widgets.dart';
+import 'package:silver_heart/repository/repository.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -53,12 +53,8 @@ class _SignInScreenState extends State<SignInScreen> {
           "Inicia sesión",
           style: TextStyle(
             color: Colors.black,
-            fontSize: 28,
-            fontWeight: FontWeight.bold
           ),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import '../auth_repository.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../auth_repository.dart';
 
 class AuthRepository extends AuthRepositoryBase {
   final _auth = FirebaseAuth.instance;

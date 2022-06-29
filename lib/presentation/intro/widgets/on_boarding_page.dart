@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:page_indicator/page_indicator.dart';
-import 'package:silver_heart/bloc/auth_bloc/auth_bloc.dart';
+
+import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/presentation/intro/widgets/description_page.dart';
 import 'package:silver_heart/presentation/intro/widgets/sign_in_page.dart';
 
@@ -24,7 +25,7 @@ class OnBoardingPage extends HookWidget {
           controller: usePageController(),
           children: const [
             DescriptionPage(
-              text: "Bienvenid@ a Silver Heart el lugar perfecto para tus compras de plateria",
+              text: "Bienvenido a Silver Heart el lugar perfecto para tus compras de plateria",
               imagePath: 'assets/brazalete.png',
               title: "Silver Heart",
             ),

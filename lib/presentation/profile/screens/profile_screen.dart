@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:silver_heart/bloc/user_bloc/user_bloc.dart';
+
+import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/presentation/profile/widgets/profile_avatar.dart';
 import 'package:silver_heart/presentation/profile/widgets/profile_bottom.dart';
 import 'package:silver_heart/presentation/profile/widgets/profile_info.dart';

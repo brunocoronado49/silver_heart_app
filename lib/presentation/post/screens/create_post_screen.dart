@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:silver_heart/bloc/auth_bloc/auth_bloc.dart';
-import 'package:silver_heart/bloc/post_bloc/create_post_bloc.dart';
-import 'package:silver_heart/bloc/user_bloc/user_bloc.dart';
+import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/core/helpers/snackbar_helper.dart';
-import 'package:silver_heart/models/posts/post.dart';
+import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/post/widgets/create_post_input.dart';
-import 'package:silver_heart/presentation/widgets/header_title.dart';
-import 'package:silver_heart/repository/implementations/post_repository_implement.dart';
+import 'package:silver_heart/presentation/widgets/widgets.dart';
+import 'package:silver_heart/repository/repository.dart';
 
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({Key? key, this.post, this.isSaving = false}) : super(key: key);

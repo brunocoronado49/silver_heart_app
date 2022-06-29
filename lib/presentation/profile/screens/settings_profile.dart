@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:silver_heart/bloc/auth_bloc/auth_bloc.dart';
-import 'package:silver_heart/bloc/user_bloc/user_bloc.dart';
+import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/core/helpers/snackbar_helper.dart';
-import 'package:silver_heart/models/my_user.dart';
+import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/profile/widgets/profile_input_info.dart';
-import 'package:silver_heart/presentation/widgets/header_title.dart';
+import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class SettingsProfile extends StatefulWidget {
   const SettingsProfile({Key? key, this.user, this.isSaving = false}) : super(key: key);

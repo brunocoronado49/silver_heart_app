@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:silver_heart/bloc/auth_bloc/auth_bloc.dart';
-import 'package:silver_heart/bloc/user_bloc/user_bloc.dart';
-import 'package:silver_heart/presentation/feed/screens/feed_screen.dart';
-import 'package:silver_heart/presentation/post/screens/create_post_screen.dart';
-import 'package:silver_heart/presentation/profile/screens/profile_screen.dart';
-import 'package:silver_heart/presentation/profile/screens/settings_profile.dart';
-import 'package:silver_heart/presentation/search/screens/search_screen.dart';
-import 'package:silver_heart/repository/implementations/user_repository_implement.dart';
+import 'package:silver_heart/bloc/app_bloc.dart';
+import 'package:silver_heart/presentation/screens.dart';
+import 'package:silver_heart/repository/repository.dart';
+import 'package:silver_heart/theme/app_theme.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -32,19 +28,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Silver App",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 24,
-            fontWeight: FontWeight.bold
-          ),
-        ),
-        backgroundColor: Colors.white,
-        elevation: 0,
+        title: const Text("Silver App"),
         actions: [
           IconButton(
-            icon: const Icon(Icons.logout, color: Colors.black,),
+            icon: const Icon(Icons.logout, color: AppTheme.thirdColor),
             tooltip: 'Salir',
             onPressed: () => context.read<AuthCubit>().signOut(),
           )
@@ -79,9 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
           );
           setState(() {});
         },
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black38,
+        backgroundColor: AppTheme.primaryColor,
+        selectedItemColor: AppTheme.thirdColor,
+        unselectedItemColor: AppTheme.secondaryColor,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
@@ -89,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_search_outlined),
-            label: "Search"
+            label: "Buscar"
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.post_add),
@@ -97,11 +84,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
-            label: "Profile"
+            label: "Perfil"
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings_outlined),
-            label: "Settings"
+            label: "Ajustes"
           ),
         ],
       ),

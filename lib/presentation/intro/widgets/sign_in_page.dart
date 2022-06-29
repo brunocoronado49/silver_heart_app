@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silver_heart/bloc/auth_bloc/auth_bloc.dart';
 import 'package:silver_heart/presentation/intro/widgets/sign_in_button.dart';
 import 'package:silver_heart/routes/routes.dart';
+import 'package:silver_heart/theme/app_theme.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -19,9 +20,9 @@ class SignInPage extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.white,
-            Colors.white38,
-            Colors.grey,
+            AppTheme.primaryColor,
+            AppTheme.secondaryColor,
+            AppTheme.thirdColor,
           ]
         ),
       ),
@@ -33,7 +34,7 @@ class SignInPage extends StatelessWidget {
             child: const Text(
               "Inicia sesión o crea una cuenta nueva",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 30.0, fontWeight: FontWeight.bold),
             ),
           ),
           if (isSigninIn) const CircularProgressIndicator(),
