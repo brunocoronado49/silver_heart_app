@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/core/helpers/snackbar_helper.dart';
 import 'package:silver_heart/models/models.dart';
-import 'package:silver_heart/presentation/post/widgets/create_post_input.dart';
+import 'package:silver_heart/presentation/post/widgets/posts_widgets.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 import 'package:silver_heart/repository/repository.dart';
 

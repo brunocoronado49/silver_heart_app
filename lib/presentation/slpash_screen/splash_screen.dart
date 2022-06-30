@@ -10,15 +10,10 @@ class SplashScreen extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              "assets/shop-bag.png",
-              key: const Key("splash_image"),
-              width: 150
-            ),
-            const CircularProgressIndicator(),
-            const SizedBox(height: 24),
-            const Text('Cargando...', style: TextStyle(fontSize: 24))
+          children: const [
+            CircularProgressIndicator(),
+            SizedBox(height: 24),
+            Text('Cargando...', style: TextStyle(fontSize: 24))
           ],
         ),
       ),

@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/core/helpers/snackbar_helper.dart';
 import 'package:silver_heart/models/models.dart';
-import 'package:silver_heart/presentation/profile/widgets/profile_input_info.dart';
+import 'package:silver_heart/presentation/profile/widgets/widgets_profile.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class SettingsProfile extends StatefulWidget {
@@ -25,6 +25,17 @@ class _SettingsProfileState extends State<SettingsProfile> {
   final _emailCtrl = TextEditingController();
   final _webCtrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    _nameCtrl.text = widget.user?.name ?? '';
+    _descriptionCtrl.text = widget.user?.description ?? '';
+    _addressCtrl.text = widget.user?.address ?? '';
+    _phoneCtrl.text = widget.user?.phone ?? '';
+    _emailCtrl.text = widget.user?.email ?? '';
+    _webCtrl.text = widget.user?.web ?? '';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

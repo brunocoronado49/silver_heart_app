@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:silver_heart/presentation/feed/widgets/list_tile_posts.dart';
+import 'package:silver_heart/presentation/feed/widgets/feed_widgets.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class FeedScreen extends StatefulWidget {

@@ -50,18 +50,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/avatar.png
-    - assets/gift.png
     - assets/google-login-icon.png
-    - assets/pay-services.png
-    - assets/graphics.png
-    - assets/post.png
-    - assets/shop-app.png
-    - assets/shop-bag.png
-    - assets/support-two.png
-    - assets/support.png
-    - assets/up-money.png
-    - assets/work.png
     - assets/user.png
     - assets/edit.png
     - assets/brazalete.png
@@ -69,6 +58,11 @@ flutter:
     - assets/pulcera.png
     - assets/pulsera.png
     - assets/ring.png
+    - assets/facebook-icon.png
+    - assets/instagram-icon.png
+    - assets/share-icon.png
+    - assets/twitter-icon.png
+    - assets/whats-icon.png
   
   fonts:
     - family: Quicksand

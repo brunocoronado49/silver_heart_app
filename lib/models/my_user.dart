@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+import 'package:silver_heart/models/models.dart';
+
 class MyUser extends Equatable {
   const MyUser(
     this.id,
@@ -9,6 +11,7 @@ class MyUser extends Equatable {
     this.phone,
     this.email,
     this.web,
+    //this.posts,
     {this.image}
   );
 
@@ -20,11 +23,12 @@ class MyUser extends Equatable {
   final String email;
   final String web;
   final String? image;
+  //final List<Post?> posts;
 
   @override
   List<Object?> get props => [id];
 
-  Map<String, Object?> toFirebaseMap({String? newImage}) {
+  Map<String, Object?> toFirebaseMap({String? newImage, Post? newPost}) {
     return <String, Object?> {
       'id': id,
       'name': name,
@@ -34,6 +38,7 @@ class MyUser extends Equatable {
       'email': email,
       'web': web,
       'image': newImage ?? image,
+      //'posts': newPost ?? posts
     };
   }
 
@@ -46,4 +51,5 @@ class MyUser extends Equatable {
       email = data['email'] as String,
       web = data['web'] as String,
       image = data['image'] as String?;
+      //posts = data["posts"] as List<Post?>;
 }

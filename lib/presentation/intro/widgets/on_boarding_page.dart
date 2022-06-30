@@ -4,8 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:page_indicator/page_indicator.dart';
 
 import 'package:silver_heart/bloc/app_bloc.dart';
-import 'package:silver_heart/presentation/intro/widgets/description_page.dart';
-import 'package:silver_heart/presentation/intro/widgets/sign_in_page.dart';
+import 'package:silver_heart/presentation/intro/widgets/intro_widgets.dart';
 
 class OnBoardingPage extends HookWidget {
   const OnBoardingPage({Key? key}) : super(key: key);

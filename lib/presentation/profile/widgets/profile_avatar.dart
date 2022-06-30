@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:silver_heart/models/my_user.dart';
+import 'package:silver_heart/models/models.dart';
+import 'package:silver_heart/theme/app_theme.dart';
 
 class ProfileAvatar extends StatelessWidget {
   const ProfileAvatar({Key? key, required this.user}) : super(key: key);
@@ -10,9 +11,15 @@ class ProfileAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: CircleAvatar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppTheme.thirdColor,
         radius: 70,
-        child: Image.asset("assets/avatar.png", width: 100)
+        child: user.image != null ?
+          Image.network(user.image.toString()) : 
+          const Icon(
+          Icons.person_outlined,
+          color: AppTheme.primaryColor,
+          size: 100,
+        ),
       ),
     );
   }

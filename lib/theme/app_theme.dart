@@ -11,6 +11,10 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       backgroundColor: primaryColor,
       elevation: 0,
+      titleTextStyle: TextStyle(
+        color: thirdColor,
+        fontSize: 20,
+      ),
     ),
     scaffoldBackgroundColor: Colors.white,
     fontFamily: 'Quicksand',
