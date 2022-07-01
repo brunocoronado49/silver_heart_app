@@ -27,16 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Silver App"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout, color: AppTheme.thirdColor),
-            tooltip: 'Salir',
-            onPressed: () => context.read<AuthCubit>().signOut(),
-          )
-        ],
-      ),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (_, state) {
           if (state is UserStateReady) {

@@ -18,35 +18,31 @@ class _FeedScreenState extends State<FeedScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: _postStream,
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return const ErrorText(error: "Error al tomar posts");
-        }
-
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgress();
-        }
-
-        return ListView(
-          padding: const EdgeInsets.all(10),
-          children: snapshot.data!.docs.map((DocumentSnapshot document) {
-            Map<String, dynamic> data =
-                document.data()! as Map<String, dynamic>;
-
-            return Card(
-              elevation: 5,
-              child: ListTilePost(
-                title: data["name"].toString(),
-                seller: data["seller"].toString(),
-                price: data["price"].toString(),
-                onTap: () {},
-              ),
-            );
-          }).toList(),
-        );
-      },
+    return SafeArea(
+      child: StreamBuilder(
+        stream: _postStream,
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return const ErrorText(error: "Error al tomar posts");
+          }
+    
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgress();
+          }
+    
+          return ListView(
+            padding: const EdgeInsets.all(10),
+            children: const [
+              HeaderTitle(title: "Productos"),
+              ProductsItems(),
+              HeaderTitle(title: "Ofertas"),
+              ProductsItems(),
+              HeaderTitle(title: "Usuarios"),
+              UsersItems(),
+            ],
+          );
+        },
+      ),
     );
   }
 }

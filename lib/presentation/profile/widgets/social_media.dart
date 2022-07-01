@@ -8,7 +8,7 @@ class SocialMedia extends StatelessWidget {
     double width = 30;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 45),
+      margin: const EdgeInsets.all(10),
       child: Row(
         children: [
           Image.asset("assets/facebook-icon.png", width: width),

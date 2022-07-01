@@ -28,15 +28,24 @@ class UserBloc extends Cubit<UserState> {
   }
 
   Future<void> saveMyUser(
-    String uid,
-    String name,
-    String description,
-    String address,
-    String phone,
-    String email,
-    String web,
+    String? uid,
+    String? name,
+    String? description,
+    String? address,
+    String? phone,
+    String? email,
+    String? web,
   ) async {
-    _user = MyUser(uid, name, description, address, phone, email, web, image: _user.image);
+    _user = MyUser(
+      uid.toString(),
+      name.toString(),
+      description.toString(),
+      address.toString(),
+      phone.toString(),
+      email.toString(),
+      web.toString(),
+      image: _user.image
+    );
     emit(UserStateReady(_user, _pickedImage, isSaving: true));
     await Future.delayed(const Duration(seconds: 3));
     await _userRepositoryBase.saveUser(_user, _pickedImage);

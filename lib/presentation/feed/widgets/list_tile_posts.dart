@@ -18,6 +18,15 @@ class ListTilePost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      leading: Container(
+        constraints: const BoxConstraints(
+          minWidth: 44,
+          minHeight: 44,
+          maxWidth: 64,
+          maxHeight: 64,
+        ),
+        child: Image.asset("assets/brazalete.png"),
+      ),
       title: Text(title),
       subtitle: Text(seller),
       trailing: Text(price),

@@ -15,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
         if (state is UserStateReady) {
           return ListView(
             children: [
-              const SizedBox(height: 10),
+              const ProfileHeader(),
               Container(
                 padding: const EdgeInsets.all(10),
                 margin: const EdgeInsets.all(20),
@@ -39,7 +39,9 @@ class ProfileScreen extends StatelessWidget {
               const SizedBox(height: 10),
               const SubtitleProfile(subtitle: "Contacto"),
               const SizedBox(height: 20),
-              const SocialMedia(),
+              const Center(
+                child: SocialMedia(),
+              ),
               const SizedBox(height: 20),
             ],
           );

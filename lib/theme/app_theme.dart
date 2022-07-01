@@ -5,6 +5,7 @@ class AppTheme {
   static const secondaryColor = Colors.grey;
   static const thirdColor = Colors.black;
   static const elevation = 0;
+  static const backgroundColor = Color(0xffff5f6fa);
 
   static final ThemeData lightTheme = ThemeData(
     primaryColor: primaryColor,

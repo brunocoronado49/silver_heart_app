@@ -8,7 +8,8 @@ import 'package:silver_heart/presentation/profile/widgets/widgets_profile.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class SettingsProfile extends StatefulWidget {
-  const SettingsProfile({Key? key, this.user, this.isSaving = false}) : super(key: key);
+  const SettingsProfile({Key? key, this.user, this.isSaving = false})
+      : super(key: key);
 
   final MyUser? user;
   final bool isSaving;
@@ -39,17 +40,17 @@ class _SettingsProfileState extends State<SettingsProfile> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
-      child: Column(
+    return SafeArea(
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         children: [
+          const SizedBox(height: 30),
           const HeaderTitle(title: "Actualiza tus datos"),
           BlocConsumer<UserBloc, UserState>(
             listener: (context, state) {
               if (state is UserStateSaved) {
-                SnackBarHelper.successSnackBar(
-                  "Datos guardados correctamente"
-                ).show(context);
+                SnackBarHelper.successSnackBar("Datos guardados correctamente")
+                    .show(context);
               }
             },
             builder: (context, state) {
@@ -58,56 +59,90 @@ class _SettingsProfileState extends State<SettingsProfile> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
+                    const SizedBox(height: 20),
                     ProfileInputInfo(
-                      _nameCtrl,
-                      "Nombre",
-                      const Icon(Icons.person_outline)
-                    ),
+                        _nameCtrl, "Nombre", const Icon(Icons.person_outline)),
                     const SizedBox(height: 8),
-                    ProfileInputInfo(
-                      _descriptionCtrl,
-                      "Descripción",
-                      const Icon(Icons.info_outline)
-                    ),
+                    ProfileInputInfo(_descriptionCtrl, "Descripción",
+                        const Icon(Icons.info_outline)),
                     const SizedBox(height: 8),
-                    ProfileInputInfo(
-                      _addressCtrl,
-                      "Dirección",
-                      const Icon(Icons.message_outlined)
-                    ),
+                    ProfileInputInfo(_addressCtrl, "Dirección",
+                        const Icon(Icons.message_outlined)),
                     const SizedBox(height: 8),
-                    ProfileInputInfo(
-                      _phoneCtrl,
-                      "Teléfono",
-                      const Icon(Icons.phone)
-                    ),
-                    const SizedBox(height: 8),
-                    ProfileInputInfo(
-                      _emailCtrl,
-                      "Correo",
-                      const Icon(Icons.email_outlined)
-                    ),
-                    const SizedBox(height: 8),
-                    ProfileInputInfo(
-                      _webCtrl,
-                      "Página web",
-                      const Icon(Icons.web_outlined)
-                    ),
-                    const SizedBox(height: 8),
-                    FloatingActionButton.extended(
-                      onPressed: widget.isSaving ? null : () {
-                        context.read<UserBloc>()
-                          .saveMyUser(
-                            (context.read<AuthCubit>().state as AuthStateSingedIn)
-                              .user.uid,
-                            _nameCtrl.text.trim(),
-                            _descriptionCtrl.text.trim(),
-                            _addressCtrl.text.trim(),
-                            _phoneCtrl.text.trim(),
-                            _emailCtrl.text.trim(),
-                            _webCtrl.text.trim(),
-                          );
+                    TextFormField(
+                      keyboardType: TextInputType.phone,
+                      controller: _phoneCtrl,
+                      autocorrect: false,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.phone),
+                        label: const Text("Teléfono"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value.toString().isEmpty) {
+                          return "No dejes el espacio vacío.";
+                        }
+                        return null;
                       },
+                    ),
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: _phoneCtrl,
+                      autocorrect: false,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.email),
+                        label: const Text("Correo"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value.toString().isEmpty) {
+                          return "No dejes el espacio vacío.";
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      keyboardType: TextInputType.url,
+                      controller: _webCtrl,
+                      autocorrect: false,
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.web_outlined),
+                        label: const Text("Página web"),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      validator: (value) {
+                        if (value.toString().isEmpty) {
+                          return "No dejes el espacio vacío.";
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    FloatingActionButton.extended(
+                      onPressed: widget.isSaving
+                          ? null
+                          : () {
+                              context.read<UserBloc>().saveMyUser(
+                                    (context.read<AuthCubit>().state
+                                            as AuthStateSingedIn)
+                                        .user
+                                        .uid,
+                                    _nameCtrl.text.trim(),
+                                    _descriptionCtrl.text.trim(),
+                                    _addressCtrl.text.trim(),
+                                    _phoneCtrl.text.trim(),
+                                    _emailCtrl.text.trim(),
+                                    _webCtrl.text.trim(),
+                                  );
+                            },
                       backgroundColor: Colors.black87,
                       elevation: 0,
                       icon: const Icon(Icons.save_outlined),

@@ -9,7 +9,8 @@ import 'package:silver_heart/presentation/widgets/widgets.dart';
 import 'package:silver_heart/repository/repository.dart';
 
 class CreatePostScreen extends StatefulWidget {
-  const CreatePostScreen({Key? key, this.post, this.isSaving = false}) : super(key: key);
+  const CreatePostScreen({Key? key, this.post, this.isSaving = false})
+      : super(key: key);
 
   final Post? post;
   final bool isSaving;
@@ -28,19 +29,19 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
-      child: Column(
+    return SafeArea(
+      child: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         children: [
+          const SizedBox(height: 30),
           const HeaderTitle(title: "Crea un nuevo post"),
           BlocProvider(
             create: (context) => _postCubit,
             child: BlocConsumer<CreatePostBloc, CreatePostState>(
               listener: (context, state) {
                 if (state is CreatePostReadyState) {
-                  SnackBarHelper.successSnackBar(
-                    "Post creado correctamente"
-                  ).show(context);
+                  SnackBarHelper.successSnackBar("Post creado correctamente")
+                      .show(context);
                 }
               },
               builder: (context, state) {
@@ -49,6 +50,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     children: [
+                      const SizedBox(height: 20),
                       CreatePostInput(
                         _nameCtrl,
                         "Nombre",
@@ -57,6 +59,24 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       CreatePostInput(
                         _typeCtrl,
                         "Tipo",
+                      ),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        autocorrect: false,
+                        controller: _priceCtrl,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: "Precio",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value.toString().isEmpty) {
+                            return "No dejes el espacio vacío.";
+                          }
+                          return null;
+                        },
                       ),
                       const SizedBox(height: 8),
                       CreatePostInput(
@@ -68,21 +88,26 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         _descriptionCtrl,
                         "Descripción",
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 10),
                       FloatingActionButton.extended(
-                        onPressed: widget.isSaving ? null : () {
-                          context.read<CreatePostBloc>()
-                            .savePost(
-                              _priceCtrl.text.trim(),
-                              _typeCtrl.text.trim(),
-                              _nameCtrl.text.trim(),
-                              _descriptionCtrl.text.trim(),
-                              (context.read<UserBloc>().state as UserStateReady)
-                                .user.name,
-                              (context.read<AuthCubit>().state as AuthStateSingedIn)
-                                .user.uid,
-                            );
-                        },
+                        onPressed: widget.isSaving
+                            ? null
+                            : () {
+                                context.read<CreatePostBloc>().savePost(
+                                      _priceCtrl.text.trim(),
+                                      _typeCtrl.text.trim(),
+                                      _nameCtrl.text.trim(),
+                                      _descriptionCtrl.text.trim(),
+                                      (context.read<UserBloc>().state
+                                              as UserStateReady)
+                                          .user
+                                          .name,
+                                      (context.read<AuthCubit>().state
+                                              as AuthStateSingedIn)
+                                          .user
+                                          .uid,
+                                    );
+                              },
                         label: const Text("Guardar post"),
                         icon: const Icon(Icons.save_outlined),
                         backgroundColor: Colors.black87,
