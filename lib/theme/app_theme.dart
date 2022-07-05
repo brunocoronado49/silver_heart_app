@@ -10,6 +10,9 @@ class AppTheme {
   static final ThemeData lightTheme = ThemeData(
     primaryColor: primaryColor,
     appBarTheme: const AppBarTheme(
+      iconTheme: IconThemeData(
+        color: thirdColor
+      ),
       backgroundColor: primaryColor,
       elevation: 0,
       titleTextStyle: TextStyle(

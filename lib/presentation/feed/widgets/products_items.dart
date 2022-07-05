@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:silver_heart/core/helpers/carousel_options.dart';
-import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/feed/widgets/feed_widgets.dart';
 import 'package:silver_heart/presentation/post/screens/post_detail.dart';
 import 'package:silver_heart/theme/app_theme.dart';
