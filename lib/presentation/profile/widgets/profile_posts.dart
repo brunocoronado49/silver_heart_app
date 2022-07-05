@@ -37,6 +37,15 @@ class _ProfilePostsState extends State<ProfilePosts> {
                   ),
                   color: AppTheme.backgroundColor,
                   child: ListTile(
+                    leading: Container(
+                      constraints: const BoxConstraints(
+                        minWidth: 44,
+                        minHeight: 44,
+                        maxWidth: 64,
+                        maxHeight: 64,
+                      ),
+                      child: Image.asset("assets/brazalete.png"),
+                    ),
                     title: Text(data["name"]),
                     subtitle: Text("${data['description']} - ${data['seller']}"),
                     trailing: Text(data["price"]),

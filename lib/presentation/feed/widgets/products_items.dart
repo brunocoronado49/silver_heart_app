@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
 import 'package:silver_heart/core/helpers/carousel_options.dart';
+import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/feed/widgets/feed_widgets.dart';
+import 'package:silver_heart/presentation/post/screens/post_detail.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
 class ProductsItems extends StatefulWidget {
@@ -39,6 +42,20 @@ class _ProductsItemsState extends State<ProductsItems> {
                       title: data["name"],
                       seller: data["seller"],
                       price: data["price"],
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => 
+                              PostDetail(
+                                name: data["name"],
+                                description: data["description"],
+                                seller: data["seller"],
+                                price: data["price"],
+                              )
+                          )
+                        );
+                      },
                     ),
                   );
                 }

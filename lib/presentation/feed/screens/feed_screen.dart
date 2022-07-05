@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:silver_heart/presentation/feed/widgets/feed_widgets.dart';
@@ -31,7 +30,7 @@ class _FeedScreenState extends State<FeedScreen> {
           }
     
           return ListView(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             children: const [
               HeaderTitle(title: "Productos"),
               ProductsItems(),
@@ -39,6 +38,8 @@ class _FeedScreenState extends State<FeedScreen> {
               ProductsItems(),
               HeaderTitle(title: "Usuarios"),
               UsersItems(),
+              HeaderTitle(title: "Otros apartados"),
+              OtherApart(),
             ],
           );
         },
