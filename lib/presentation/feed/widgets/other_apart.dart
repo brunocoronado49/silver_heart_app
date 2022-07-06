@@ -63,7 +63,7 @@ class _OtherApartState extends State<OtherApart> {
                 ],
               ),
             );
-          }).toList() ?? [],
+          }).toList(),
         );
       }
     );

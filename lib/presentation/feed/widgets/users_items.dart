@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:silver_heart/core/helpers/carousel_options.dart';
 import 'package:silver_heart/presentation/feed/widgets/feed_widgets.dart';
+import 'package:silver_heart/presentation/user/screens/user_detail_screen.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
 class UsersItems extends StatefulWidget {
@@ -39,7 +40,22 @@ class _UsersItemsState extends State<UsersItems> {
                     child: ListTileUser(
                       name: data["name"],
                       description: data["description"],
-                      onTap: null,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => 
+                              UserDetailScreen(
+                                name: data["name"],
+                                description: data["description"],
+                                email: data["email"],
+                                phone: data["phone"],
+                                web: data["web"],
+                                address: data["address"],
+                              )
+                          )
+                        );
+                      },
                     ),
                   );
                 },
