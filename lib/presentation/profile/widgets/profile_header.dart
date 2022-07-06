@@ -14,7 +14,10 @@ class ProfileHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const IconButton(
-            icon: Icon(Icons.menu_outlined, color: AppTheme.thirdColor),
+            icon: Icon(
+              Icons.more_horiz_outlined,
+              color: AppTheme.thirdColor
+            ),
             onPressed: null,
           ),
           const Text(

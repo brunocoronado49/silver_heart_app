@@ -63,6 +63,9 @@ flutter:
     - assets/share-icon.png
     - assets/twitter-icon.png
     - assets/whats-icon.png
+    - assets/loading.gif
+    - assets/anillo-pexel.jpg
+    - assets/profile-pexel.jpg
   
   fonts:
     - family: Quicksand

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/presentation/user/widgets/user_widgets.dart';
 
 class UserDetailScreen extends StatelessWidget {
@@ -27,6 +25,12 @@ class UserDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(name),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.more_horiz_outlined),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: ListView(
         children: [
@@ -41,7 +45,10 @@ class UserDetailScreen extends StatelessWidget {
             phone: phone,
             address: address,
             web: web,
-          )
+          ),
+          const UserSocialMedia(),
+          const SizedBox(height: 10),
+          UserPosts(seller: name)
         ],
       ),
     );

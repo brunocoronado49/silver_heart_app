@@ -33,29 +33,42 @@ class _UsersItemsState extends State<UsersItems> {
               return Builder(
                 builder: (BuildContext context) {
                   return Card(
+                    clipBehavior: Clip.antiAlias,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     color: AppTheme.backgroundColor,
-                    child: ListTileUser(
-                      name: data["name"],
-                      description: data["description"],
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => 
-                              UserDetailScreen(
-                                name: data["name"],
-                                description: data["description"],
-                                email: data["email"],
-                                phone: data["phone"],
-                                web: data["web"],
-                                address: data["address"],
+                    child: Column(
+                      children: [
+                        const FadeInImage(
+                          image: AssetImage("assets/profile-pexel.jpg"),
+                          placeholder: AssetImage("assets/loading.gif"),
+                          width: double.infinity,
+                          height: 150,
+                          fit: BoxFit.cover,
+                          fadeInDuration: Duration(milliseconds: 300),
+                        ),
+                        ListTileUser(
+                          name: data["name"],
+                          description: data["description"],
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => 
+                                  UserDetailScreen(
+                                    name: data["name"],
+                                    description: data["description"],
+                                    email: data["email"],
+                                    phone: data["phone"],
+                                    web: data["web"],
+                                    address: data["address"],
+                                  )
                               )
-                          )
-                        );
-                      },
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   );
                 },

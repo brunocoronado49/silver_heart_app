@@ -10,6 +10,7 @@ class UserSocialMedia extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.all(10),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset("assets/facebook-icon.png", width: width),
           const SizedBox(width: 50),

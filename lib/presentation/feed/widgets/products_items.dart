@@ -33,28 +33,41 @@ class _ProductsItemsState extends State<ProductsItems> {
               return Builder(
                 builder: (BuildContext builder) {
                   return Card(
+                    clipBehavior: Clip.antiAlias,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     color: AppTheme.backgroundColor,
-                    child: ListTilePost(
-                      title: data["name"],
-                      seller: data["seller"],
-                      price: data["price"],
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => 
-                              PostDetail(
-                                name: data["name"],
-                                description: data["description"],
-                                seller: data["seller"],
-                                price: data["price"],
+                    child: Column(
+                      children: [
+                        const FadeInImage(
+                          image: AssetImage("assets/anillo-pexel.jpg"),
+                          placeholder: AssetImage("assets/loading.gif"),
+                          width: double.infinity,
+                          height: 150,
+                          fit: BoxFit.cover,
+                          fadeInDuration: Duration(milliseconds: 300),
+                        ),
+                        ListTilePost(
+                          title: data["name"],
+                          seller: data["seller"],
+                          price: data["price"],
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => 
+                                  PostDetail(
+                                    name: data["name"],
+                                    description: data["description"],
+                                    seller: data["seller"],
+                                    price: data["price"],
+                                  )
                               )
-                          )
-                        );
-                      },
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   );
                 }

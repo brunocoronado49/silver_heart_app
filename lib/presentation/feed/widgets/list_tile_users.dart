@@ -16,16 +16,13 @@ class ListTileUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Container(
-        constraints: const BoxConstraints(
-          minWidth: 44,
-          minHeight: 44,
-          maxWidth: 64,
-          maxHeight: 64,
+      title: Text(
+        name,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
         ),
-        child: Image.asset("assets/user.png"),
       ),
-      title: Text(name),
       subtitle: Text(description),
       onTap: onTap,
     );
