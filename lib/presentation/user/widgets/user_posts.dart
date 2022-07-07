@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,7 +18,9 @@ class UserPosts extends StatefulWidget {
 
 class _UserPostsState extends State<UserPosts> {
   final Stream<QuerySnapshot> _postStream =
-      FirebaseFirestore.instance.collection("post").snapshots();
+      FirebaseFirestore.instance.collection("post")
+        .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
   
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class _UserPostsState extends State<UserPosts> {
           items: snapshot.data?.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
-            return data["seller"] == widget.seller ? Builder(
+            return Builder(
               builder: (BuildContext context) {
                 return Card(
                   clipBehavior: Clip.antiAlias,
@@ -70,7 +73,7 @@ class _UserPostsState extends State<UserPosts> {
                   ),
                 );
               },
-            ) : const SizedBox();
+            );
           }).toList() ?? [],
         );
       },

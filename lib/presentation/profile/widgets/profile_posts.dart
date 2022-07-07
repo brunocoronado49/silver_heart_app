@@ -1,11 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:silver_heart/core/helpers/carousel_options.dart';
 import 'package:silver_heart/models/models.dart';
-import 'package:silver_heart/presentation/profile/screens/profile_post_detail_screen.dart';
 import 'package:silver_heart/theme/app_theme.dart';
+import 'package:silver_heart/presentation/profile/screens/profile_post_detail_screen.dart';
 
 class ProfilePosts extends StatefulWidget {
   const ProfilePosts({Key? key, required this.user}) : super(key: key);
@@ -18,7 +19,9 @@ class ProfilePosts extends StatefulWidget {
 
 class _ProfilePostsState extends State<ProfilePosts> {
   final Stream<QuerySnapshot> _postStream =
-      FirebaseFirestore.instance.collection("post").snapshots();
+      FirebaseFirestore.instance.collection("post")
+        .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class _ProfilePostsState extends State<ProfilePosts> {
           items: snapshot.data?.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
-            return data["seller"] == widget.user.name ? Builder(
+            return Builder(
               builder: (BuildContext context) {
                 return Card(
                   clipBehavior: Clip.antiAlias,
@@ -71,7 +74,7 @@ class _ProfilePostsState extends State<ProfilePosts> {
                   ),
                 );
               },
-            ) : const SizedBox();
+            );
           }).toList() ?? [],
         );
       },

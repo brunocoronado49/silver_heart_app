@@ -7,6 +7,8 @@ class Carousel {
     autoPlay: true,
     autoPlayInterval: const Duration(seconds: 3),
     autoPlayAnimationDuration: const Duration(milliseconds: 500),
-    autoPlayCurve: Curves.fastOutSlowIn,
+    autoPlayCurve: Curves.easeIn,
+    initialPage: 0,
+    enableInfiniteScroll: false,
   );
 }
