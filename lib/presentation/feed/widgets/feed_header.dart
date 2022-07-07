@@ -21,7 +21,7 @@ class FeedHeader extends StatelessWidget {
             onPressed: null,
           ),
           const Text(
-            'Perfil',
+            'Inicio',
             style: TextStyle(
               color: AppTheme.thirdColor,
               fontSize: 26,

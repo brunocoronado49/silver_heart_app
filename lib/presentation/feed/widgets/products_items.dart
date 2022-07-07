@@ -3,12 +3,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'package:silver_heart/core/helpers/carousel_options.dart';
+import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/feed/widgets/feed_widgets.dart';
 import 'package:silver_heart/presentation/post/screens/post_detail.dart';
+import 'package:silver_heart/presentation/profile/screens/profile_post_detail_screen.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
 class ProductsItems extends StatefulWidget {
-  const ProductsItems({Key? key}) : super(key: key);
+  const ProductsItems({Key? key, required this.user}) : super(key: key);
+
+  final MyUser user;
 
   @override
   State<ProductsItems> createState() => _ProductsItemsState();
@@ -56,13 +60,22 @@ class _ProductsItemsState extends State<ProductsItems> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => 
-                                  PostDetail(
+                                builder: (context) {
+                                  if (data["seller"] != widget.user.name) {
+                                    return PostDetail(
+                                      name: data["name"],
+                                      description: data["description"],
+                                      seller: data["seller"],
+                                      price: data["price"],
+                                    );
+                                  }
+                                  return ProfilePostDetailScreen(
                                     name: data["name"],
                                     description: data["description"],
                                     seller: data["seller"],
                                     price: data["price"],
-                                  )
+                                  );
+                                }
                               )
                             );
                           },

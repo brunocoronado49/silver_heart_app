@@ -15,7 +15,7 @@ class ProfileHeader extends StatelessWidget {
         children: [
           const IconButton(
             icon: Icon(
-              Icons.more_horiz_outlined,
+              Icons.edit_outlined,
               color: AppTheme.thirdColor
             ),
             onPressed: null,
