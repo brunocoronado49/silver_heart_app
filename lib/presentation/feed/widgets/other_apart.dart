@@ -1,11 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+import 'package:silver_heart/models/models.dart';
+import 'package:silver_heart/presentation/profile/screens/profile_screen.dart';
 import 'package:silver_heart/presentation/user/screens/user_detail_screen.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
 class OtherApart extends StatefulWidget {
-  const OtherApart({Key? key}) : super(key: key);
+  const OtherApart({Key? key, required this.user}) : super(key: key);
+
+  final MyUser user;
 
   @override
   State<OtherApart> createState() => _OtherApartState();
@@ -62,15 +67,19 @@ class _OtherApartState extends State<OtherApart> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => 
-                            UserDetailScreen(
-                              name: data["name"],
-                              description: data["description"],
-                              email: data["email"],
-                              phone: data["phone"],
-                              web: data["web"],
-                              address: data["address"],
-                            )
+                          builder: (context) {
+                            if (data["seller"] != widget.user.name) {
+                              return UserDetailScreen(
+                                name: data["name"],
+                                description: data["description"],
+                                email: data["email"],
+                                phone: data["phone"],
+                                web: data["web"],
+                                address: data["address"],
+                              );
+                            }
+                            return const ProfileScreen();
+                          }
                         )
                       );
                     },

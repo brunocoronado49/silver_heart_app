@@ -23,7 +23,7 @@ class FeedScreen extends StatelessWidget {
                 const HeaderTitle(title: "Usuarios"),
                 UsersItems(user: state.user),
                 const HeaderTitle(title: "Otros apartados"),
-                const OtherApart(),
+                OtherApart(user: state.user),
               ],
             ),
           );

@@ -69,8 +69,9 @@ class _UsersItemsState extends State<UsersItems> {
                                       web: data["web"],
                                       address: data["address"],
                                     );
+                                  } else {
+                                    return const ProfileScreen();
                                   }
-                                  return const ProfileScreen();
                                 }
                               )
                             );
