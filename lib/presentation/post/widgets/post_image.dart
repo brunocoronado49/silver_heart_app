@@ -7,7 +7,7 @@ class PostImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      child: Image.asset("assets/brazalete.png", width: 50),
+      child: Image.asset("assets/brazalete.png", width: 200),
     );
   }
 }

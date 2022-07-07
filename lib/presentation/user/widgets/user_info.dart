@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:silver_heart/models/models.dart';
 
 class UserInfo extends StatelessWidget {
   const UserInfo({
@@ -26,6 +25,7 @@ class UserInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
             name,

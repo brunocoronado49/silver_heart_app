@@ -26,6 +26,7 @@ class PostInfo extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(name, style: const TextStyle(
             fontSize: 24,

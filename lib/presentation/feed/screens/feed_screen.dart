@@ -12,6 +12,7 @@ class FeedScreen extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.symmetric(vertical: 10),
         children: const [
+          FeedHeader(),
           HeaderTitle(title: "Productos"),
           ProductsItems(),
           HeaderTitle(title: "Usuarios"),

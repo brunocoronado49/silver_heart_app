@@ -22,15 +22,16 @@ class PostDetail extends StatelessWidget {
         title: Text(name),
       ),
       body: SafeArea(
-        child: ListView(
+        child: Column(
           children: [
             const PostImage(),
+            const SizedBox(height: 50),
             PostInfo(
               name: name,
               price: price,
               description: description,
               seller: seller
-            )
+            ),
           ],
         ),
       ),
