@@ -13,13 +13,6 @@ class FeedHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const IconButton(
-            icon: Icon(
-              Icons.more_horiz_outlined,
-              color: AppTheme.thirdColor
-            ),
-            onPressed: null,
-          ),
           const Text(
             'Inicio',
             style: TextStyle(

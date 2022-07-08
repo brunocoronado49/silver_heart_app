@@ -13,13 +13,6 @@ class ProfileHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const IconButton(
-            icon: Icon(
-              Icons.edit_outlined,
-              color: AppTheme.thirdColor
-            ),
-            onPressed: null,
-          ),
           const Text(
             'Perfil',
             style: TextStyle(

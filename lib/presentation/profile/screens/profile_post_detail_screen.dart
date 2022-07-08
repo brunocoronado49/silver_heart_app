@@ -26,6 +26,7 @@ class ProfilePostDetailScreen extends StatelessWidget {
         child: ListView(
           children: [
             const PostImage(),
+            const SizedBox(height: 50),
             ProfilePostInfo(
               name: name,
               price: price,

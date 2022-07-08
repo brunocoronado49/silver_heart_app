@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,7 +21,9 @@ class UsersItems extends StatefulWidget {
 
 class _UsersItemsState extends State<UsersItems> {
   final Stream<QuerySnapshot> _user = 
-    FirebaseFirestore.instance.collection("user").snapshots();
+    FirebaseFirestore.instance.collection("user")
+      .where("id", isNotEqualTo: FirebaseAuth.instance.currentUser!.uid)
+      .snapshots();
 
   @override
   Widget build(BuildContext context) {

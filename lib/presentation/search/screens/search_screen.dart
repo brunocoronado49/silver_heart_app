@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:silver_heart/models/models.dart';
@@ -17,7 +18,9 @@ class Searchcreen extends StatefulWidget {
 
 class _SearchcreenState extends State<Searchcreen> {
   final Stream<QuerySnapshot> _userStream =
-    FirebaseFirestore.instance.collection("user").snapshots();
+    FirebaseFirestore.instance.collection("user")
+      .where("id", isNotEqualTo: FirebaseAuth.instance.currentUser!.uid)
+      .snapshots();
 
   @override
   Widget build(BuildContext context) {

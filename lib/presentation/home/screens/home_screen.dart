@@ -79,8 +79,8 @@ class _HomeScreenState extends State<HomeScreen> {
             label: "Perfil"
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
-            label: "Ajustes"
+            icon: Icon(Icons.edit_outlined),
+            label: "Editar perfil"
           ),
         ],
       ),

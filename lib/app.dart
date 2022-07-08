@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   static Widget create() {
-    return BlocListener<AuthCubit, AuthState>(
+    return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthStateSignedOut) {
           _navigatorKey.currentState?.pushNamedAndRemoveUntil(
@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
           );
         }
       },
-      child: const MyApp(),
+      builder: (context, state) {
+        return const MyApp();
+      },
     );
   }
 
