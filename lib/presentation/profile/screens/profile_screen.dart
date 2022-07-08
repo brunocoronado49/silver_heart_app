@@ -13,36 +13,38 @@ class ProfileScreen extends StatelessWidget {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         if (state is UserStateReady) {
-          return ListView(
-            children: [
-              const ProfileHeader(),
-              Container(
-                padding: const EdgeInsets.all(10),
-                margin: const EdgeInsets.all(20),
-                decoration: const BoxDecoration(
-                  color: AppTheme.thirdColor,
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
+          return SafeArea(
+            child: ListView(
+              children: [
+                const ProfileHeader(),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(20),
+                  decoration: const BoxDecoration(
+                    color: AppTheme.thirdColor,
+                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                  ),
+                  child: Column(
+                    children: [
+                      ProfileAvatar(user: state.user),
+                      const SizedBox(height: 20),
+                      ProfileName(user: state.user),
+                      ProfileInfo(user: state.user),
+                      ProfileBottom(user: state.user),
+                    ],
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    ProfileAvatar(user: state.user),
-                    const SizedBox(height: 20),
-                    ProfileName(user: state.user),
-                    ProfileInfo(user: state.user),
-                    ProfileBottom(user: state.user),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 10),
-              const SubtitleProfile(subtitle: "Contacto"),
-              const SizedBox(height: 10),
-              const SocialMedia(),
-              const SizedBox(height: 20),
-              const SubtitleProfile(subtitle: "Publicaciones"),
-              const SizedBox(height: 10),
-              ProfilePosts(user: state.user),
-              const SizedBox(height: 20),
-            ],
+                const SizedBox(height: 10),
+                const SubtitleProfile(subtitle: "Contacto"),
+                const SizedBox(height: 10),
+                const SocialMedia(),
+                const SizedBox(height: 20),
+                const SubtitleProfile(subtitle: "Publicaciones"),
+                const SizedBox(height: 10),
+                ProfilePosts(user: state.user),
+                const SizedBox(height: 20),
+              ],
+            ),
           );
         }
         return const Center(

@@ -68,6 +68,7 @@ class _UsersItemsState extends State<UsersItems> {
                                       phone: data["phone"],
                                       web: data["web"],
                                       address: data["address"],
+                                      user: widget.user,
                                     );
                                   } else {
                                     return const ProfileScreen();

@@ -4,13 +4,20 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:silver_heart/core/helpers/carousel_options.dart';
+import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/post/screens/post_detail.dart';
+import 'package:silver_heart/presentation/profile/screens/profile_post_detail_screen.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
 class UserPosts extends StatefulWidget {
-  const UserPosts({Key? key, required this.seller}) : super(key: key);
+  const UserPosts({
+    Key? key,
+    required this.seller,
+    required this.user
+  }) : super(key: key);
 
   final String seller;
+  final MyUser user;
 
   @override
   State<UserPosts> createState() => _UserPostsState();
@@ -18,9 +25,9 @@ class UserPosts extends StatefulWidget {
 
 class _UserPostsState extends State<UserPosts> {
   final Stream<QuerySnapshot> _postStream =
-      FirebaseFirestore.instance.collection("post")
-        .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .snapshots();
+    FirebaseFirestore.instance.collection("post")
+      .where("userId", isNotEqualTo: FirebaseAuth.instance.currentUser!.uid)
+      .snapshots();
   
   @override
   Widget build(BuildContext context) {
@@ -58,13 +65,22 @@ class _UserPostsState extends State<UserPosts> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => 
-                                PostDetail(
+                              builder: (context) {
+                                if (data["seller"] != widget.user.name) {
+                                  return PostDetail(
+                                    name: data["name"],
+                                    description: data["description"],
+                                    seller: data["seller"],
+                                    price: data["price"],
+                                  );
+                                }
+                                return ProfilePostDetailScreen(
                                   name: data["name"],
                                   description: data["description"],
                                   seller: data["seller"],
                                   price: data["price"],
-                                )
+                                );
+                              }
                             )
                           );
                         },

@@ -76,6 +76,7 @@ class _OtherApartState extends State<OtherApart> {
                                 phone: data["phone"],
                                 web: data["web"],
                                 address: data["address"],
+                                user: widget.user,
                               );
                             }
                             return const ProfileScreen();

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/user/screens/user_detail_screen.dart';
 
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
 class Searchcreen extends StatefulWidget {
-  const Searchcreen({Key? key}) : super(key: key);
+  const Searchcreen({Key? key, required this.user}) : super(key: key);
+
+  final MyUser user;
 
   @override
   State<Searchcreen> createState() => _SearchcreenState();
@@ -72,6 +75,7 @@ class _SearchcreenState extends State<Searchcreen> {
                                 phone: data["phone"],
                                 web: data["web"],
                                 address: data["address"],
+                                user: widget.user,
                               )
                           )
                         );

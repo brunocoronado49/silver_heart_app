@@ -24,6 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentPage = 0;
   final PageController _pageController = PageController(initialPage: 0);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,12 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
             return PageView(
               controller: _pageController,
               physics: const NeverScrollableScrollPhysics(),
-              children: const [
-                FeedScreen(),
-                Searchcreen(),
-                CreatePostScreen(),
-                ProfileScreen(),
-                SettingsProfile(),
+              children: [
+                const FeedScreen(),
+                Searchcreen(user: state.user),
+                const CreatePostScreen(),
+                const ProfileScreen(),
+                const SettingsProfile(),
               ],
             );
           }

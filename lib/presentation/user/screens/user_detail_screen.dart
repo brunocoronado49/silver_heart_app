@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/user/widgets/user_widgets.dart';
+import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class UserDetailScreen extends StatelessWidget {
   const UserDetailScreen({
@@ -11,6 +13,7 @@ class UserDetailScreen extends StatelessWidget {
     required this.phone,
     required this.address,
     required this.web,
+    required this.user,
   }) : super(key: key);
 
   final String name;
@@ -19,6 +22,7 @@ class UserDetailScreen extends StatelessWidget {
   final String phone;
   final String address;
   final String web;
+  final MyUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +51,10 @@ class UserDetailScreen extends StatelessWidget {
             web: web,
           ),
           const UserSocialMedia(),
+          const SizedBox(height: 30),
+          const HeaderTitle(title: "Todos los productos"),
           const SizedBox(height: 10),
-          UserPosts(seller: name)
+          UserPosts(seller: name, user: user)
         ],
       ),
     );
