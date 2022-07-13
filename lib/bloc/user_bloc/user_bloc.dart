@@ -28,13 +28,13 @@ class UserBloc extends Cubit<UserState> {
   }
 
   Future<void> saveMyUser(
-    String? uid,
-    String? name,
-    String? description,
-    String? address,
-    String? phone,
-    String? email,
-    String? web,
+    String uid,
+    String name,
+    String description,
+    String address,
+    String phone,
+    String email,
+    String web,
   ) async {
     _user = MyUser(
       uid.toString(),

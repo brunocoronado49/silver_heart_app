@@ -40,4 +40,6 @@ class FirebaseProvider {
       await ref.set(user.toFirebaseMap(), SetOptions(merge: true)); 
     }
   }
+
+  // TODO: save a image for posts
 }

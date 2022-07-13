@@ -67,6 +67,7 @@ flutter:
     - assets/loading.gif
     - assets/anillo-pexel.jpg
     - assets/profile-pexel.jpg
+    - assets/profile-user.png
   
   fonts:
     - family: Quicksand

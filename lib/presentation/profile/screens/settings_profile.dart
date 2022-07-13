@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/core/helpers/snackbar_helper.dart';
@@ -8,10 +12,12 @@ import 'package:silver_heart/presentation/profile/widgets/widgets_profile.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class SettingsProfile extends StatefulWidget {
-  const SettingsProfile({Key? key, this.user, this.isSaving = false})
+  const SettingsProfile(
+      {Key? key, this.user, this.isSaving = false, this.imagePicked})
       : super(key: key);
 
   final MyUser? user;
+  final File? imagePicked;
   final bool isSaving;
 
   @override
@@ -27,6 +33,8 @@ class _SettingsProfileState extends State<SettingsProfile> {
   final _webCtrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  final picker = ImagePicker();
+
   @override
   void initState() {
     _nameCtrl.text = widget.user?.name ?? '';
@@ -40,12 +48,55 @@ class _SettingsProfileState extends State<SettingsProfile> {
 
   @override
   Widget build(BuildContext context) {
+    // Set a image default
+    Widget image = Image.asset(
+      'assets/profile-user.png',
+      fit: BoxFit.fill,
+    );
+
+    // Check if image in user exists
+    if (widget.imagePicked != null) {
+      image = Image.file(
+        widget.imagePicked!,
+        fit: BoxFit.fill,
+      );
+    } else if (widget.user?.image != null && widget.user!.image!.isEmpty) {
+      // Set the url of image firebase in image user
+      image = CachedNetworkImage(
+        imageUrl: widget.user!.image!,
+        progressIndicatorBuilder: (_, __, progress) =>
+            CircularProgressIndicator(value: progress.progress),
+        errorWidget: (_, __, ___) => const Icon(Icons.error),
+        fit: BoxFit.fill,
+      );
+    }
+
     return SafeArea(
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         children: [
           const SizedBox(height: 30),
           const HeaderTitle(title: "Actualiza tus datos"),
+          const SizedBox(height: 20),
+          GestureDetector(
+            onTap: () async {
+              final imagePicked =
+                  await picker.pickImage(source: ImageSource.gallery);
+              if (imagePicked != null) {
+                // ignore: use_build_context_synchronously
+                context.read<UserBloc>().setImage(File(imagePicked.path));
+              }
+            },
+            child: Center(
+              child: ClipOval(
+                child: SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: image,
+                ),
+              ),
+            ),
+          ),
           BlocConsumer<UserBloc, UserState>(
             listener: (context, state) {
               if (state is UserStateSaved) {
@@ -59,7 +110,7 @@ class _SettingsProfileState extends State<SettingsProfile> {
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 8),
                     ProfileInputInfo(
                         _nameCtrl, "Nombre", const Icon(Icons.person_outline)),
                     const SizedBox(height: 8),

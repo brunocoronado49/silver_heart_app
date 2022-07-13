@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,12 +8,14 @@ import 'package:silver_heart/presentation/profile/widgets/widgets_profile.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({Key? key, this.avatar}) : super(key: key);
+
+  final File? avatar;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
-      builder: (context, state) {
+      builder: (_, state) {
         if (state is UserStateReady) {
           return SafeArea(
             child: ListView(
@@ -24,15 +28,20 @@ class ProfileScreen extends StatelessWidget {
                     color: AppTheme.thirdColor,
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                   ),
-                  child: Column(
-                    children: [
-                      ProfileAvatar(user: state.user),
-                      const SizedBox(height: 20),
-                      ProfileName(user: state.user),
-                      ProfileInfo(user: state.user),
-                      ProfileBottom(user: state.user),
-                    ],
+                  child: ProfileSection(
+                    user: state.user,
+                    imagePicked: state.pickedImage,
+                    isSaving: state.isSaving,
                   ),
+                  // child: Column(
+                  //   children: [
+                  //     ProfileAvatar(avatar: state.pickedImage),
+                  //     const SizedBox(height: 20),
+                  //     ProfileName(user: state.user),
+                  //     ProfileInfo(user: state.user),
+                  //     ProfileBottom(user: state.user),
+                  //   ],
+                  // ),
                 ),
                 const SizedBox(height: 10),
                 const SubtitleProfile(subtitle: "Contacto"),
