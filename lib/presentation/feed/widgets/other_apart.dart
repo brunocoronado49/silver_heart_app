@@ -53,7 +53,18 @@ class _OtherApartState extends State<OtherApart> {
                         maxWidth: 64,
                         maxHeight: 64,
                       ),
-                      child: Image.asset("assets/user.png"),
+                      child: Center(
+                        child: CircleAvatar(
+                          backgroundColor: AppTheme.thirdColor,
+                          child: ClipOval(
+                            child: SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: Image.network(data["image"].toString())
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     title: Text(data["name"].toString()),
                     subtitle: Text(data["description"].toString()),
@@ -76,6 +87,7 @@ class _OtherApartState extends State<OtherApart> {
                                 phone: data["phone"],
                                 web: data["web"],
                                 address: data["address"],
+                                image: data["image"],
                                 user: widget.user,
                               );
                             }

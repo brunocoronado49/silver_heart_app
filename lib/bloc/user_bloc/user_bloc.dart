@@ -37,13 +37,13 @@ class UserBloc extends Cubit<UserState> {
     String web,
   ) async {
     _user = MyUser(
-      uid.toString(),
-      name.toString(),
-      description.toString(),
-      address.toString(),
-      phone.toString(),
-      email.toString(),
-      web.toString(),
+      uid,
+      name,
+      description,
+      address,
+      phone,
+      email,
+      web,
       image: _user.image
     );
     emit(UserStateReady(_user, _pickedImage, isSaving: true));

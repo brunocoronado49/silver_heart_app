@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -8,9 +7,7 @@ import 'package:silver_heart/presentation/profile/widgets/widgets_profile.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key, this.avatar}) : super(key: key);
-
-  final File? avatar;
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,20 +30,21 @@ class ProfileScreen extends StatelessWidget {
                     imagePicked: state.pickedImage,
                     isSaving: state.isSaving,
                   ),
-                  // child: Column(
-                  //   children: [
-                  //     ProfileAvatar(avatar: state.pickedImage),
-                  //     const SizedBox(height: 20),
-                  //     ProfileName(user: state.user),
-                  //     ProfileInfo(user: state.user),
-                  //     ProfileBottom(user: state.user),
-                  //   ],
-                  // ),
                 ),
                 const SizedBox(height: 10),
                 const SubtitleProfile(subtitle: "Contacto"),
                 const SizedBox(height: 10),
                 const SocialMedia(),
+                const SizedBox(height: 10),
+                Center(
+                  child: Text(
+                    FirebaseAuth.instance.currentUser!.email.toString(),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
                 const SizedBox(height: 20),
                 const SubtitleProfile(subtitle: "Publicaciones"),
                 const SizedBox(height: 10),

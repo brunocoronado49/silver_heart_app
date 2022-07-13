@@ -14,6 +14,7 @@ class UserDetailScreen extends StatelessWidget {
     required this.address,
     required this.web,
     required this.user,
+    required this.image,
   }) : super(key: key);
 
   final String name;
@@ -22,6 +23,7 @@ class UserDetailScreen extends StatelessWidget {
   final String phone;
   final String address;
   final String web;
+  final String image;
   final MyUser user;
 
   @override
@@ -40,7 +42,7 @@ class UserDetailScreen extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(10),
-            child: const UserAvatar()
+            child: UserAvatar(avatar: image)
           ),
           UserInfo(
             name: name,

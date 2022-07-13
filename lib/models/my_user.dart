@@ -28,7 +28,7 @@ class MyUser extends Equatable {
   @override
   List<Object?> get props => [id];
 
-  Map<String, Object?> toFirebaseMap({String? newImage, Post? newPost}) {
+  Map<String, Object?> toFirebaseMap({String? newImage}) {
     return <String, Object?> {
       'id': id,
       'name': name,

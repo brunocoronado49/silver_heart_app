@@ -47,13 +47,13 @@ class _UsersItemsState extends State<UsersItems> {
                     color: AppTheme.backgroundColor,
                     child: Column(
                       children: [
-                        const FadeInImage(
-                          image: AssetImage("assets/profile-pexel.jpg"),
-                          placeholder: AssetImage("assets/loading.gif"),
+                        FadeInImage(
+                          image: NetworkImage(data["image"]),
+                          placeholder: const AssetImage("assets/loading.gif"),
                           width: double.infinity,
                           height: 150,
                           fit: BoxFit.cover,
-                          fadeInDuration: Duration(milliseconds: 300),
+                          fadeInDuration: const Duration(milliseconds: 300),
                         ),
                         ListTileUser(
                           name: data["name"],
@@ -71,6 +71,7 @@ class _UsersItemsState extends State<UsersItems> {
                                       phone: data["phone"],
                                       web: data["web"],
                                       address: data["address"],
+                                      image: data["image"],
                                       user: widget.user,
                                     );
                                   } else {

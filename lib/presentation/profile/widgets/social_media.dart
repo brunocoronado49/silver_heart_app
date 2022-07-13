@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SocialMedia extends StatelessWidget {
@@ -19,6 +20,7 @@ class SocialMedia extends StatelessWidget {
           Image.asset("assets/whats-icon.png", width: width),
           const SizedBox(width: 50),
           Image.asset("assets/instagram-icon.png", width: width),
+          const SizedBox(width: 50),
         ],
       ),
     );

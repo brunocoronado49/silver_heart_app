@@ -1,18 +1,22 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:silver_heart/bloc/app_bloc.dart';
 
+import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
 class ProfileSection extends StatefulWidget {
-  const ProfileSection(
-      {Key? key, this.user, this.imagePicked, this.isSaving = false})
-      : super(key: key);
+  const ProfileSection({
+    Key? key,
+    this.user,
+    this.imagePicked,
+    this.isSaving = false
+  }) : super(key: key);
 
   final MyUser? user;
   final File? imagePicked;
@@ -38,7 +42,8 @@ class _ProfileSectionState extends State<ProfileSection> {
     _descriptionCtrl.text = widget.user?.description ?? '';
     _addressCtrl.text = widget.user?.address ?? '';
     _phoneCtrl.text = widget.user?.phone ?? '';
-    _emailCtrl.text = widget.user?.email ?? '';
+    _emailCtrl.text = widget.user?.email ?? 
+      FirebaseAuth.instance.currentUser!.email.toString();
     _webCtrl.text = widget.user?.web ?? '';
     super.initState();
   }
@@ -70,7 +75,7 @@ class _ProfileSectionState extends State<ProfileSection> {
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.all(20),
       decoration: const BoxDecoration(
-        color: AppTheme.thirdColor,
+        color: AppTheme.primaryColor,
         borderRadius: BorderRadius.all(Radius.circular(30)),
       ),
       child: Column(
@@ -107,43 +112,54 @@ class _ProfileSectionState extends State<ProfileSection> {
           const SizedBox(height: 8),
           TextField(
             controller: _addressCtrl,
+            keyboardType: TextInputType.streetAddress,
             decoration: const InputDecoration(labelText: 'Dirección'),
           ),
           const SizedBox(height: 8),
           TextField(
             controller: _phoneCtrl,
+            keyboardType: TextInputType.number,
             decoration: const InputDecoration(labelText: 'Teléfono'),
           ),
           const SizedBox(height: 8),
           TextField(
             controller: _emailCtrl,
+            keyboardType: TextInputType.emailAddress,
             decoration: const InputDecoration(labelText: 'Correo'),
           ),
           const SizedBox(height: 8),
           TextField(
             controller: _webCtrl,
+            keyboardType: TextInputType.url,
             decoration: const InputDecoration(labelText: 'Web'),
           ),
           Stack(
             alignment: Alignment.center,
             children: [
-              ElevatedButton(
-                onPressed: widget.isSaving
-                    ? null
-                    : () {
-                        context.read<UserBloc>().saveMyUser(
-                            (context.read<AuthCubit>().state
-                                    as AuthStateSingedIn)
-                                .user
-                                .uid,
-                            _nameCtrl.text.trim(),
-                            _descriptionCtrl.text.trim(),
-                            _addressCtrl.text.trim(),
-                            _phoneCtrl.text.trim(),
-                            _emailCtrl.text.trim(),
-                            _webCtrl.text.trim());
-                      },
-                child: const Text('Save'),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: FloatingActionButton.extended(
+                  backgroundColor: AppTheme.thirdColor,
+                  onPressed: widget.isSaving
+                      ? null
+                      : () {
+                          context.read<UserBloc>().saveMyUser(
+                              (context.read<AuthCubit>().state
+                                      as AuthStateSingedIn)
+                                  .user
+                                  .uid,
+                              _nameCtrl.text.trim(),
+                              _descriptionCtrl.text.trim(),
+                              _addressCtrl.text.trim(),
+                              _phoneCtrl.text.trim(),
+                              _emailCtrl.text.trim(),
+                              _webCtrl.text.trim());
+                        },
+                  label: const Text('Guardar información'),
+                  icon: const Icon(
+                    Icons.edit_outlined,
+                  ),
+                ),
               ),
               if (widget.isSaving) const CircularProgressIndicator(),
             ],

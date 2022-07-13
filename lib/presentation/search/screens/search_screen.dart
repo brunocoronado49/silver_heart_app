@@ -78,6 +78,7 @@ class _SearchcreenState extends State<Searchcreen> {
                                 phone: data["phone"],
                                 web: data["web"],
                                 address: data["address"],
+                                image: data["image"],
                                 user: widget.user,
                               )
                           )
