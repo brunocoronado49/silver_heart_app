@@ -24,8 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int currentPage = 0;
   final PageController _pageController = PageController(initialPage: 0);
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const FeedScreen(),
                 Searchcreen(user: state.user),
-                const CreatePostScreen(),
+                //const CreatePostScreen(),
+                const CreatePostSection(),
                 const ProfileScreen(),
-                const SettingsProfile(),
               ],
             );
           }
@@ -77,10 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: "Perfil"
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.edit_outlined),
-            label: "Editar perfil"
           ),
         ],
       ),
