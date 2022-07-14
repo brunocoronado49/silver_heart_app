@@ -22,8 +22,19 @@ class ProfileScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   margin: const EdgeInsets.all(20),
                   decoration: const BoxDecoration(
-                    color: AppTheme.thirdColor,
-                    borderRadius: BorderRadius.all(Radius.circular(30)),
+                    color: AppTheme.backgroundColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppTheme.thirdColor,
+                        offset: Offset(
+                          0.2,
+                          0.5,
+                        ),
+                      blurRadius: .5,
+                      spreadRadius: .5,
+                      ),
+                    ],
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
                   ),
                   child: ProfileSection(
                     user: state.user,

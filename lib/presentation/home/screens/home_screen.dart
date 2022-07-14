@@ -36,8 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const FeedScreen(),
                 Searchcreen(user: state.user),
-                //const CreatePostScreen(),
-                const CreatePostSection(),
+                const CreatePostScreen(),
                 const ProfileScreen(),
               ],
             );

@@ -60,7 +60,7 @@ class _OtherApartState extends State<OtherApart> {
                             child: SizedBox(
                               width: 100,
                               height: 100,
-                              child: Image.network(data["image"].toString())
+                              child: Image.network(data["image"].toString()) 
                             ),
                           ),
                         ),

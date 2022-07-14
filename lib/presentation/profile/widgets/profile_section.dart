@@ -72,12 +72,7 @@ class _ProfileSectionState extends State<ProfileSection> {
     }
 
     return Container(
-      padding: const EdgeInsets.all(10),
-      margin: const EdgeInsets.all(20),
-      decoration: const BoxDecoration(
-        color: AppTheme.primaryColor,
-        borderRadius: BorderRadius.all(Radius.circular(30)),
-      ),
+      padding: const EdgeInsets.all(30),
       child: Column(
         children: [
           GestureDetector(
