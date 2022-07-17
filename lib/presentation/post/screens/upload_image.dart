@@ -37,8 +37,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
 
   Future<void> uploadImageToFirebase(BuildContext context) async {
     String fileName = basename(_imageFile!.path);
-    final ref = 
-      FirebaseStorage.instance.ref().child('uploads/$fileName');
+    final ref = FirebaseStorage.instance.ref().child('uploads/$fileName');
     ref.putFile(_imageFile!);
   }
 

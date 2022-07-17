@@ -43,7 +43,7 @@ class _ProfileSectionState extends State<ProfileSection> {
     _addressCtrl.text = widget.user?.address ?? '';
     _phoneCtrl.text = widget.user?.phone ?? '';
     _emailCtrl.text = widget.user?.email ?? 
-      FirebaseAuth.instance.currentUser!.email.toString();
+    FirebaseAuth.instance.currentUser!.email.toString();
     _webCtrl.text = widget.user?.web ?? '';
     super.initState();
   }

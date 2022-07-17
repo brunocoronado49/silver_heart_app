@@ -136,35 +136,35 @@ class _CreatePostSectionScreenState extends State<CreatePostSectionScreen> {
           ),
         ),
         const SizedBox(height: 10),
-        Stack(children: [
-          Container(
-            padding: const EdgeInsets.all(5),
-            child: FloatingActionButton.extended(
-              onPressed: widget.isSaving
-                  ? null
-                  : () {
-                      context.read<CreatePostBloc>().savePost(
-                            _priceCtrl.text.trim(),
-                            _typeCtrl.text.trim(),
-                            _nameCtrl.text.trim(),
-                            _descriptionCtrl.text.trim(),
-                            (context.read<UserBloc>().state as UserStateReady)
-                                .user
-                                .name,
-                            (context.read<AuthCubit>().state
-                                    as AuthStateSingedIn)
-                                .user
-                                .uid,
-                          );
-                    },
-              label: const Text("Guardar post"),
-              icon: const Icon(Icons.save_outlined),
-              backgroundColor: Colors.black87,
-              elevation: 0,
-            ),
-          ),
-          if (widget.isSaving) const CircularProgressIndicator(),
-        ]),
+        // Stack(children: [
+        //   Container(
+        //     padding: const EdgeInsets.all(5),
+        //     child: FloatingActionButton.extended(
+        //       onPressed: widget.isSaving
+        //           ? null
+        //           : () {
+        //               context.read<CreatePostBloc>().savePost(
+        //                     _priceCtrl.text.trim(),
+        //                     _typeCtrl.text.trim(),
+        //                     _nameCtrl.text.trim(),
+        //                     _descriptionCtrl.text.trim(),
+        //                     (context.read<UserBloc>().state as UserStateReady)
+        //                         .user
+        //                         .name,
+        //                     (context.read<AuthCubit>().state
+        //                             as AuthStateSingedIn)
+        //                         .user
+        //                         .uid,
+        //                   );
+        //             },
+        //       label: const Text("Guardar post"),
+        //       icon: const Icon(Icons.save_outlined),
+        //       backgroundColor: Colors.black87,
+        //       elevation: 0,
+        //     ),
+        //   ),
+        //   if (widget.isSaving) const CircularProgressIndicator(),
+        // ]),
       ],
     );
   }
