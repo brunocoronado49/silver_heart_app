@@ -110,7 +110,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                   );
                             },
                       label: const Text("Guardar post"),
-                      icon: const Icon(Icons.save_outlined),
+                      icon: const Icon(Icons.add_photo_alternate_outlined),
                       backgroundColor: Colors.black87,
                       elevation: 0,
                     ),

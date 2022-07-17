@@ -29,7 +29,7 @@ class PostProvider {
     final ref = firestore.doc("post/${docRef.id}");
 
     if (image != null) {
-      final imagePath = 'post/${path.basename(image.path)}';
+      final imagePath = '${currentUser?.uid}/post/${path.basename(image.path)}';
       final storageRef = storage.ref(imagePath);
       await storageRef.putFile(image);
       final url = await storageRef.getDownloadURL();

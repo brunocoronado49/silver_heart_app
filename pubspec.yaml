@@ -68,7 +68,7 @@ flutter:
     - assets/anillo-pexel.jpg
     - assets/profile-pexel.jpg
     - assets/profile-user.png
-    - assets/upload-silver.png
+    - assets/add-picture.png
   
   fonts:
     - family: Quicksand

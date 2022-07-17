@@ -65,7 +65,7 @@ class PostInfo extends StatelessWidget {
                 backgroundColor: AppTheme.thirdColor,
                 heroTag: "save",
                 label: const Text("Agregar al carrito"),
-                icon: const Icon(Icons.add_business_outlined),
+                icon: const Icon(Icons.add_shopping_cart),
                 onPressed: () {},
               )
             ],

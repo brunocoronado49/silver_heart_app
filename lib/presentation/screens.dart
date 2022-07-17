@@ -1,3 +1,4 @@
+export 'package:silver_heart/presentation/post/screens/upload_image.dart';
 export 'package:silver_heart/presentation/post/screens/create_post_screen.dart';
 export 'package:silver_heart/presentation/sign_in/screens/sign_in_screen.dart';
 export 'package:silver_heart/presentation/sign_up/screens/sign_up_screen.dart';

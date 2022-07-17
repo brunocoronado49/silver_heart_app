@@ -50,7 +50,8 @@ class ProfilePostInfo extends StatelessWidget {
             heroTag: "delete",
             label: const Text("Eliminar producto"),
             icon: const Icon(Icons.delete_outlined),
-            onPressed: () {},
+            onPressed: () async {
+            },
           ),
         ],
       ),

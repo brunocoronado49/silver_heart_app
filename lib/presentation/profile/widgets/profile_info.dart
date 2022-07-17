@@ -19,15 +19,13 @@ class ProfileInfo extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: color
-            ),
+                fontSize: 16, fontWeight: FontWeight.bold, color: color),
           ),
           const SizedBox(height: 20),
           Text(user.email, style: TextStyle(color: color)),
           const SizedBox(height: 8),
-          Text("${user.address}, ${user.phone}", style: TextStyle(color: color)),
+          Text("${user.address}, ${user.phone}",
+              style: TextStyle(color: color)),
         ],
       ),
     );

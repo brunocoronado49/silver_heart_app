@@ -28,10 +28,10 @@ class ProfileScreen extends StatelessWidget {
                         color: AppTheme.thirdColor,
                         offset: Offset(
                           0.2,
-                          0.5,
+                          0.2,
                         ),
-                      blurRadius: .5,
-                      spreadRadius: .5,
+                      blurRadius: .2,
+                      spreadRadius: .2,
                       ),
                     ],
                     borderRadius: BorderRadius.all(Radius.circular(50)),
