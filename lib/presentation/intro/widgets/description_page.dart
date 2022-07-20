@@ -19,14 +19,13 @@ class DescriptionPage extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            AppTheme.primaryColor,
-            AppTheme.secondaryColor,
-            AppTheme.thirdColor,
-          ]
-        ),
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppTheme.primaryColor,
+              AppTheme.secondaryColor,
+              AppTheme.thirdColor,
+            ]),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

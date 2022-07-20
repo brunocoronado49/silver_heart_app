@@ -60,12 +60,19 @@ class SignInPage extends StatelessWidget {
                     Navigator.pushNamed(context, Routes.signIn);
                   },
                 ),
-                const SizedBox(height: 10),
-                SignInButton(
-                  text: "Inicia con Google",
-                  imagePath: "assets/google-login-icon.png",
-                  onTap: () => authCubit.signInWithGoogle(),
+                const SizedBox(height: 30),
+                const Text(
+                  "Puedes crear una cuenta con tu correo o si ya tienes puedes iniciar sesión",
+                  style: TextStyle(
+                    color: AppTheme.thirdColor,
+                  ),
+                  textAlign: TextAlign.center,
                 )
+                // SignInButton(
+                //   text: "Inicia con Google",
+                //   imagePath: "assets/google-login-icon.png",
+                //   onTap: () => authCubit.signInWithGoogle(),
+                // )
               ],
             ),
           ),

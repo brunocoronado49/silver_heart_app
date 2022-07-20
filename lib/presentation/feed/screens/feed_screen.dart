@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:silver_heart/bloc/app_bloc.dart';
 
 import 'package:silver_heart/presentation/feed/widgets/feed_widgets.dart';
+import 'package:silver_heart/presentation/feed/widgets/posts_items.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class FeedScreen extends StatelessWidget {
@@ -15,15 +16,13 @@ class FeedScreen extends StatelessWidget {
         if (state is UserStateReady) {
           return SafeArea(
             child: ListView(
-              padding: const EdgeInsets.symmetric(vertical: 10),
               children: [
                 const FeedHeader(),
-                const HeaderTitle(title: "Productos"),
-                ProductsItems(user: state.user),
                 const HeaderTitle(title: "Usuarios"),
                 UsersItems(user: state.user),
-                const HeaderTitle(title: "Otros apartados"),
-                OtherApart(user: state.user),
+                const Divider(height: 30),
+                const HeaderTitle(title: "Productos"),
+                PostsItems(user: state.user),
               ],
             ),
           );

@@ -46,7 +46,6 @@ class _ProductsItemsState extends State<ProductsItems> {
                       children: [
                         const FadeInImage(
                           image: AssetImage("assets/anillo-pexel.jpg"),
-                          // image: NetworkImage(data["picture"].toString()),
                           placeholder: AssetImage("assets/loading.gif"),
                           width: double.infinity,
                           height: 150,

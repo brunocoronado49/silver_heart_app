@@ -6,6 +6,7 @@ import 'package:silver_heart/presentation/sign_up/widgets/confirm_password_input
 import 'package:silver_heart/presentation/sign_up/widgets/sign_up_image.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 import 'package:silver_heart/repository/repository.dart';
+import 'package:silver_heart/theme/app_theme.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -104,8 +105,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: const TextStyle(
                           color: Colors.redAccent, fontSize: 24),
                     ),
-                  const SizedBox(height: 8),
-                  const SignUpImage(),
+                  const SizedBox(height: 50),
+                  const Text(
+                    "Puedes crear una cuenta con tu correo electrónico grátis.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                      color: AppTheme.thirdColor,
+                      
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   EmailInput(_emailCtrl),
                   const SizedBox(height: 8),
                   PasswordInput(_passwordCtrl, _showPassword, _togglePassword),

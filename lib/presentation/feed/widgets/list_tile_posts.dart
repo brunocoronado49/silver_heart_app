@@ -26,7 +26,7 @@ class ListTilePost extends StatelessWidget {
         ),
       ),
       subtitle: Text(seller),
-      trailing: Text(price),
+      trailing: Text("Precio(MXN): $price"),
       onTap: onTap,
     );
   }

@@ -6,6 +6,7 @@ import 'package:silver_heart/core/helpers/snackbar_helper.dart';
 import 'package:silver_heart/presentation/sign_in/widgets/login_image.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 import 'package:silver_heart/repository/repository.dart';
+import 'package:silver_heart/theme/app_theme.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -83,14 +84,24 @@ class _SignInScreenState extends State<SignInScreen> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (state is AuthStateSigninIn)
                       const Center(child: CircularProgressIndicator()),
-                    const SizedBox(height: 8),
-                    const LoginImage(),
+                    const SizedBox(height: 50),
+                    const Text(
+                      "Si ya tienes una cuenta, puedes iniciar sesión y ver los productos a la venta.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600,
+                        color: AppTheme.thirdColor,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
                     EmailInput(_emailCtrl),
                     const SizedBox(height: 8),
                     PasswordInput(
@@ -101,11 +112,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () {
                           if (_formKey.currentState?.validate() == true) {
                             context
-                            .read<AuthCubit>()
-                            .signInWithEmailAndPassword(
-                              _emailCtrl.text.trim(),
-                              _passwordCtrl.text.trim()
-                            );
+                                .read<AuthCubit>()
+                                .signInWithEmailAndPassword(
+                                    _emailCtrl.text.trim(),
+                                    _passwordCtrl.text.trim());
                           }
                         },
                         label: const Text("Inicia sesión"),

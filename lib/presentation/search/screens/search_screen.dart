@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:silver_heart/models/models.dart';
+import 'package:silver_heart/presentation/search/widgets/search_header.dart';
 import 'package:silver_heart/presentation/user/screens/user_detail_screen.dart';
 
 import 'package:silver_heart/presentation/widgets/widgets.dart';
@@ -62,10 +63,10 @@ class _SearchcreenState extends State<Searchcreen> {
                               backgroundColor: AppTheme.thirdColor,
                               child: ClipOval(
                                 child: SizedBox(
-                                  width: 100,
-                                  height: 100,
-                                  child: Image.network(data["image"].toString())
-                                ),
+                                    width: 100,
+                                    height: 100,
+                                    child: Image.network(
+                                        data["image"].toString())),
                               ),
                             ),
                           ),

@@ -38,13 +38,12 @@ class _ProfileSectionState extends State<ProfileSection> {
 
   @override
   void initState() {
-    _nameCtrl.text = widget.user?.name ?? '';
-    _descriptionCtrl.text = widget.user?.description ?? '';
-    _addressCtrl.text = widget.user?.address ?? '';
-    _phoneCtrl.text = widget.user?.phone ?? '';
-    _emailCtrl.text = widget.user?.email ?? 
-    FirebaseAuth.instance.currentUser!.email.toString();
-    _webCtrl.text = widget.user?.web ?? '';
+    _nameCtrl.text = widget.user?.name ?? 'Agrega un nombre';
+    _descriptionCtrl.text = widget.user?.description ?? 'Agrega una descripción';
+    _addressCtrl.text = widget.user?.address ?? 'Agrega tu dirección';
+    _phoneCtrl.text = widget.user?.phone ?? 'Agrega tu teléfono';
+    _emailCtrl.text = widget.user?.email ?? FirebaseAuth.instance.currentUser!.email.toString();
+    _webCtrl.text = widget.user?.web ?? 'Agrega tu sitio web';
     super.initState();
   }
 

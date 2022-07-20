@@ -37,7 +37,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 const FeedScreen(),
                 Searchcreen(user: state.user),
                 const CreatePostScreen(),
-                const UploadImageScreen(),
                 const ProfileScreen(),
               ],
             );
@@ -71,10 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.post_add),
             label: "Post"
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_a_photo_outlined),
-            label: "Image"
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),

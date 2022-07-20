@@ -5,6 +5,7 @@ import 'package:page_indicator/page_indicator.dart';
 
 import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/presentation/intro/widgets/intro_widgets.dart';
+import 'package:silver_heart/theme/app_theme.dart';
 
 class OnBoardingPage extends HookWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
@@ -18,19 +19,19 @@ class OnBoardingPage extends HookWidget {
         align: IndicatorAlign.bottom,
         length: 4,
         indicatorSpace: 12,
-        indicatorColor: Colors.white54,
-        indicatorSelectorColor: Colors.white,
+        indicatorColor: AppTheme.thirdColor,
+        indicatorSelectorColor: AppTheme.secondaryColor,
         child: PageView(
           controller: usePageController(),
           children: const [
             DescriptionPage(
               text: "Bienvenido a Silver Heart el lugar perfecto para tus compras de plateria",
-              imagePath: 'assets/brazalete.png',
+              imagePath: 'assets/love-ring.png',
               title: "Silver Heart",
             ),
             DescriptionPage(
               text: "Mantente al pendiente de grandes ofertas que te pueden beneficiar",
-              imagePath: 'assets/love-ring.png',
+              imagePath: 'assets/brazalete.png',
               title: "Compra en línea",
             ),
             DescriptionPage(

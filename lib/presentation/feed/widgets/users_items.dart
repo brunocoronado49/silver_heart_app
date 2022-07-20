@@ -42,7 +42,7 @@ class _UsersItemsState extends State<UsersItems> {
                   return Card(
                     clipBehavior: Clip.antiAlias,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.0),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     color: AppTheme.backgroundColor,
                     child: Column(
