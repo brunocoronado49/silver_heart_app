@@ -62,27 +62,27 @@ class _UserPostsState extends State<UserPosts> {
                         subtitle: Text("${data['description']} - ${data['seller']}"),
                         trailing: Text(data["price"]),
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                if (data["seller"] != widget.user.name) {
-                                  return PostDetail(
-                                    name: data["name"],
-                                    description: data["description"],
-                                    seller: data["seller"],
-                                    price: data["price"],
-                                  );
-                                }
-                                return ProfilePostDetailScreen(
-                                  name: data["name"],
-                                  description: data["description"],
-                                  seller: data["seller"],
-                                  price: data["price"],
-                                );
-                              }
-                            )
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) {
+                          //       if (data["seller"] != widget.user.name) {
+                          //         return PostDetail(
+                          //           name: data["name"],
+                          //           description: data["description"],
+                          //           seller: data["seller"],
+                          //           price: data["price"],
+                          //         );
+                          //       }
+                          //       return ProfilePostDetailScreen(
+                          //         name: data["name"],
+                          //         description: data["description"],
+                          //         seller: data["seller"],
+                          //         price: data["price"],
+                          //       );
+                          //     }
+                          //   )
+                          // );
                         },
                       ),
                     ],

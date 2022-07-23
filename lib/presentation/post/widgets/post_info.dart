@@ -40,11 +40,11 @@ class PostInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
-                  "Vendedor - $seller",
+                  "Vendedor: $seller",
                   style: style,
                 ),
                 Text(
-                  "Precio(MXN) - $price",
+                  "Precio(MXN): $price",
                   style: style,
                 ),
               ],

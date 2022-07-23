@@ -46,10 +46,10 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                const SubtitleProfile(subtitle: "Publicaciones"),
-                const SizedBox(height: 10),
-                ProfilePosts(user: state.user),
-                const SizedBox(height: 20),
+                // const SubtitleProfile(subtitle: "Publicaciones"),
+                // const SizedBox(height: 10),
+                // ProfilePosts(user: state.user),
+                // const SizedBox(height: 20),
               ],
             ),
           );
@@ -58,7 +58,7 @@ class ProfileScreen extends StatelessWidget {
           child: SizedBox(
             height: 25,
             width: 25,
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(color: Colors.black),
           ),
         );
       },

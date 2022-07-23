@@ -11,9 +11,9 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            CircularProgressIndicator(),
+            CircularProgressIndicator(color: Colors.black),
             SizedBox(height: 24),
-            Text('Cargando...', style: TextStyle(fontSize: 24))
+            Text('Cargando...', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))
           ],
         ),
       ),

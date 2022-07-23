@@ -90,7 +90,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if (state is AuthStateSigninIn)
-                      const Center(child: CircularProgressIndicator()),
+                      const Center(child: CircularProgressIndicator(color: Colors.black)),
                     const SizedBox(height: 50),
                     const Text(
                       "Si ya tienes una cuenta, puedes iniciar sesión y ver los productos a la venta.",

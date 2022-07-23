@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:silver_heart/bloc/app_bloc.dart';
+import 'package:silver_heart/presentation/post/screens/list_upload_posts.dart';
 import 'package:silver_heart/presentation/screens.dart';
 import 'package:silver_heart/repository/repository.dart';
 import 'package:silver_heart/theme/app_theme.dart';
@@ -35,8 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 const FeedScreen(),
-                Searchcreen(user: state.user),
+                SearchScreen(user: state.user),
                 const CreatePostScreen(),
+                // LiistUploadPostsScreen(),
                 const ProfileScreen(),
               ],
             );
@@ -71,6 +73,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.post_add),
             label: "Post"
           ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.add_a_photo_sharp),
+          //   label: "List Post Create"
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: "Perfil"

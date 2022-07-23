@@ -8,13 +8,15 @@ class ProfilePostDetailScreen extends StatelessWidget {
     required this.name,
     required this.description,
     required this.price,
-    required this.seller
+    required this.seller,
+    required this.imageUrl,
   }) : super(key: key);
 
   final String name;
   final String description;
   final String price;
   final String seller;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +27,8 @@ class ProfilePostDetailScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            const PostImage(),
-            const SizedBox(height: 50),
+            PostImage(imageUrl: imageUrl),
+            const SizedBox(height: 20),
             ProfilePostInfo(
               name: name,
               price: price,

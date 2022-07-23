@@ -1,10 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:silver_heart/core/helpers/carousel_options.dart';
 import 'package:silver_heart/models/models.dart';
+import 'package:silver_heart/presentation/post/screens/post_detail.dart';
+import 'package:silver_heart/presentation/profile/widgets/list_tile_post.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 import 'package:silver_heart/presentation/profile/screens/profile_post_detail_screen.dart';
 
@@ -18,56 +21,98 @@ class ProfilePosts extends StatefulWidget {
 }
 
 class _ProfilePostsState extends State<ProfilePosts> {
-  final Stream<QuerySnapshot> _postStream =
-      FirebaseFirestore.instance.collection("post")
-        .where("userId", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .snapshots();
+  List<Map<String, dynamic>> files = [];
 
+  // Function to get posts
+  Future<List<Map<String, dynamic>>> _loadPosts() async {
+    final result = 
+      await FirebaseStorage
+              .instance
+              .ref()
+              .child("/posts/")
+              .listAll();
+    final allFiles = result.items;
+
+    try {
+      await Future.forEach<Reference>(allFiles, (file) async {
+        final String fileUrl = await file.getDownloadURL();
+        final FullMetadata fileMeta = await file.getMetadata();
+
+        files.add({
+          "url": fileUrl,
+          "path": file.fullPath,
+          "seller": fileMeta.customMetadata?['seller'] ?? 'nobody',
+          "description":
+              fileMeta.customMetadata?['description'] ?? 'no description',
+          "name": fileMeta.customMetadata?["name"] ?? "no name",
+          "price": fileMeta.customMetadata?["price"] ?? "no price",
+          "type": fileMeta.customMetadata?["type"] ?? "no type",
+        });
+      });
+    } catch (error) {
+      throw Exception(error.toString());
+    }
+
+    return files;
+  }
+  
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: _postStream,
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        return CarouselSlider(
-          options: Carousel.options,
-          items: snapshot.data?.docs.map((DocumentSnapshot document) {
-            Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: FutureBuilder(
+        future: _loadPosts(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.data != null) {
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              itemCount: snapshot.data?.length ?? 0,
+              itemBuilder: (context, index) {
+                final Map<String, dynamic> post = snapshot.data![index];
 
-            return Builder(
-              builder: (BuildContext context) {
                 return Card(
+                  margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                   clipBehavior: Clip.antiAlias,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   color: AppTheme.backgroundColor,
                   child: Column(
                     children: [
-                      const FadeInImage(
-                        image: AssetImage("assets/anillo-pexel.jpg"),
-                        placeholder: AssetImage("assets/loading.gif"),
+                      FadeInImage(
+                        image: NetworkImage(post['url']),
+                        placeholder: const AssetImage("assets/loading.gif"),
                         width: double.infinity,
                         height: 150,
                         fit: BoxFit.cover,
-                        fadeInDuration: Duration(milliseconds: 300),
+                        fadeInDuration: const Duration(milliseconds: 300),
                       ),
-                      ListTile(
-                        title: Text(data["name"]),
-                        subtitle: Text("${data['description']} - ${data['seller']}"),
-                        trailing: Text(data["price"]),
+                      ListTilePost(
+                        title: post["name"],
+                        seller: post["seller"],
+                        price: post["price"],
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => 
-                              ProfilePostDetailScreen(
-                                name: data["name"],
-                                description: data["description"],
-                                seller: data["seller"],
-                                price: data["price"],
-                              )
-                            )
-                          );
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            if (post["seller"] != widget.user.name) {
+                              return PostDetail(
+                                name: post["name"],
+                                description: post["description"],
+                                seller: post["seller"],
+                                price: post["price"],
+                                imageUrl: post["url"],
+                              );
+                            }
+                            return ProfilePostDetailScreen(
+                              name: post["name"],
+                              description: post["description"],
+                              seller: post["seller"],
+                              price: post["price"],
+                              imageUrl: post["url"],
+                            );
+                          }));
                         },
                       ),
                     ],
@@ -75,9 +120,12 @@ class _ProfilePostsState extends State<ProfilePosts> {
                 );
               },
             );
-          }).toList() ?? [],
-        );
-      },
+          }
+          return const Center(
+            child: CircularProgressIndicator(color: Colors.black),
+          );
+        },
+      ),
     );
   }
 }

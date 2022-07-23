@@ -40,10 +40,8 @@ class _PostsItemsState extends State<PostsItems> {
           "type": fileMeta.customMetadata?["type"] ?? "no type",
         });
       });
-
-      print("posts: $files");
     } catch (error) {
-      print(error);
+      throw Exception(error.toString());
     }
 
     return files;
@@ -59,6 +57,8 @@ class _PostsItemsState extends State<PostsItems> {
           if (snapshot.data != null) {
             return ListView.builder(
               shrinkWrap: true,
+              physics: const AlwaysScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
               itemCount: snapshot.data?.length ?? 0,
               itemBuilder: (context, index) {
                 final Map<String, dynamic> post = snapshot.data![index];
@@ -93,6 +93,7 @@ class _PostsItemsState extends State<PostsItems> {
                                 description: post["description"],
                                 seller: post["seller"],
                                 price: post["price"],
+                                imageUrl: post["url"],
                               );
                             }
                             return ProfilePostDetailScreen(
@@ -100,6 +101,7 @@ class _PostsItemsState extends State<PostsItems> {
                               description: post["description"],
                               seller: post["seller"],
                               price: post["price"],
+                              imageUrl: post["url"],
                             );
                           }));
                         },
@@ -111,7 +113,7 @@ class _PostsItemsState extends State<PostsItems> {
             );
           }
           return const Center(
-            child: CircularProgressIndicator(),
+            child: CircularProgressIndicator(color: Colors.black),
           );
         },
       ),

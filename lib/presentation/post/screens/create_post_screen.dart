@@ -1,11 +1,11 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
-import 'package:silver_heart/presentation/feed/screens/feed_screen.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:silver_heart/theme/app_theme.dart';
@@ -56,9 +56,15 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     });
   }
 
+  // Upload One Image
   Future<void> uploadImage(BuildContext context) async {
     String filename = basename(_image!.path);
-    final reference = FirebaseStorage.instance.ref().child("/posts/$filename");
+    String type = _typeCtrl.text.trim();
+    final reference = FirebaseStorage.instance.ref().child(
+      
+      // Al principio ponerle un numero por medio de un for
+      "/posts/${FirebaseAuth.instance.currentUser?.uid}-$type-$filename}"
+    );
 
     await reference.putFile(
         _image!,
@@ -153,7 +159,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   backgroundColor: AppTheme.thirdColor,
                   elevation: 0,
                 ),
-                if (widget.isSaving) const CircularProgressIndicator(),
+                if (widget.isSaving) 
+                  const CircularProgressIndicator(color: Colors.black),
               ],
             ),
           ),

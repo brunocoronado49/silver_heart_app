@@ -30,13 +30,7 @@ class UserDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(name),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.more_horiz_outlined),
-            onPressed: () {},
-          ),
-        ],
+        title: Text(name)
       ),
       body: ListView(
         children: [
@@ -54,9 +48,6 @@ class UserDetailScreen extends StatelessWidget {
           ),
           const UserSocialMedia(),
           const SizedBox(height: 30),
-          const HeaderTitle(title: "Todos los productos"),
-          const SizedBox(height: 10),
-          UserPosts(seller: name, user: user)
         ],
       ),
     );

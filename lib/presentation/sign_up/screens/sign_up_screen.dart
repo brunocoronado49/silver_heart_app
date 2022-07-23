@@ -98,7 +98,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (state is AuthStateSigninIn)
-                    const Center(child: CircularProgressIndicator()),
+                    const Center(child: CircularProgressIndicator(color: Colors.black)),
                   if (state is AuthStateError)
                     Text(
                       state.error,

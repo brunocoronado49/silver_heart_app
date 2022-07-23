@@ -57,27 +57,27 @@ class _ProductsItemsState extends State<ProductsItems> {
                           seller: data["seller"],
                           price: data["price"],
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  if (data["seller"] != widget.user.name) {
-                                    return PostDetail(
-                                      name: data["name"],
-                                      description: data["description"],
-                                      seller: data["seller"],
-                                      price: data["price"],
-                                    );
-                                  }
-                                  return ProfilePostDetailScreen(
-                                    name: data["name"],
-                                    description: data["description"],
-                                    seller: data["seller"],
-                                    price: data["price"],
-                                  );
-                                }
-                              )
-                            );
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //     builder: (context) {
+                            //       if (data["seller"] != widget.user.name) {
+                            //         return PostDetail(
+                            //           name: data["name"],
+                            //           description: data["description"],
+                            //           seller: data["seller"],
+                            //           price: data["price"],
+                            //         );
+                            //       }
+                            //       return ProfilePostDetailScreen(
+                            //         name: data["name"],
+                            //         description: data["description"],
+                            //         seller: data["seller"],
+                            //         price: data["price"],
+                            //       );
+                            //     }
+                            //   )
+                            // );
                           },
                         ),
                       ],
@@ -85,7 +85,7 @@ class _ProductsItemsState extends State<ProductsItems> {
                   );
                 }
               );
-            }).toList() ?? [],
+            }).toList() ?? [const Text("Sin productos")],
           );
         },
       ),

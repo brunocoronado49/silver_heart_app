@@ -25,19 +25,19 @@ class OnBoardingPage extends HookWidget {
           controller: usePageController(),
           children: const [
             DescriptionPage(
-              text: "Bienvenido a Silver Heart el lugar perfecto para tus compras de plateria",
-              imagePath: 'assets/love-ring.png',
+              text: "Bienvenido a Silver Heart el lugar perfecto para las ventas de tus productos de plata",
+              imagePath: 'assets/onBoardingOne.png',
               title: "Silver Heart",
             ),
             DescriptionPage(
-              text: "Mantente al pendiente de grandes ofertas que te pueden beneficiar",
-              imagePath: 'assets/brazalete.png',
-              title: "Compra en línea",
+              text: "Puedes publicar y ver productos de otros usuaios.",
+              imagePath: 'assets/onBoardingTwo.png',
+              title: "Revisa y mantente al tanto",
             ),
             DescriptionPage(
-              text: "Revisa de cada publicación sobre articulos nuevos de los vendedores",
-              imagePath: 'assets/pulsera.png',
-              title: "Infórmate",
+              text: "Aprovecha esta aplicación para darte a conocer entre usuarios y otros locales.",
+              imagePath: 'assets/onBoardingThree.png',
+              title: "Date a conocer",
             ),
             SignInPage(),
           ],

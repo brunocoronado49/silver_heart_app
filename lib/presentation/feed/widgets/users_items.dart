@@ -1,14 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:silver_heart/core/helpers/carousel_options.dart';
 import 'package:silver_heart/models/models.dart';
-import 'package:silver_heart/presentation/feed/widgets/feed_widgets.dart';
 import 'package:silver_heart/presentation/profile/screens/profile_screen.dart';
 import 'package:silver_heart/presentation/user/screens/user_detail_screen.dart';
-import 'package:silver_heart/theme/app_theme.dart';
 
 class UsersItems extends StatefulWidget {
   const UsersItems({Key? key, required this.user}) : super(key: key);
@@ -20,9 +18,9 @@ class UsersItems extends StatefulWidget {
 }
 
 class _UsersItemsState extends State<UsersItems> {
-  final Stream<QuerySnapshot> _user = 
-    FirebaseFirestore.instance.collection("user")
-      .where("id", isNotEqualTo: FirebaseAuth.instance.currentUser!.uid)
+  final Stream<QuerySnapshot> _user = FirebaseFirestore.instance
+      .collection("user")
+      //.where("id", isNotEqualTo: FirebaseAuth.instance.currentUser!.uid)
       .snapshots();
 
   @override
@@ -35,34 +33,19 @@ class _UsersItemsState extends State<UsersItems> {
           return CarouselSlider(
             options: Carousel.options,
             items: snapshot.data?.docs.map((DocumentSnapshot document) {
-              Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+                  Map<String, dynamic> data =
+                      document.data()! as Map<String, dynamic>;
 
-              return Builder(
-                builder: (BuildContext context) {
-                  return Card(
-                    clipBehavior: Clip.antiAlias,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    color: AppTheme.backgroundColor,
-                    child: Column(
-                      children: [
-                        FadeInImage(
-                          image: NetworkImage(data["image"]),
-                          placeholder: const AssetImage("assets/loading.gif"),
-                          width: double.infinity,
-                          height: 150,
-                          fit: BoxFit.cover,
-                          fadeInDuration: const Duration(milliseconds: 300),
-                        ),
-                        ListTileUser(
-                          name: data["name"],
-                          description: data["description"],
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
                                   if (data["seller"] != widget.user.name) {
                                     return UserDetailScreen(
                                       name: data["name"],
@@ -77,17 +60,33 @@ class _UsersItemsState extends State<UsersItems> {
                                   } else {
                                     return const ProfileScreen();
                                   }
-                                }
-                              )
-                            );
-                          },
+                                }));
+                              },
+                              child: Center(
+                                child: ClipOval(
+                                  child: SizedBox(
+                                    width: 150,
+                                    height: 150,
+                                    child: CachedNetworkImage(
+                                      imageUrl: data["image"],
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Center(
+                              child: Text(data["name"],
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   );
-                },
-              );
-            }).toList() ?? [],
+                }).toList() ??
+                [const Text("Sin usuarios")],
           );
         },
       ),
