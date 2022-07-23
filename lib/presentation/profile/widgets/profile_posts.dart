@@ -111,6 +111,7 @@ class _ProfilePostsState extends State<ProfilePosts> {
                               seller: post["seller"],
                               price: post["price"],
                               imageUrl: post["url"],
+                              ref: post["path"],
                             );
                           }));
                         },

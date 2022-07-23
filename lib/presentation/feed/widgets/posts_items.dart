@@ -102,6 +102,7 @@ class _PostsItemsState extends State<PostsItems> {
                               seller: post["seller"],
                               price: post["price"],
                               imageUrl: post["url"],
+                              ref: post["path"],
                             );
                           }));
                         },

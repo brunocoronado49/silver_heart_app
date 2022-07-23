@@ -10,6 +10,7 @@ class ProfilePostDetailScreen extends StatelessWidget {
     required this.price,
     required this.seller,
     required this.imageUrl,
+    required this.ref,
   }) : super(key: key);
 
   final String name;
@@ -17,6 +18,7 @@ class ProfilePostDetailScreen extends StatelessWidget {
   final String price;
   final String seller;
   final String imageUrl;
+  final String ref;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,8 @@ class ProfilePostDetailScreen extends StatelessWidget {
               name: name,
               price: price,
               description: description,
-              seller: seller
+              seller: seller,
+              ref: ref,
             )
           ],
         ),
