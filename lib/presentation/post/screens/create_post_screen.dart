@@ -93,26 +93,17 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             key: _formKey,
             child: Column(
               children: [
-                const SizedBox(height: 20),
-                Container(
-                  margin:
-                      const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30.0),
-                    child: _image != null
-                        ? Image.file(_image!)
-                        : GestureDetector(
-                          onTap: () {
-                            selectImage(context);
-                          },
-                          child: ClipRRect(
-                            child: Image.asset(
-                              "assets/add-picture.png",
-                              scale: 0.6,
-                            ),
-                          ),
-                        ),
-                  ),
+                const SizedBox(height: 30),
+                FloatingActionButton.extended(
+                  onPressed: widget.isSaving
+                      ? null
+                      : () {
+                          uploadImage(context);
+                        },
+                  label: const Text("Guardar post"),
+                  icon: const Icon(Icons.update),
+                  backgroundColor: AppTheme.thirdColor,
+                  elevation: 0,
                 ),
                 const SizedBox(height: 20),
                 CreatePostInput(
@@ -148,16 +139,25 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   "Descripción",
                 ),
                 const SizedBox(height: 10),
-                FloatingActionButton.extended(
-                  onPressed: widget.isSaving
-                      ? null
-                      : () {
-                          uploadImage(context);
-                        },
-                  label: const Text("Guardar post"),
-                  icon: const Icon(Icons.update),
-                  backgroundColor: AppTheme.thirdColor,
-                  elevation: 0,
+                Container(
+                  margin:
+                      const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30.0),
+                    child: _image != null
+                        ? Image.file(_image!)
+                        : GestureDetector(
+                          onTap: () {
+                            selectImage(context);
+                          },
+                          child: ClipRRect(
+                            child: Image.asset(
+                              "assets/add-picture.png",
+                              scale: 0.6,
+                            ),
+                          ),
+                        ),
+                  ),
                 ),
                 if (widget.isSaving) 
                   const CircularProgressIndicator(color: Colors.black),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const primaryColor = Colors.white;
   static const secondaryColor = Colors.grey;
-  static const thirdColor = Colors.black;
+  static const thirdColor = Colors.black54;
   static const elevation = 0;
   static const backgroundColor = Color(0xffff5f6fa);
 

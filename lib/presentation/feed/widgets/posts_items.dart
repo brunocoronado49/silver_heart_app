@@ -113,8 +113,13 @@ class _PostsItemsState extends State<PostsItems> {
               },
             );
           }
-          return const Center(
-            child: CircularProgressIndicator(color: Colors.black),
+          return Center(
+            child: Column(
+              children: const [
+                Text("No hay publicaciones"),
+                CircularProgressIndicator(color: Colors.black),
+              ],
+            ),
           );
         },
       ),
