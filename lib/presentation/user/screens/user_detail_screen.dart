@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/user/widgets/user_widgets.dart';
-import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class UserDetailScreen extends StatelessWidget {
   const UserDetailScreen({
@@ -10,20 +9,20 @@ class UserDetailScreen extends StatelessWidget {
     required this.name,
     required this.description,
     required this.email,
-    required this.phone,
+    this.phone,
     required this.address,
-    required this.web,
+    this.web,
     required this.user,
-    required this.image,
+    this.image,
   }) : super(key: key);
 
   final String name;
   final String description;
   final String email;
-  final String phone;
+  final String? phone;
   final String address;
-  final String web;
-  final String image;
+  final String? web;
+  final String? image;
   final MyUser user;
 
   @override
@@ -42,9 +41,9 @@ class UserDetailScreen extends StatelessWidget {
             name: name,
             description: description,
             email: email,
-            phone: phone,
+            phone: phone ?? "",
             address: address,
-            web: web,
+            web: web ?? "",
           ),
           const UserSocialMedia(),
           const SizedBox(height: 30),

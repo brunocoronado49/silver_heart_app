@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/search/widgets/list_tile_user.dart';
-import 'package:silver_heart/presentation/search/widgets/search_header.dart';
 import 'package:silver_heart/presentation/user/screens/user_detail_screen.dart';
 
 import 'package:silver_heart/presentation/widgets/widgets.dart';
@@ -57,7 +56,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         child: Column(
                           children: [
                             FadeInImage(
-                              image: NetworkImage(data["image"]),
+                              image: data["image"] != null ? 
+                              NetworkImage(data["image"]) :
+                              const AssetImage("assets/profile-user.png") as ImageProvider,
                               placeholder:
                                   const AssetImage("assets/loading.gif"),
                               width: double.infinity,

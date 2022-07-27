@@ -18,11 +18,7 @@ class UserAvatar extends StatelessWidget {
           radius: 70,
           child: avatar != null ?
             Image.network(avatar!) : 
-            const Icon(
-              Icons.person_outlined,
-              color: AppTheme.primaryColor,
-              size: 100,
-            ),
+            Image.asset("assets/profile-user.png")
         ),
       ),
     );

@@ -17,8 +17,8 @@ class UserInfo extends StatelessWidget {
   final String description;
   final String email;
   final String address;
-  final String phone;
-  final String web;
+  final String? phone;
+  final String? web;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +46,10 @@ class UserInfo extends StatelessWidget {
           const SizedBox(height: 20),
           Text(email),
           const SizedBox(height: 8),
-          Text("$address, $phone"),
+          Text(address),
+          phone != null ? Text(phone!) : const SizedBox(),
           const SizedBox(height: 8),
-          Text(web),
+          web != null ? Text(web!) : const SizedBox(),
         ],
       ),
     );

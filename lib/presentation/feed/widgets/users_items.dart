@@ -1,12 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:silver_heart/core/helpers/carousel_options.dart';
 import 'package:silver_heart/models/models.dart';
+import 'package:silver_heart/presentation/feed/widgets/list_tile_users.dart';
 import 'package:silver_heart/presentation/profile/screens/profile_screen.dart';
 import 'package:silver_heart/presentation/user/screens/user_detail_screen.dart';
+import 'package:silver_heart/theme/app_theme.dart';
 
 class UsersItems extends StatefulWidget {
   const UsersItems({Key? key, required this.user}) : super(key: key);
@@ -38,11 +39,18 @@ class _UsersItemsState extends State<UsersItems> {
 
                   return Builder(
                     builder: (BuildContext context) {
-                      return Container(
-                        padding: const EdgeInsets.all(8),
+                      return Card(
+                        clipBehavior: Clip.antiAlias,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        color: AppTheme.backgroundColor,
                         child: Column(
                           children: [
-                            GestureDetector(
+                            ListTileUser(
+                              avatar: data["image"],
+                              name: data["name"],
+                              description: data["description"],
                               onTap: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) {
@@ -62,23 +70,6 @@ class _UsersItemsState extends State<UsersItems> {
                                   }
                                 }));
                               },
-                              child: Center(
-                                child: ClipOval(
-                                  child: SizedBox(
-                                    width: 150,
-                                    height: 150,
-                                    child: CachedNetworkImage(
-                                      imageUrl: data["image"],
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Center(
-                              child: Text(data["name"],
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold)),
                             ),
                           ],
                         ),
