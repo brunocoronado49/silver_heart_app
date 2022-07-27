@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart' as storage;
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -123,16 +124,12 @@ class _MultiImagesScreenState extends State<MultiImagesScreen> {
       setState(() {
         val = i / _image.length;
       });
-      ref = storage.FirebaseStorage.instance
-          .ref()
-          .child('images/${Path.basename(img.path)}');
+      storageRef.child(
+          'images/${FirebaseAuth.instance.currentUser!.uid}/${Path.basename(img.path)}');
 
-      storageRef.child('path');
-      await storageRef.putFile(img);
-
-      await ref.putFile(img).whenComplete(() async {
-        await ref.getDownloadURL().then((value) {
-          imgRef.add({'url': value});
+      await storageRef.putFile(img).whenComplete(() async {
+        await storageRef.getDownloadURL().then((value) {
+          imgRef.add({"url": value});
           i++;
         });
       });
