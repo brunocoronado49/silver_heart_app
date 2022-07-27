@@ -18,7 +18,7 @@ class _MultiImagesScreenState extends State<MultiImagesScreen> {
   bool uploading = false;
   double val = 0;
   late storage.CollectionReference imgRef;
-  final storageRef = FirebaseStorage.instance.ref();
+  final storageRef = FirebaseStorage.instance;
 
   List<File> _image = [];
   final picker = ImagePicker();
@@ -117,22 +117,31 @@ class _MultiImagesScreenState extends State<MultiImagesScreen> {
     }
   }
 
-  Future uploadFile() async {
+  Future<void> uploadFile() async {
     int i = 1;
 
     for (var img in _image) {
       setState(() {
         val = i / _image.length;
       });
-      storageRef.child(
-          'images/${FirebaseAuth.instance.currentUser!.uid}/${Path.basename(img.path)}');
 
-      await storageRef.putFile(img).whenComplete(() async {
-        await storageRef.getDownloadURL().then((value) {
+      Reference refe = storageRef.ref().child('images/${FirebaseAuth.instance.currentUser!.uid}/$i/${Path.basename(img.path)}');
+
+      UploadTask uploadTask = refe.putFile(img);
+
+      await uploadTask.then((res) async {
+        await res.ref.getDownloadURL().then((value) async {
           imgRef.add({"url": value});
           i++;
         });
       });
+
+      // await storageRef.ref().putFile(img).whenComplete(() async {
+      //   await stref.getDownloadURL().then((value) {
+      //     imgRef.add({"url": value});
+      //     i++;
+      //   });
+      // });
     }
   }
 
