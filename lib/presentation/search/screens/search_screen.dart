@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/search/widgets/list_tile_user.dart';
 import 'package:silver_heart/presentation/user/screens/user_detail_screen.dart';
-
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
@@ -43,11 +43,11 @@ class _SearchScreenState extends State<SearchScreen> {
                         document.data()! as Map<String, dynamic>;
 
                     return Container(
-                      margin: const EdgeInsets.all(10),
+                      margin: const EdgeInsets.all(5),
                       padding: const EdgeInsets.all(10),
                       child: Card(
                         margin: const EdgeInsets.symmetric(
-                            horizontal: 30, vertical: 10),
+                            horizontal: 30),
                         clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),

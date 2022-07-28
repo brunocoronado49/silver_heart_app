@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,13 +16,9 @@ import 'package:silver_heart/presentation/post/widgets/posts_widgets.dart';
 import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class CreatePostScreen extends StatefulWidget {
-  const CreatePostScreen(
-      {Key? key, this.isSaving = false, this.imagePicked, this.post})
-      : super(key: key);
+  const CreatePostScreen({Key? key, this.post}) : super(key: key);
 
   final Post? post;
-  final File? imagePicked;
-  final bool isSaving;
 
   @override
   State<CreatePostScreen> createState() => _CreatePostScreenState();
@@ -35,39 +32,111 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   final _formKey = GlobalKey<FormState>();
   var uuid = const Uuid();
 
+  bool uploading = false;
+  double val = 0;
+  late CollectionReference imgRef;
+  final storageRef = FirebaseStorage.instance;
+
+  List<File> _image = [];
+
   final picker = ImagePicker();
 
-  late File? _image;
+  // ignore: prefer_typing_uninitialized_variables
+  var _imagePortada;
 
   @override
   void initState() {
+    imgRef = FirebaseFirestore.instance.collection('posts');
     _nameCtrl.text = widget.post?.name ?? "";
     _descriptionCtrl.text = widget.post?.description ?? "";
     _typeCtrl.text = widget.post?.type ?? "";
     _priceCtrl.text = widget.post?.price ?? "";
-    _image = null;
     super.initState();
   }
 
-  Future<void> selectImage(BuildContext context) async {
-    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+  // Function for pikc images
+  Future<void> selectImages() async {
+    final pickedImages = await picker.pickImage(source: ImageSource.gallery);
     setState(() {
-      _image = File(pickedImage!.path);
+      _image.add(File(pickedImages!.path));
+    });
+    // ignore: unnecessary_null_comparison
+    if (pickedImages!.path == null) retrieveLostData();
+  }
+
+  Future<void> retrieveLostData() async {
+    final LostDataResponse response = await picker.retrieveLostData();
+    if (response.isEmpty) {
+      return;
+    }
+    if (response.file != null) {
+      setState(() {
+        _image.add(File(response.file!.path));
+      });
+    } else {
+      print(response.file);
+    }
+  }
+
+  // Function for upload the images with metadata
+  Future<void> uploadImages(BuildContext context) async {
+    int i = 1;
+
+    for (var img in _image) {
+      setState(() {
+        val = i / _image.length;
+      });
+
+      Reference refe = storageRef.ref().child(
+          'images/${FirebaseAuth.instance.currentUser!.uid}/${_typeCtrl.text.trim()}/$i.${basename(img.path)}');
+
+      UploadTask uploadTask = refe.putFile(
+        img,
+        SettableMetadata(customMetadata: {
+          'seller':
+              (context.read<UserBloc>().state as UserStateReady).user.name,
+          'price': _priceCtrl.text.trim(),
+          'name': _nameCtrl.text.trim(),
+          'description': _descriptionCtrl.text.trim(),
+          'type': _typeCtrl.text.trim(),
+          'id': uuid.v1(),
+          'userId':
+              (context.read<AuthCubit>().state as AuthStateSingedIn).user.uid,
+        })
+      );
+
+      await uploadTask.then((res) async {
+        await res.ref.getDownloadURL().then((value) async {
+          imgRef.add({
+            "url": value +
+                FirebaseAuth.instance.currentUser!.uid +
+                _typeCtrl.text.trim()
+          });
+          i++;
+        });
+      });
+    }
+  }
+
+  Future<void> selectImage(BuildContext context) async {
+    final pickedImagePortada =
+        await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _imagePortada = File(pickedImagePortada!.path);
     });
   }
 
   // Upload One Image
   Future<void> uploadImage(BuildContext context) async {
-    String filename = basename(_image!.path);
+    String filename = basename(_imagePortada.path);
     String type = _typeCtrl.text.trim();
     final reference = FirebaseStorage.instance.ref().child(
-      
-      // Al principio ponerle un numero por medio de un for
-      "/posts/${FirebaseAuth.instance.currentUser?.uid}-$type-$filename}"
-    );
+
+        // Al principio ponerle un numero por medio de un for
+        "/posts/${FirebaseAuth.instance.currentUser?.uid}.$type.$filename}");
 
     await reference.putFile(
-        _image!,
+        _imagePortada,
         SettableMetadata(customMetadata: {
           'seller':
               (context.read<UserBloc>().state as UserStateReady).user.name,
@@ -95,11 +164,13 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
               children: [
                 const SizedBox(height: 30),
                 FloatingActionButton.extended(
-                  onPressed: widget.isSaving
-                      ? null
-                      : () {
-                          uploadImage(context);
-                        },
+                  onPressed: () {
+                    setState(() {
+                      uploading = true;
+                    });
+                    uploadImages(context);
+                    uploadImage(context);
+                  },
                   label: const Text("Guardar post"),
                   icon: const Icon(Icons.update),
                   backgroundColor: AppTheme.thirdColor,
@@ -139,27 +210,86 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   "Descripción",
                 ),
                 const SizedBox(height: 10),
+                const Center(
+                  child: Text("Selecciona imágenes para subirlas",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+                const SizedBox(height: 10),
                 Container(
                   margin:
                       const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30.0),
-                    child: _image != null
-                        ? Image.file(_image!)
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: _imagePortada != null
+                        ? Image.file(_imagePortada)
                         : GestureDetector(
-                          onTap: () {
-                            selectImage(context);
-                          },
-                          child: ClipRRect(
-                            child: Image.asset(
-                              "assets/add-picture.png",
-                              scale: 0.6,
+                            onTap: () {
+                              selectImage(context);
+                            },
+                            child: ClipRRect(
+                              child: Image.asset(
+                                "assets/add-picture.png",
+                                scale: 0.9,
+                              ),
                             ),
                           ),
-                        ),
                   ),
                 ),
-                if (widget.isSaving) 
+                const SizedBox(height: 10),
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  child: GridView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: _image.length + 1,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3),
+                    itemBuilder: (context, index) {
+                      return index == 0
+                          ? Center(
+                              child: Container(
+                                color: AppTheme.backgroundColor,
+                                child: IconButton(
+                                    icon: const Icon(Icons.add),
+                                    onPressed: () =>
+                                        !uploading ? selectImages() : null),
+                              ),
+                            )
+                          : Container(
+                              margin: const EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: FileImage(_image[index - 1]),
+                                      fit: BoxFit.cover)),
+                            );
+                    },
+                  ),
+                ),
+                uploading
+                    ? Center(
+                        child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(5),
+                            child: const Text(
+                              'subiendo...',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          CircularProgressIndicator(
+                            value: val,
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                                Colors.black),
+                          )
+                        ],
+                      ))
+                    : const SizedBox(),
+                if (uploading)
                   const CircularProgressIndicator(color: Colors.black),
               ],
             ),

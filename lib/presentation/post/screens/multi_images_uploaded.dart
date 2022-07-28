@@ -22,33 +22,29 @@ class _MultiImagesUploadedScreenState extends State<MultiImagesUploadedScreen> {
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('imageURLs').snapshots(),
         builder: ((context, snapshot) {
-          return !snapshot.hasData ? const Center(
-            child: CircularProgressIndicator(),
-          ) : Container(
-            padding: const EdgeInsets.all(4),
-            child: GridView.builder(
-              itemCount: snapshot.data!.docs.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3),
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.all(3),
-                  child: FadeInImage.memoryNetwork(
-                              fit: BoxFit.cover,
-                              placeholder: kTransparentImage,
-                              image: snapshot.data!.docs[index].get('url')),
+          return !snapshot.hasData
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Container(
+                  padding: const EdgeInsets.all(4),
+                  child: GridView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.all(3),
+                        child: FadeInImage.memoryNetwork(
+                            fit: BoxFit.cover,
+                            placeholder: kTransparentImage,
+                            image: snapshot.data!.docs[index].get('url')),
+                      );
+                    },
+                  ),
                 );
-              },
-            ),
-          );
         }),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const MultiImagesScreen()));
-        },
       ),
     );
   }
