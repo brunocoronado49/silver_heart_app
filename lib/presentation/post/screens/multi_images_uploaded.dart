@@ -20,7 +20,10 @@ class _MultiImagesUploadedScreenState extends State<MultiImagesUploadedScreen> {
         title: const Text("This show all images"),
       ),
       body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('imageURLs').snapshots(),
+        // Aqui nos traemos toda la data de esa url
+        stream: FirebaseFirestore.instance.collection('posts')
+          // .where("uid", isEqualTo: FirebaseAuth.etc)
+          .snapshots(),
         builder: ((context, snapshot) {
           return !snapshot.hasData
               ? const Center(
@@ -37,9 +40,12 @@ class _MultiImagesUploadedScreenState extends State<MultiImagesUploadedScreen> {
                       return Container(
                         margin: const EdgeInsets.all(3),
                         child: FadeInImage.memoryNetwork(
-                            fit: BoxFit.cover,
-                            placeholder: kTransparentImage,
-                            image: snapshot.data!.docs[index].get('url')),
+                          fit: BoxFit.cover,
+                          placeholder: kTransparentImage,
+
+                          // La linea de abajo toma solo el url
+                          image: snapshot.data!.docs[index].get('url'),
+                        ),
                       );
                     },
                   ),

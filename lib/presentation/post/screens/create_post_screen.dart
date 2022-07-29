@@ -36,9 +36,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   double val = 0;
   late CollectionReference imgRef;
   final storageRef = FirebaseStorage.instance;
-
   List<File> _image = [];
-
   final picker = ImagePicker();
 
   // ignore: prefer_typing_uninitialized_variables
@@ -46,6 +44,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   @override
   void initState() {
+    // modificar la coleccion
     imgRef = FirebaseFirestore.instance.collection('posts');
     _nameCtrl.text = widget.post?.name ?? "";
     _descriptionCtrl.text = widget.post?.description ?? "";
@@ -88,29 +87,37 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       });
 
       Reference refe = storageRef.ref().child(
-          'images/${FirebaseAuth.instance.currentUser!.uid}/${_typeCtrl.text.trim()}/$i.${basename(img.path)}');
+        'images/${FirebaseAuth.instance.currentUser!.uid}/${_typeCtrl.text.trim()}/$i'
+      );
 
       UploadTask uploadTask = refe.putFile(
-        img,
-        SettableMetadata(customMetadata: {
-          'seller':
-              (context.read<UserBloc>().state as UserStateReady).user.name,
-          'price': _priceCtrl.text.trim(),
-          'name': _nameCtrl.text.trim(),
-          'description': _descriptionCtrl.text.trim(),
-          'type': _typeCtrl.text.trim(),
-          'id': uuid.v1(),
-          'userId':
-              (context.read<AuthCubit>().state as AuthStateSingedIn).user.uid,
-        })
-      );
+          img,
+          SettableMetadata(customMetadata: {
+            'seller':
+                (context.read<UserBloc>().state as UserStateReady).user.name,
+            'price': _priceCtrl.text.trim(),
+            'num': i.toString(),
+            'name': _nameCtrl.text.trim(),
+            'description': _descriptionCtrl.text.trim(),
+            'type': _typeCtrl.text.trim(),
+            'id': uuid.v1(),
+            'userId':
+                (context.read<AuthCubit>().state as AuthStateSingedIn).user.uid,
+          }));
 
       await uploadTask.then((res) async {
         await res.ref.getDownloadURL().then((value) async {
           imgRef.add({
-            "url": value +
-                FirebaseAuth.instance.currentUser!.uid +
-                _typeCtrl.text.trim()
+            'url': value,
+            'seller':
+                (context.read<UserBloc>().state as UserStateReady).user.name,
+            'price': _priceCtrl.text.trim(),
+            'name': _nameCtrl.text.trim(),
+            'description': _descriptionCtrl.text.trim(),
+            'type': _typeCtrl.text.trim(),
+            'id': uuid.v1(),
+            'userId':
+                (context.read<AuthCubit>().state as AuthStateSingedIn).user.uid,
           });
           i++;
         });
@@ -131,9 +138,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     String filename = basename(_imagePortada.path);
     String type = _typeCtrl.text.trim();
     final reference = FirebaseStorage.instance.ref().child(
-
-        // Al principio ponerle un numero por medio de un for
-        "/posts/${FirebaseAuth.instance.currentUser?.uid}.$type.$filename}");
+      "/posts/${FirebaseAuth.instance.currentUser?.uid}.$type.$filename"
+    );
 
     await reference.putFile(
         _imagePortada,
@@ -211,7 +217,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 ),
                 const SizedBox(height: 10),
                 const Center(
-                  child: Text("Selecciona imágenes para subirlas",
+                  child: Text("Selecciona una imágen que sirva de portada",
                       style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 const SizedBox(height: 10),
@@ -234,6 +240,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                             ),
                           ),
                   ),
+                ),
+                const SizedBox(height: 10),
+                const Center(
+                  child: Text("Selecciona imágenes para subirlas",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 const SizedBox(height: 10),
                 Container(

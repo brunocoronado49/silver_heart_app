@@ -8,7 +8,7 @@ class PostDetail extends StatelessWidget {
     required this.description,
     required this.price,
     required this.seller,
-    required this.imageUrl
+    required this.imageUrl, required this.type, required this.uid
   }) : super(key: key);
 
   final String name;
@@ -16,6 +16,8 @@ class PostDetail extends StatelessWidget {
   final String price;
   final String seller;
   final String imageUrl;
+  final String type;
+  final String uid;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class PostDetail extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            PostImage(imageUrl: imageUrl),
+            PostImage(imageUrl: imageUrl, uid: uid, type: type),
             const SizedBox(height: 20),
             PostInfo(
               name: name,

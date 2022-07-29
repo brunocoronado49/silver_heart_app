@@ -21,7 +21,7 @@ class _PostsItemsState extends State<PostsItems> {
 
   // Function to get posts
   Future<List<Map<String, dynamic>>> _loadPosts() async {
-    final result = await FirebaseStorage.instance.ref().child("/posts/").listAll();
+    final result = await FirebaseStorage.instance.ref().child("posts").listAll();
     final allFiles = result.items;
 
     try {
@@ -38,6 +38,7 @@ class _PostsItemsState extends State<PostsItems> {
           "name": fileMeta.customMetadata?["name"] ?? "no name",
           "price": fileMeta.customMetadata?["price"] ?? "no price",
           "type": fileMeta.customMetadata?["type"] ?? "no type",
+          "userId": fileMeta.customMetadata?["userId"] ?? "no uid",
         });
       });
     } catch (error) {
@@ -94,6 +95,8 @@ class _PostsItemsState extends State<PostsItems> {
                                 seller: post["seller"],
                                 price: post["price"],
                                 imageUrl: post["url"],
+                                type: post["type"],
+                                uid: post["userId"],
                               );
                             }
                             return ProfilePostDetailScreen(
@@ -103,6 +106,8 @@ class _PostsItemsState extends State<PostsItems> {
                               price: post["price"],
                               imageUrl: post["url"],
                               ref: post["path"],
+                              uid: post["userId"],
+                              type: post["type"],
                             );
                           }));
                         },

@@ -10,7 +10,7 @@ class ProfilePostDetailScreen extends StatelessWidget {
     required this.price,
     required this.seller,
     required this.imageUrl,
-    required this.ref,
+    required this.ref, required this.uid, required this.type,
   }) : super(key: key);
 
   final String name;
@@ -19,6 +19,8 @@ class ProfilePostDetailScreen extends StatelessWidget {
   final String seller;
   final String imageUrl;
   final String ref;
+  final String uid;
+  final String type;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class ProfilePostDetailScreen extends StatelessWidget {
       body: SafeArea(
         child: ListView(
           children: [
-            PostImage(imageUrl: imageUrl),
+            PostImage(imageUrl: imageUrl, uid: uid, type: type,),
             const SizedBox(height: 20),
             ProfilePostInfo(
               name: name,
