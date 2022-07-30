@@ -87,8 +87,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       });
 
       Reference refe = storageRef.ref().child(
-        'images/${FirebaseAuth.instance.currentUser!.uid}/${_typeCtrl.text.trim()}/$i'
-      );
+          'images/${FirebaseAuth.instance.currentUser!.uid}/${_typeCtrl.text.trim()}/$i');
 
       UploadTask uploadTask = refe.putFile(
           img,
@@ -138,8 +137,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     String filename = basename(_imagePortada.path);
     String type = _typeCtrl.text.trim();
     final reference = FirebaseStorage.instance.ref().child(
-      "/posts/${FirebaseAuth.instance.currentUser?.uid}.$type.$filename"
-    );
+        "/posts/${FirebaseAuth.instance.currentUser?.uid}.$type.$filename");
 
     await reference.putFile(
         _imagePortada,
@@ -182,6 +180,30 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   backgroundColor: AppTheme.thirdColor,
                   elevation: 0,
                 ),
+                const SizedBox(height: 20),
+                uploading
+                    ? Center(
+                        child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(5),
+                            child: const Text(
+                              'subiendo...',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          CircularProgressIndicator(
+                            value: val,
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                                Colors.black),
+                          )
+                        ],
+                      ))
+                    : const SizedBox(),
                 const SizedBox(height: 20),
                 CreatePostInput(
                   _nameCtrl,
@@ -277,31 +299,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     },
                   ),
                 ),
-                uploading
-                    ? Center(
-                        child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(5),
-                            child: const Text(
-                              'subiendo...',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          CircularProgressIndicator(
-                            value: val,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                                Colors.black),
-                          )
-                        ],
-                      ))
-                    : const SizedBox(),
-                if (uploading)
-                  const CircularProgressIndicator(color: Colors.black),
               ],
             ),
           ),

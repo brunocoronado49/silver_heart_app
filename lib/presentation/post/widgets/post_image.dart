@@ -2,10 +2,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:imageview360/imageview360.dart';
 
-// ESTE ARCHIVO ES EL QUE VA A TENER LA LIBRERIA IMAGEVIEW360
-// VA A RECIBIR COMO PARÁMETRO LA URL DE LAS IMÁGENES
-// ADEMÁS DEL TIPO DE LA IMÁGEN Y EL ID DEL USUARIO
-
 class PostImage extends StatefulWidget {
   const PostImage(
       {Key? key, required this.imageUrl, required this.uid, required this.type})
@@ -50,9 +46,6 @@ class _PostImageState extends State<PostImage> {
         // ignore: use_build_context_synchronously
         await precacheImage(NetworkImage(url), context);
       }
-      // imageList.add(NetworkImage(url));
-      // ignore: use_build_context_synchronously
-      // await precacheImage(NetworkImage(url), context);
     });
     setState(() {
       imagePrecached = true;
@@ -77,7 +70,7 @@ class _PostImageState extends State<PostImage> {
                   swipeSensitivity: swipeSensitivity,
                   allowSwipeToRotate: allowSwipeToRotate,
                 )
-              : const Text("Pre-Caching images..."),
+              : const Text("Cargando imágen del producto..."),
         ],
       ),
     );
