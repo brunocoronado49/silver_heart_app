@@ -68,11 +68,6 @@ class SignInPage extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 )
-                // SignInButton(
-                //   text: "Inicia con Google",
-                //   imagePath: "assets/google-login-icon.png",
-                //   onTap: () => authCubit.signInWithGoogle(),
-                // )
               ],
             ),
           ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
+import 'package:silver_heart/presentation/widgets/widgets.dart';
 import 'package:uuid/uuid.dart';
 
 import 'package:silver_heart/theme/app_theme.dart';
@@ -165,7 +166,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           uploadImage(context);
         },
         label: const Text("Guardar post"),
-        icon: const Icon(Icons.update),
+        icon: const Icon(Icons.check),
         backgroundColor: AppTheme.thirdColor,
         elevation: 0,
       ),
@@ -174,8 +175,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           children: [
             const SizedBox(height: 20),
-            const Text("Anuncia un nuevo prodcto"),
-            const SizedBox(height: 20),
+            const HeaderTitle(title: "Publica un nuevo producto"),
             Form(
               key: _formKey,
               child: Column(
@@ -212,7 +212,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   const SizedBox(height: 8),
                   CreatePostInput(
                     _typeCtrl,
-                    "Tipo",
+                    "Categoría",
                   ),
                   const SizedBox(height: 8),
                   TextFormField(
@@ -239,7 +239,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                   ),
                   const SizedBox(height: 10),
                   const Center(
-                    child: Text("Selecciona una imágen que sirva de portada",
+                    child: Text("Selecciona una imágen para portada",
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                   const SizedBox(height: 10),
@@ -254,21 +254,21 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               onTap: () {
                                 selectImage(context);
                               },
-                              child: ClipRRect(
-                                child: Image.asset(
-                                  "assets/add-picture.png",
-                                  scale: 0.9,
+                              child: const ClipRRect(
+                                child: Icon(
+                                  Icons.add_a_photo_outlined,
+                                  size: 90,
                                 ),
                               ),
                             ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 30),
                   const Center(
-                    child: Text("Selecciona imágenes para subirlas",
+                    child: Text("Selecciona las imágenes del producto",
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   Container(
                     padding: const EdgeInsets.all(4),
                     child: GridView.builder(
@@ -284,7 +284,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 child: Container(
                                   color: AppTheme.backgroundColor,
                                   child: IconButton(
-                                      icon: const Icon(Icons.add),
+                                      icon: const Icon(Icons.add_outlined),
                                       onPressed: () =>
                                           !uploading ? selectImages() : null),
                                 ),

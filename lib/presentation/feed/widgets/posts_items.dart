@@ -120,8 +120,10 @@ class _PostsItemsState extends State<PostsItems> {
           }
           return Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text("No hay publicaciones"),
+                Text("Cargando..."),
+                SizedBox(height: 30),
                 CircularProgressIndicator(color: Colors.black),
               ],
             ),

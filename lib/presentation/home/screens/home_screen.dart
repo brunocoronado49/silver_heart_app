@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:silver_heart/bloc/app_bloc.dart';
-import 'package:silver_heart/presentation/post/screens/image_view_360.dart';
-import 'package:silver_heart/presentation/post/screens/multi_images_screen.dart';
-import 'package:silver_heart/presentation/post/screens/multi_images_uploaded.dart';
 import 'package:silver_heart/presentation/screens.dart';
 import 'package:silver_heart/repository/repository.dart';
 import 'package:silver_heart/theme/app_theme.dart';
