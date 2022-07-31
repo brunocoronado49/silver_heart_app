@@ -1,5 +1,7 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:silver_heart/presentation/feed/screens/feed_screen.dart';
+import 'package:silver_heart/routes/routes.dart';
 
 class ProfilePostInfo extends StatefulWidget {
   const ProfilePostInfo(
@@ -8,8 +10,8 @@ class ProfilePostInfo extends StatefulWidget {
       required this.price,
       required this.description,
       required this.seller,
-      required this.ref
-    }) : super(key: key);
+      required this.ref})
+      : super(key: key);
 
   final String name;
   final String price;
@@ -22,14 +24,18 @@ class ProfilePostInfo extends StatefulWidget {
 }
 
 class _ProfilePostInfoState extends State<ProfilePostInfo> {
+  final _navigatorKey = GlobalKey<NavigatorState>();
   late TextStyle style =
       const TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
 
   @override
   Widget build(BuildContext context) {
-     
     Future<void> _delete(String ref) async {
-      await FirebaseStorage.instance.ref(ref).delete();
+      await FirebaseStorage.instance.ref(ref).delete().whenComplete(() {
+        _navigatorKey.currentState?.pushNamedAndRemoveUntil(
+            Routes.home, (r) => false
+          );
+      });
       setState(() {});
     }
 
@@ -37,13 +43,9 @@ class _ProfilePostInfoState extends State<ProfilePostInfo> {
       padding: const EdgeInsets.all(10),
       child: Column(
         children: [
-          Text(
-            widget.name,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold
-            )
-          ),
+          Text(widget.name,
+              style:
+                  const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           const SizedBox(height: 10),
           Text(widget.description, style: style),
           const SizedBox(height: 10),

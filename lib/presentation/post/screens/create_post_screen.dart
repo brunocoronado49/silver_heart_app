@@ -13,7 +13,6 @@ import 'package:silver_heart/theme/app_theme.dart';
 import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/post/widgets/posts_widgets.dart';
-import 'package:silver_heart/presentation/widgets/widgets.dart';
 
 class CreatePostScreen extends StatefulWidget {
   const CreatePostScreen({Key? key, this.post}) : super(key: key);
@@ -156,153 +155,155 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        children: [
-          const SizedBox(height: 30),
-          const HeaderTitle(title: "Crea un nuevo post"),
-          Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                const SizedBox(height: 30),
-                FloatingActionButton.extended(
-                  onPressed: () {
-                    setState(() {
-                      uploading = true;
-                    });
-                    uploadImages(context);
-                    uploadImage(context);
-                  },
-                  label: const Text("Guardar post"),
-                  icon: const Icon(Icons.update),
-                  backgroundColor: AppTheme.thirdColor,
-                  elevation: 0,
-                ),
-                const SizedBox(height: 20),
-                uploading
-                    ? Center(
-                        child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(5),
-                            child: const Text(
-                              'subiendo...',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          CircularProgressIndicator(
-                            value: val,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                                Colors.black),
-                          )
-                        ],
-                      ))
-                    : const SizedBox(),
-                const SizedBox(height: 20),
-                CreatePostInput(
-                  _nameCtrl,
-                  "Nombre del producto",
-                ),
-                const SizedBox(height: 8),
-                CreatePostInput(
-                  _typeCtrl,
-                  "Tipo",
-                ),
-                const SizedBox(height: 8),
-                TextFormField(
-                  autocorrect: false,
-                  controller: _priceCtrl,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    labelText: "Precio",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value.toString().isEmpty) {
-                      return "No dejes el espacio vacío.";
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 8),
-                CreatePostInput(
-                  _descriptionCtrl,
-                  "Descripción",
-                ),
-                const SizedBox(height: 10),
-                const Center(
-                  child: Text("Selecciona una imágen que sirva de portada",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  margin:
-                      const EdgeInsets.only(left: 30.0, right: 30.0, top: 10.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: _imagePortada != null
-                        ? Image.file(_imagePortada)
-                        : GestureDetector(
-                            onTap: () {
-                              selectImage(context);
-                            },
-                            child: ClipRRect(
-                              child: Image.asset(
-                                "assets/add-picture.png",
-                                scale: 0.9,
+    return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          setState(() {
+            uploading = true;
+          });
+          uploadImages(context);
+          uploadImage(context);
+        },
+        label: const Text("Guardar post"),
+        icon: const Icon(Icons.update),
+        backgroundColor: AppTheme.thirdColor,
+        elevation: 0,
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          children: [
+            const SizedBox(height: 20),
+            const Text("Anuncia un nuevo prodcto"),
+            const SizedBox(height: 20),
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const SizedBox(height: 20),
+                  uploading
+                      ? Center(
+                          child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(5),
+                              child: const Text(
+                                'subiendo...',
+                                style: TextStyle(fontSize: 20),
                               ),
                             ),
-                          ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Center(
-                  child: Text("Selecciona imágenes para subirlas",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  padding: const EdgeInsets.all(4),
-                  child: GridView.builder(
-                    scrollDirection: Axis.vertical,
-                    shrinkWrap: true,
-                    itemCount: _image.length + 1,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3),
-                    itemBuilder: (context, index) {
-                      return index == 0
-                          ? Center(
-                              child: Container(
-                                color: AppTheme.backgroundColor,
-                                child: IconButton(
-                                    icon: const Icon(Icons.add),
-                                    onPressed: () =>
-                                        !uploading ? selectImages() : null),
-                              ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            CircularProgressIndicator(
+                              value: val,
+                              valueColor: const AlwaysStoppedAnimation<Color>(
+                                  Colors.black),
                             )
-                          : Container(
-                              margin: const EdgeInsets.all(3),
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: FileImage(_image[index - 1]),
-                                      fit: BoxFit.cover)),
-                            );
+                          ],
+                        ))
+                      : const SizedBox(),
+                  const SizedBox(height: 20),
+                  CreatePostInput(
+                    _nameCtrl,
+                    "Nombre del producto",
+                  ),
+                  const SizedBox(height: 8),
+                  CreatePostInput(
+                    _typeCtrl,
+                    "Tipo",
+                  ),
+                  const SizedBox(height: 8),
+                  TextFormField(
+                    autocorrect: false,
+                    controller: _priceCtrl,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      labelText: "Precio",
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return "No dejes el espacio vacío.";
+                      }
+                      return null;
                     },
                   ),
-                ),
-              ],
+                  const SizedBox(height: 8),
+                  CreatePostInput(
+                    _descriptionCtrl,
+                    "Descripción",
+                  ),
+                  const SizedBox(height: 10),
+                  const Center(
+                    child: Text("Selecciona una imágen que sirva de portada",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    margin: const EdgeInsets.only(
+                        left: 30.0, right: 30.0, top: 10.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                      child: _imagePortada != null
+                          ? Image.file(_imagePortada)
+                          : GestureDetector(
+                              onTap: () {
+                                selectImage(context);
+                              },
+                              child: ClipRRect(
+                                child: Image.asset(
+                                  "assets/add-picture.png",
+                                  scale: 0.9,
+                                ),
+                              ),
+                            ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  const Center(
+                    child: Text("Selecciona imágenes para subirlas",
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    padding: const EdgeInsets.all(4),
+                    child: GridView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemCount: _image.length + 1,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3),
+                      itemBuilder: (context, index) {
+                        return index == 0
+                            ? Center(
+                                child: Container(
+                                  color: AppTheme.backgroundColor,
+                                  child: IconButton(
+                                      icon: const Icon(Icons.add),
+                                      onPressed: () =>
+                                          !uploading ? selectImages() : null),
+                                ),
+                              )
+                            : Container(
+                                margin: const EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: FileImage(_image[index - 1]),
+                                        fit: BoxFit.cover)),
+                              );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
