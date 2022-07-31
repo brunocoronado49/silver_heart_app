@@ -118,7 +118,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             'userId':
                 (context.read<AuthCubit>().state as AuthStateSingedIn).user.uid,
           });
+
           i++;
+          
         });
       });
     }

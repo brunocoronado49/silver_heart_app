@@ -75,6 +75,7 @@ flutter:
     - assets/onBoardingOne.png
     - assets/onBoardingTwo.png
     - assets/onBoardingThree.png
+    - assets/icon-launch.png
   
   fonts:
     - family: Quicksand
