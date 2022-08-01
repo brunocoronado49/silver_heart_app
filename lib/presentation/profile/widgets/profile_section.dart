@@ -33,6 +33,8 @@ class _ProfileSectionState extends State<ProfileSection> {
   final _phoneCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
   final _webCtrl = TextEditingController();
+  final _banc = TextEditingController();
+  final _accountNumber = TextEditingController();
 
   final picker = ImagePicker();
 
@@ -44,6 +46,8 @@ class _ProfileSectionState extends State<ProfileSection> {
     _phoneCtrl.text = widget.user?.phone ?? 'Agrega tu teléfono';
     _emailCtrl.text = widget.user?.email ?? FirebaseAuth.instance.currentUser!.email.toString();
     _webCtrl.text = widget.user?.web ?? 'Agrega tu sitio web';
+    _banc.text = widget.user?.banc ?? 'Agrega tu bancp';
+    _accountNumber.text = widget.user?.accountNumber ?? 'Agrega tu número de cuenta';
     super.initState();
   }
 
@@ -127,6 +131,18 @@ class _ProfileSectionState extends State<ProfileSection> {
             keyboardType: TextInputType.url,
             decoration: const InputDecoration(labelText: 'Web'),
           ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _banc,
+            keyboardType: TextInputType.text,
+            decoration: const InputDecoration(labelText: 'Banco'),
+          ),
+          const SizedBox(height: 8),
+          TextField(
+            controller: _accountNumber,
+            keyboardType: TextInputType.text,
+            decoration: const InputDecoration(labelText: 'Número de cuenta'),
+          ),
           Stack(
             alignment: Alignment.center,
             children: [
@@ -147,7 +163,9 @@ class _ProfileSectionState extends State<ProfileSection> {
                               _addressCtrl.text.trim(),
                               _phoneCtrl.text.trim(),
                               _emailCtrl.text.trim(),
-                              _webCtrl.text.trim());
+                              _webCtrl.text.trim(),
+                              _banc.text.trim(),
+                              _accountNumber.text.trim());
                         },
                   label: const Text('Guardar información'),
                   icon: const Icon(

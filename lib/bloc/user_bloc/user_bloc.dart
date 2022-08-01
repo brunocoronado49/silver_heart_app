@@ -23,7 +23,7 @@ class UserBloc extends Cubit<UserState> {
   Future<void> getUser() async {
     emit(UserStateLoading());
     _user = (await _userRepositoryBase.getUser()) ??
-    const MyUser('', '', '', '', '', '', '');
+    const MyUser('', '', '', '', '', '', '', '', '');
     emit(UserStateReady(_user, _pickedImage));
   }
 
@@ -35,6 +35,8 @@ class UserBloc extends Cubit<UserState> {
     String phone,
     String email,
     String web,
+    String banc,
+    String accountNumber
   ) async {
     _user = MyUser(
       uid,
@@ -44,6 +46,8 @@ class UserBloc extends Cubit<UserState> {
       phone,
       email,
       web,
+      banc,
+      accountNumber,
       image: _user.image
     );
     emit(UserStateReady(_user, _pickedImage, isSaving: true));

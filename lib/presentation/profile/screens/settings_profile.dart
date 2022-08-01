@@ -31,6 +31,8 @@ class _SettingsProfileState extends State<SettingsProfile> {
   final _phoneCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
   final _webCtrl = TextEditingController();
+  final _banc = TextEditingController();
+  final _accountNumber = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   final picker = ImagePicker();
@@ -43,6 +45,8 @@ class _SettingsProfileState extends State<SettingsProfile> {
     _phoneCtrl.text = widget.user?.phone ?? '';
     _emailCtrl.text = widget.user?.email ?? '';
     _webCtrl.text = widget.user?.web ?? '';
+    _banc.text = widget.user?.banc ?? 'Agrega tu bancp';
+    _accountNumber.text = widget.user?.accountNumber ?? 'Agrega tu número de cuenta';
     super.initState();
   }
 
@@ -192,6 +196,8 @@ class _SettingsProfileState extends State<SettingsProfile> {
                                     _phoneCtrl.text.trim(),
                                     _emailCtrl.text.trim(),
                                     _webCtrl.text.trim(),
+                                    _banc.text.trim(),
+                              _accountNumber.text.trim()
                                   );
                             },
                       backgroundColor: Colors.black87,

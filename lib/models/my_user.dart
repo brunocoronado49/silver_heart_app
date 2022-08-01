@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:silver_heart/models/models.dart';
-
 class MyUser extends Equatable {
   const MyUser(
     this.id,
@@ -11,7 +9,8 @@ class MyUser extends Equatable {
     this.phone,
     this.email,
     this.web,
-    //this.posts,
+    this.banc,
+    this.accountNumber,
     {this.image}
   );
 
@@ -22,8 +21,9 @@ class MyUser extends Equatable {
   final String phone;
   final String email;
   final String web;
+  final String banc;
+  final String accountNumber;
   final String? image;
-  //final List<Post?> posts;
 
   @override
   List<Object?> get props => [id];
@@ -38,7 +38,8 @@ class MyUser extends Equatable {
       'email': email,
       'web': web,
       'image': newImage ?? image,
-      //'posts': newPost ?? posts
+      'banc': banc,
+      'accountNumber': accountNumber,
     };
   }
 
@@ -50,6 +51,7 @@ class MyUser extends Equatable {
       phone = data['phone'] as String,
       email = data['email'] as String,
       web = data['web'] as String,
+      banc = data['banc'] as String,
+      accountNumber = data['accountNumber'] as String,
       image = data['image'] as String?;
-      //posts = data["posts"] as List<Post?>;
 }
