@@ -1,10 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-import 'package:silver_heart/core/helpers/carousel_options.dart';
 import 'package:silver_heart/models/models.dart';
 import 'package:silver_heart/presentation/post/screens/post_detail.dart';
 import 'package:silver_heart/presentation/profile/widgets/list_tile_post.dart';
@@ -103,8 +99,10 @@ class _ProfilePostsState extends State<ProfilePosts> {
                                 seller: post["seller"],
                                 price: post["price"],
                                 imageUrl: post["url"],
-                                type: '',
-                                uid: '',
+                                type: post["type"],
+                                uid: post["userId"],
+                                banc: post["banc"],
+                                accountNumber: post["accountNumbers"],
                               );
                             }
                             return ProfilePostDetailScreen(

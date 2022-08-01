@@ -8,16 +8,46 @@ class PostInfo extends StatelessWidget {
       required this.name,
       required this.price,
       required this.description,
-      required this.seller})
+      required this.seller, required this.banc, required this.accountNumber})
       : super(key: key);
 
   final String name;
   final String price;
   final String description;
   final String seller;
+  final String banc;
+  final String accountNumber;
 
   late TextStyle style =
       const TextStyle(fontWeight: FontWeight.w600, fontSize: 18);
+  
+  void displayBancInfo(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          title: const Text("Paga el producto por medio de transferencia!"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("El banco que usa el vendedor es: $banc"),
+              const SizedBox(height: 20),
+              Text("No. de cuenta a depositar: $accountNumber")
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Cancelar"),
+            ),
+          ],
+        );
+      }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {

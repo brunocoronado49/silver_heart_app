@@ -39,6 +39,8 @@ class _PostsItemsState extends State<PostsItems> {
           "price": fileMeta.customMetadata?["price"] ?? "no price",
           "type": fileMeta.customMetadata?["type"] ?? "no type",
           "userId": fileMeta.customMetadata?["userId"] ?? "no uid",
+          "banc": fileMeta.customMetadata?["banc"] ?? "sin banco",
+          "accountNumber": fileMeta.customMetadata?["accountNumber"] ?? "sin numero de cuenta",
         });
       });
     } catch (error) {
@@ -97,6 +99,8 @@ class _PostsItemsState extends State<PostsItems> {
                                 imageUrl: post["url"],
                                 type: post["type"],
                                 uid: post["userId"],
+                                banc: post["banc"],
+                                accountNumber: post["accountNumber"],
                               );
                             }
                             return ProfilePostDetailScreen(

@@ -8,7 +8,7 @@ class PostDetail extends StatelessWidget {
     required this.description,
     required this.price,
     required this.seller,
-    required this.imageUrl, required this.type, required this.uid
+    required this.imageUrl, required this.type, required this.uid, required this.banc, required this.accountNumber
   }) : super(key: key);
 
   final String name;
@@ -18,6 +18,8 @@ class PostDetail extends StatelessWidget {
   final String imageUrl;
   final String type;
   final String uid;
+  final String banc;
+  final String accountNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,9 @@ class PostDetail extends StatelessWidget {
               name: name,
               price: price,
               description: description,
-              seller: seller
+              seller: seller,
+              banc: banc,
+              accountNumber: accountNumber,
             ),
           ],
         ),

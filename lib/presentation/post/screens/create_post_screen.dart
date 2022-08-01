@@ -100,6 +100,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             'description': _descriptionCtrl.text.trim(),
             'type': _typeCtrl.text.trim(),
             'id': uuid.v1(),
+            'banc':
+                (context.read<UserBloc>().state as UserStateReady).user.banc,
+            'accountNumber': (context.read<UserBloc>().state as UserStateReady)
+                .user
+                .accountNumber,
             'userId':
                 (context.read<AuthCubit>().state as AuthStateSingedIn).user.uid,
           }));
@@ -115,12 +120,16 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             'description': _descriptionCtrl.text.trim(),
             'type': _typeCtrl.text.trim(),
             'id': uuid.v1(),
+            'banc':
+                (context.read<UserBloc>().state as UserStateReady).user.banc,
+            'accountNumber': (context.read<UserBloc>().state as UserStateReady)
+                .user
+                .accountNumber,
             'userId':
                 (context.read<AuthCubit>().state as AuthStateSingedIn).user.uid,
           });
 
           i++;
-          
         });
       });
     }
