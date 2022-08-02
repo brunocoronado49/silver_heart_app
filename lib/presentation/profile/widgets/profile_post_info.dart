@@ -32,9 +32,7 @@ class _ProfilePostInfoState extends State<ProfilePostInfo> {
   Widget build(BuildContext context) {
     Future<void> _delete(String ref) async {
       await FirebaseStorage.instance.ref(ref).delete().whenComplete(() {
-        _navigatorKey.currentState?.pushNamedAndRemoveUntil(
-            Routes.home, (r) => false
-          );
+        Navigator.pop(context);
       });
       setState(() {});
     }
