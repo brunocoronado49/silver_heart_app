@@ -9,13 +9,20 @@ import 'package:silver_heart/repository/repository.dart';
 
 import 'app.dart';
 
+/// Archivo principal que ejecuta toda la aplicación
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// Inicializamos el servicio de firebase con sus opciones default
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final authCubit = AuthCubit(AuthRepository());
   EquatableConfig.stringify = true;
   runApp(BlocProvider(
+
+    /// Iniciamos el cubit que checa la authenticacion
     create: (_) => authCubit..init(),
+
+    /// Archivo que nos trae las vistas
     child: MyApp.create(),
   ));
 }

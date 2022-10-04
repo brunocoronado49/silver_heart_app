@@ -8,21 +8,26 @@ class AuthRepository extends AuthRepositoryBase {
 
   AuthUser? _userFromFirebase(User? user) => user == null ? null : AuthUser(user.uid);
 
+  /// Maneja los estados del usuario
   @override
   Stream<AuthUser?> get onAuthStateChanged => _auth.authStateChanges().asyncMap(_userFromFirebase);
 
+  /// Funcion para crear un usuario con su correo y contraseña
+  /// tomando la funcion de firebase
   @override
   Future<AuthUser?> createUserWithEmailAndPassword(String email, String password) async {
     final authResult = await _auth.createUserWithEmailAndPassword(email: email, password: password);
     return _userFromFirebase(authResult.user);
   }
 
+  /// Funcion para loggear con correo y contraseña usando el metodo de fierbase
   @override
   Future<AuthUser?> signInWithEmailAndPassword(String email, String password) async {
     final authResult = await _auth.signInWithEmailAndPassword(email: email, password: password);
     return _userFromFirebase(authResult.user);
   }
 
+  /// Loggea con cuenta de Google, actualmente no funcional
   @override
   Future<AuthUser?> signInWithGoogle() async {
     final googleUser = await GoogleSignIn().signIn();
@@ -37,6 +42,7 @@ class AuthRepository extends AuthRepositoryBase {
     return _userFromFirebase(authResult.user);
   }
 
+  /// Elimina la sesión del usuario
   @override
   Future<void> signOut() async {
     final googleSignIn = GoogleSignIn();

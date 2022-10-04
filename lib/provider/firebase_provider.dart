@@ -20,14 +20,14 @@ class FirebaseProvider {
 
   FirebaseStorage get storage => FirebaseStorage.instance;
 
-  // Take the info of current user from the doc
+  // Toma un usuario con su id
   Future<MyUser?> getUser() async {
     final snapshot = await firestore.doc('user/${currentUser?.uid}').get();
     if (snapshot.exists) return MyUser.fromFirebaseMap(snapshot.data()!);
     return null;
   }
 
-  // Save a new user in the doc
+  /// Guarda un usuario con su avatar
   Future<void> saveUser(MyUser user, File? image) async {
     final ref = firestore.doc('user/${currentUser?.uid}');
     if (image != null) {
@@ -40,6 +40,4 @@ class FirebaseProvider {
       await ref.set(user.toFirebaseMap(), SetOptions(merge: true)); 
     }
   }
-
-  // TODO: save a image for posts
 }

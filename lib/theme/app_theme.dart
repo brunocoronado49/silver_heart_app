@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Tema principal de la aplicacion
 class AppTheme {
   static const primaryColor = Colors.white;
   static const secondaryColor = Colors.grey;

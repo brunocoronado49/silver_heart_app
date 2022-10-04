@@ -9,6 +9,8 @@ class AuthUser extends Equatable {
   List<Object?> get props => [uid];
 }
 
+/// Funciones con las que vamos a manejar la logica de firebase
+/// y vamos a consumir sus servicios
 abstract class AuthRepositoryBase {
   Stream<AuthUser?> get onAuthStateChanged;
 

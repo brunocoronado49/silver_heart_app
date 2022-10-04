@@ -5,12 +5,16 @@ import 'package:silver_heart/bloc/app_bloc.dart';
 import 'package:silver_heart/routes/routes.dart';
 import 'package:silver_heart/theme/app_theme.dart';
 
+/// Navegacion para identificar las pantallas de la app
 final _navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   static Widget create() {
+
+    /// Este metodo retorna un bloc consumer, que dependiendo del estado
+    /// nod va a mandar a una vista u otra
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthStateSignedOut) {

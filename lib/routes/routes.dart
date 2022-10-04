@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:silver_heart/presentation/screens.dart';
 
 class Routes {
+
+  /// Definimos los nombres de las rutas
   static const splash = "/";
   static const signIn = "/sign-in";
   static const signUp = "/sign-up";
